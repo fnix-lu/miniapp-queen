@@ -1,26 +1,39 @@
 {
   "pages": [
-    "pages/home/home",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/circle/circle",
+    "pages/mine/mine"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fcf",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#FC7B7B",
+    "navigationBarTitleText": "女王驾到",
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "color": "#ff0000",
+    "color": "#888888",
+    "selectedColor": "#FF8860",
+    "backgroundColor": "#FFFFFF",
     "list": [
       {
-        "pagePath": "pages/home/home",
-        "text": "首页"
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "selectedIconPath": "assets/img/tab_home_on.png"
       },
       {
-        "pagePath": "pages/index/index",
-        "text": "INDEX"
+        "pagePath": "pages/circle/circle",
+        "text": "闺蜜圈",
+        "iconPath": "assets/img/tab_circle_off.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "assets/img/tab_mine_off.png"
       }
     ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "container": "components/container/container"
   }
 }

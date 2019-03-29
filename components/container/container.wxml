@@ -1,0 +1,4 @@
+<!--components/container/container.wxml-->
+<view class="container">
+  <slot></slot>
+</view>
