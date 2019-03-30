@@ -1,4 +1,5 @@
 /* pages/index/index.wxss */
+/* 定位 */
 .current-location {
   width: 140rpx;
   height: 60rpx;
@@ -10,13 +11,122 @@
   left: 0;
   top: 0;
 }
-.i-location {
+.icon-location {
   width: 28rpx;
   height: 28rpx;
   margin-right: 6rpx;
 }
+
+/* 广告图 */
 .banner {
   width: 100%;
   height: 400rpx;
-  background-color: pink;
+  background-color: #ccc;
+  display: block;
+}
+
+/* 标签 */
+.tabs {
+  text-align: center;
+  background-color: #fff;
+}
+.tabs-item {
+  height: 90rpx;
+  border-bottom: 4rpx solid transparent;
+  font-size: 30rpx;
+  display: inline-flex;
+  align-items: center;
+  color: #353535;
+}
+.tabs-item.active {
+  border-bottom-color: #FF8F37;
+  color: #FF8F37;
+}
+.icon-arrow-right-tabs {
+  width: 26rpx;
+  height: 26rpx;
+  margin-left: 20rpx;
+}
+
+/* 二级标签 */
+.subtabs {
+  padding: 0 32rpx;
+  height: 68rpx;
+  display: flex;
+  align-items: center;
+  background: #cff;
+  margin-bottom: -20rpx;
+}
+.brand-tabs-wrap {
+  height: 100%;
+  flex: 1;
+  background: yellow;
+}
+.brand-tabs {
+  width: 100%;
+  /* white-space: nowrap; */
+}
+.brand-tab {
+  display: inline-block;
+  color: #888888;
+  font-size: 28rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  margin: 0 18rpx;
+}
+.brand-tab.active {
+  color: #FF8F37;
+}
+.icon-arrow-right-suntabs {
+  width: 12rpx;
+  height: 22rpx;
+}
+
+/* 商品列表 */
+.goods-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10rpx 20rpx;
+}
+.goods-card {
+  width: 344rpx;
+  height: 532rpx;
+  border-radius: 16rpx;
+  background-color: #fff;
+  margin: 10rpx 0;
+  overflow: hidden;
+  position: relative;
+}
+.goods-img {
+  width: 100%;
+  height: 344rpx;
+  background-color: #ccc;
+}
+.goods-name {
+  font-size: 26rpx;
+  color: #555555;
+  line-height: 36rpx;
+  height: 72rpx;
+  overflow: hidden;
+  margin: 6rpx 16rpx 0;
+}
+.goods-info {
+  margin: 20rpx 16rpx 0;
+  font-size: 22rpx;
+  color: #999999;
+}
+.price-group {
+  color: #FF8860;
+  font-size: 34rpx;
+}
+.price-group-char {
+  font-size: 26rpx;
+}
+.icon-hot {
+  width: 84rpx;
+  height: 54rpx;
+  position: absolute;
+  right: 8rpx;
+  top: 0;
 }

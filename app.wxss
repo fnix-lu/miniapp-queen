@@ -1,4 +1,60 @@
 /**app.wxss**/
+page {
+  background-color: #F4F4F4;
+  /* 变量 */
+  --color-primary: #FC7B7B;
+}
 .container {
   font-size: 24rpx;
-} 
+  color: #353535;
+}
+.del {
+  text-decoration: line-through;
+  color: #999999;
+}
+
+/* 对齐 */
+.left {
+  text-align: left;
+}
+.center {
+  text-align: center;
+}
+.right {
+  text-align: right;
+}
+.middle {
+  vertical-align: middle;
+}
+
+/* flex对齐 */
+.inline-flex {
+  display: inline-flex;
+}
+.flex {
+  display: flex;
+}
+.flex-left {
+  justify-content: left;
+}
+.flex-center {
+  justify-content: center;
+}
+.flex-right {
+  justify-content: right;
+}
+.flex-sides {
+  justify-content: space-between;
+}
+.flex-around {
+  justify-content: space-around;
+}
+.flex-top {
+  align-items: flex-start;
+}
+.flex-middle {
+  align-items: center;
+}
+.flex-bottom {
+  align-items: flex-end;
+}

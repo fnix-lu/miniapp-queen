@@ -5,6 +5,7 @@
     "pages/mine/mine"
   ],
   "window": {
+    "backgroundColor": "#999",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FC7B7B",
     "navigationBarTitleText": "女王驾到",
@@ -18,17 +19,17 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "selectedIconPath": "assets/img/tab_home_on.png"
+        "selectedIconPath": "assets/img/tabbar_home_on.png"
       },
       {
         "pagePath": "pages/circle/circle",
         "text": "闺蜜圈",
-        "iconPath": "assets/img/tab_circle_off.png"
+        "iconPath": "assets/img/tabbar_circle_off.png"
       },
       {
         "pagePath": "pages/mine/mine",
         "text": "我的",
-        "iconPath": "assets/img/tab_mine_off.png"
+        "iconPath": "assets/img/tabbar_mine_off.png"
       }
     ]
   },
