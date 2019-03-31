@@ -1,0 +1,62 @@
+<!--pages/order/order.wxml-->
+<container>
+  <i-tabs current="tab1" color="#FC7B7B">
+    <i-tab key="tab1" title="全部"></i-tab>
+    <i-tab key="tab2" title="待付款" count="1"></i-tab>
+    <i-tab key="tab3" title="待成团"></i-tab>
+    <i-tab key="tab4" title="待取货" dot></i-tab>
+  </i-tabs>
+  <!-- 无订单 -->
+  <view class="placeholder-card">
+    <image class="placeholder-card-img" src="/assets/img/placeholder_order.png"></image>
+    <view class="placeholder-card-text">您暂无订单</view>
+  </view>
+
+  <!-- 有订单 -->
+  <view class="card">
+    <view class="card-head flex flex-sides flex-middle">
+      <!-- 订单编号状态 -->
+      <text class="order-id">订单号：1234567890</text>
+      <text class="order-status">待付款</text>
+    </view>
+    <view class="card-body">
+      <!-- 商品信息 -->
+      <view class="goods flex">
+        <image class="goods-img"></image>
+        <view class="goods-info-c">
+          <view class="goods-name">七度空间夜用七度空间夜用七度空间夜用</view>
+          <view class="goods-extra">5包起购</view>
+        </view>
+        <view class="goods-info-r">
+          <view class="goods-price">￥24</view>
+          <view class="goods-amount">x1</view>
+        </view>
+      </view>
+      <view class="content">
+        <!-- 订单总价 -->
+        <view class="flex flex-sides">
+          <text class="order-countdown">20:59 后取消</text>
+          <text class="order-price">实付款：<text class="order-price-num">￥24</text></text>
+        </view>
+        <!-- 拼团信息 -->
+        <view class="group-info flex flex-sides">
+          <text class="group-info-text">还差1人</text>
+          <group>
+            <group-member is-first is-leader></group-member>
+            <group-member></group-member>
+            <group-member></group-member>
+            <group-member></group-member>
+          </group>
+        </view>
+      </view>
+    </view>
+    <view class="card-foot flex flex-sides flex-middle">
+      <text class="card-foot-text">*请去我的券包查看商品券</text>
+      <!-- 底部 -->
+      <view class="card-foot-btns flex flex-right">
+        <!-- <button class="btn" size="mini">取消订单</button> -->
+        <button class="btn btn-primary" size="mini" bindtap="handleTap">邀请好友拼单</button>
+      </view>
+    </view>
+  </view>
+</container>

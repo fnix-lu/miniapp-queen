@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/order/order",
+    "pages/mine/mine",
     "pages/index/index",
-    "pages/circle/circle",
-    "pages/mine/mine"
+    "pages/circle/circle"
   ],
   "window": {
     "backgroundColor": "#999",
@@ -35,6 +36,8 @@
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "container": "components/container/container"
+    "container": "components/container/container",
+    "group": "components/group/group",
+    "group-member": "components/group-member/group-member"
   }
 }

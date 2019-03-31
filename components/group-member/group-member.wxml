@@ -1,0 +1,5 @@
+<!--components/group-member/group-member.wxml-->
+<view class="group-member {{ isFirst ? 'first' : '' }}">
+  <text class="leader-flag" wx-if="{{ isLeader }}">团长</text>
+  <image class="group-member-headimg" src="/assets/img/headimg_null.png"></image>
+</view>

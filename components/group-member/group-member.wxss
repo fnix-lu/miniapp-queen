@@ -1,0 +1,29 @@
+/* components/group-member/group-member.wxss */
+.group-member {
+  position: relative;
+  margin-top: 14rpx;
+  margin-left: 20rpx;
+}
+.group-member.first {
+  margin-left: 0;
+}
+.group-member-headimg {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  display: block;
+}
+.leader-flag {
+  height: 28rpx;
+  line-height: 28rpx;
+  border-radius: 28rpx;
+  font-size: 22rpx;
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 0 8rpx;
+  position: absolute;
+  top: -14rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}

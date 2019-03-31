@@ -1,2 +1,24 @@
 <!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<container>
+  <!-- 头部 -->
+  <view class="header">
+    <image class="header-bg" src="/assets/img/mine_header.png"></image>
+    <view class="header-info">
+      <image class="my-headimg"></image>
+      <view class="my-nickname">小仙女儿</view>
+      <navigator class="to-edit-info">个人资料修改</navigator>
+    </view>
+  </view>
+  <!-- 菜单 -->
+  <i-cell-group>
+    <i-cell title="我的订单" is-link>
+      <image slot="icon" class="menu-icon" src="/assets/img/menu_order.png"></image>
+    </i-cell>
+    <i-cell title="我的卡券" is-link>
+      <image slot="icon" class="menu-icon" src="/assets/img/menu_ticket.png"></image>
+    </i-cell>
+    <i-cell title="意见反馈" is-link>
+      <image slot="icon" class="menu-icon" src="/assets/img/menu_suggest.png"></image>
+    </i-cell>
+  </i-cell-group>
+</container>

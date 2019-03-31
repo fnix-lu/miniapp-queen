@@ -1,0 +1,104 @@
+/* pages/order/order.wxss */
+/* 暂无订单 */
+.placeholder-card {
+  height: 400rpx;
+  background-color: #fff;
+  margin: 20rpx 0;
+  box-sizing: border-box;
+  padding-top: 84rpx;
+}
+.placeholder-card-img {
+  width: 140rpx;
+  height: 168rpx;
+  display: block;
+  margin: 0 auto 50rpx;
+}
+.placeholder-card-text {
+  font-size: 34rpx;
+  color: var(--color-subtext);
+  text-align: center;
+}
+
+/* 订单卡片 */
+.card-head {
+  height: 64rpx;
+  padding: 0 20rpx;
+  font-size: 26rpx;
+}
+.order-id {
+  color: #888888;
+}
+.order-status {
+  color: var(--color-primary);
+}
+.goods {
+  padding: 10rpx 20rpx;
+  background-color: #F8F8F8;
+}
+.goods-img {
+  width: 118rpx;
+  height: 118rpx;
+  background-color: pink;
+  margin-right: 20rpx;
+}
+.goods-info-c {
+  width: 400rpx;
+}
+.goods-info-r {
+  text-align: right;
+  flex: 1;
+  margin-left: 20rpx;
+}
+.goods-name,
+.goods-price {
+  line-height: 1.5;
+  height: 1.5em;
+  overflow: hidden;
+}
+.goods-extra,
+.goods-amount {
+  color: var(--color-subtext);
+  margin-top: 24rpx;
+}
+.content {
+  padding: 26rpx 20rpx;
+}
+.order-countdown {
+  background: rgba(246,246,246,1);
+  border-radius: 4rpx;
+  color: var(--color-primary);
+  padding: 8rpx 24rpx;
+  font-size: 22rpx;
+}
+.order-price {
+  font-size: 32rpx;
+  color: var(--color-content);
+}
+.order-price-num {
+  color: #FF8F37;
+  font-size: 36rpx;
+  vertical-align: middle;
+}
+.card-foot {
+  border-top: 2rpx solid var(--color-border);
+  padding: 20rpx;
+}
+.card-foot-text {
+  color: var(--color-primary);
+}
+.card-foot-btns {
+  flex: 1;
+}
+.card-foot-btns .btn {
+  margin: 0 0 0 20rpx;
+}
+
+/* 拼团信息 */
+.group-info {
+  margin-top: 20rpx;
+  margin-bottom: -8rpx;
+}
+.group-info-text {
+  color: var(--color-subtext);
+  line-height: 1;
+}

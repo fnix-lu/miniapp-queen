@@ -32,19 +32,17 @@
   </i-row>
   <!-- 二级标签 -->
   <view class="subtabs">
-    <view class="brand-tabs-wrap">
-      <scroll-view class="brand-tabs" scroll-x>
-        <text class="brand-tab active">全部</text>
-        <text class="brand-tab">苏菲</text>
-        <text class="brand-tab">七度空间七度空间</text>
-        <text class="brand-tab">ABC</text>
-        <text class="brand-tab">小护士</text>
-        <text class="brand-tab">苏菲</text>
-        <text class="brand-tab">七度空间七度空间</text>
-        <text class="brand-tab">ABC</text>
-        <text class="brand-tab">小护士</text>
-      </scroll-view>
-    </view>
+    <scroll-view class="brand-tabs" scroll-x>
+      <text class="brand-tab active">全部</text>
+      <text class="brand-tab">苏菲</text>
+      <text class="brand-tab">七度空间七度空间</text>
+      <text class="brand-tab">ABC</text>
+      <text class="brand-tab">小护士</text>
+      <text class="brand-tab">苏菲</text>
+      <text class="brand-tab">七度空间七度空间</text>
+      <text class="brand-tab">ABC</text>
+      <text class="brand-tab">小护士</text>
+    </scroll-view>
     <image class="icon-arrow-right-suntabs" src="/assets/img/arrow_right_subtabs.png"></image>
   </view>
 
