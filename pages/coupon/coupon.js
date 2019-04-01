@@ -1,11 +1,11 @@
-// pages/order/order.js
+// pages/coupon/coupon.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    targetTime: new Date('2019-4-12 00:00:00').getTime()
+
   },
 
   /**
@@ -64,14 +64,13 @@ Page({
 
   },
 
-  handleTap () {
+  /**
+   * 显示优惠券使用规则
+   */
+  showCouponRules () {
     wx.showModal({
-      title: '提示',
-      content: '这是按钮的点击事件',
-      cancelText: '再等等',
-      cancelColor: '#FC7B7B',
-      confirmText: '确认取消',
-      confirmColor: '#888888'
+      title: '使用规则',
+      content: 'ttttt'
     })
   }
 })

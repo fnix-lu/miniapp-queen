@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/coupon/coupon",
+    "pages/coupon-all/coupon-all",
     "pages/order/order",
     "pages/mine/mine",
     "pages/index/index",
@@ -38,6 +40,7 @@
   "usingComponents": {
     "container": "components/container/container",
     "group": "components/group/group",
-    "group-member": "components/group-member/group-member"
+    "group-member": "components/group-member/group-member",
+    "goods": "components/goods/goods"
   }
 }

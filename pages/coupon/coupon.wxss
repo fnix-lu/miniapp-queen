@@ -1,0 +1,44 @@
+/* pages/coupon/coupon.wxss */
+.header {
+  padding: 14rpx 20rpx 34rpx;
+  height: 72rpx;
+  background-color: #fff;
+}
+.header-l,
+.header-r {
+  flex: 1;
+}
+.header-r {
+  display: flex;
+  justify-content: flex-end;
+}
+.tabs {
+  border: 2rpx solid var(--color-primary);
+  border-radius: 8rpx;
+  height: 72rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.tab {
+  width: 140rpx;
+  height: 100%;
+  line-height: 68rpx;
+  text-align: center;
+  color: var(--color-primary);
+  font-size: 28rpx;
+}
+.tab.active {
+  color: #fff;
+  background-color: var(--color-primary);
+}
+.header-sides-item {
+  height: 100%;
+}
+.icon-question {
+  width: 36rpx;
+  height: 36rpx;
+}
+.subtabs {
+  border-top: 2rpx solid #DDDDDD;
+  border-bottom: 2rpx solid #DDDDDD;
+}

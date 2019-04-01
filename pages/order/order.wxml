@@ -21,17 +21,7 @@
     </view>
     <view class="card-body">
       <!-- 商品信息 -->
-      <view class="goods flex">
-        <image class="goods-img"></image>
-        <view class="goods-info-c">
-          <view class="goods-name">七度空间夜用七度空间夜用七度空间夜用</view>
-          <view class="goods-extra">5包起购</view>
-        </view>
-        <view class="goods-info-r">
-          <view class="goods-price">￥24</view>
-          <view class="goods-amount">x1</view>
-        </view>
-      </view>
+      <goods></goods>
       <view class="content">
         <!-- 订单总价 -->
         <view class="flex flex-sides">
@@ -58,5 +48,30 @@
         <button class="btn btn-primary" size="mini" bindtap="handleTap">邀请好友拼单</button>
       </view>
     </view>
+  </view>
+
+  <!-- 弹层 -->
+  <view class="cover"></view>
+
+  <!-- 订单详情 -->
+  <view class="dialog order-detail">
+    <view class="center">
+      <i-count-down show-day countdown-class="order-detail-countdown" target="{{ targetTime }}"></i-count-down>
+    </view>
+    <view style="margin-top: 54rpx;">
+      <group>
+        <group-member is-leader is-first></group-member>
+        <group-member></group-member>
+        <group-member></group-member>
+        <group-member></group-member>
+      </group>
+    </view>
+    <view class="order-detail-group-text">
+      还差 <text class="order-detail-group-text-num">3</text> 人，赶快邀请好友一起拼单吧
+    </view>
+    <button class="btn btn-full btn-primary" bindtap="handleTap">邀请好友拼单</button>
+    <!-- 产品信息 -->
+    <view class="order-detail-goods-title">产品信息</view>
+    <goods></goods>
   </view>
 </container>

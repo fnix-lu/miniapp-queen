@@ -1,1 +1,4 @@
 /* pages/circle/circle.wxss */
+.test {
+  line-height: 1;
+}

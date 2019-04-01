@@ -1,0 +1,12 @@
+<!--components/goods/goods.wxml-->
+<view class="goods">
+  <image class="goods-img"></image>
+  <view class="goods-info-c">
+    <view class="goods-name">七度空间夜用七度空间夜用七度空间夜用</view>
+    <view class="goods-extra">5包起购</view>
+  </view>
+  <view class="goods-info-r">
+    <view class="goods-price">￥24</view>
+    <view class="goods-amount">x1</view>
+  </view>
+</view>

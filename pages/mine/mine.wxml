@@ -15,7 +15,7 @@
       <image slot="icon" class="menu-icon" src="/assets/img/menu_order.png"></image>
     </i-cell>
     <i-cell title="我的卡券" is-link>
-      <image slot="icon" class="menu-icon" src="/assets/img/menu_ticket.png"></image>
+      <image slot="icon" class="menu-icon" src="/assets/img/menu_coupon.png"></image>
     </i-cell>
     <i-cell title="意见反馈" is-link>
       <image slot="icon" class="menu-icon" src="/assets/img/menu_suggest.png"></image>

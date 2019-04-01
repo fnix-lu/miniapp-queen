@@ -1,11 +1,11 @@
-// pages/order/order.js
+// pages/coupon-all/coupon-all.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    targetTime: new Date('2019-4-12 00:00:00').getTime()
+
   },
 
   /**
@@ -62,16 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  handleTap () {
-    wx.showModal({
-      title: '提示',
-      content: '这是按钮的点击事件',
-      cancelText: '再等等',
-      cancelColor: '#FC7B7B',
-      confirmText: '确认取消',
-      confirmColor: '#888888'
-    })
   }
 })

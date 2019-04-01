@@ -1,2 +1,3 @@
 <!--pages/circle/circle.wxml-->
-<text>pages/circle/circle.wxml</text>
+<view>pages/circle/circle.wxml</view>
+<i-count-down i-class="test"></i-count-down>

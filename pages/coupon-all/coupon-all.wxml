@@ -1,0 +1,9 @@
+<!--pages/coupon-all/coupon-all.wxml-->
+<container>
+  <coupon-item></coupon-item>
+  <coupon-item></coupon-item>
+  <coupon-item></coupon-item>
+  <coupon-item></coupon-item>
+  <coupon-item></coupon-item>
+  <coupon-item></coupon-item>
+</container>

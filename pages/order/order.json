@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "i-tabs": "/iview/tabs/index",
-    "i-tab": "/iview/tab/index"
+    "i-tab": "/iview/tab/index",
+    "i-count-down": "/iview/count-down/index"
   },
   "navigationBarTitleText": "我的订单"
 }

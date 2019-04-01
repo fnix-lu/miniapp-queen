@@ -31,35 +31,6 @@
 .order-status {
   color: var(--color-primary);
 }
-.goods {
-  padding: 10rpx 20rpx;
-  background-color: #F8F8F8;
-}
-.goods-img {
-  width: 118rpx;
-  height: 118rpx;
-  background-color: pink;
-  margin-right: 20rpx;
-}
-.goods-info-c {
-  width: 400rpx;
-}
-.goods-info-r {
-  text-align: right;
-  flex: 1;
-  margin-left: 20rpx;
-}
-.goods-name,
-.goods-price {
-  line-height: 1.5;
-  height: 1.5em;
-  overflow: hidden;
-}
-.goods-extra,
-.goods-amount {
-  color: var(--color-subtext);
-  margin-top: 24rpx;
-}
 .content {
   padding: 26rpx 20rpx;
 }
@@ -101,4 +72,38 @@
 .group-info-text {
   color: var(--color-subtext);
   line-height: 1;
+}
+
+/* 订单详情 */
+.order-detail {
+  width: 100%;
+  top: 0;
+  transform: translate(-50%, 0);
+  padding: 0 20rpx 40rpx;
+}
+.order-detail-countdown {
+  font-weight: bold;
+  font-size: 40rpx;
+  color: var(--color-primary);
+  line-height: 1;
+}
+.order-detail-group-text {
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 1;
+  margin-top: 46rpx;
+}
+.order-detail-group-text-num {
+  font-weight: bold;
+  color: var(--color-primary);
+}
+.order-detail .btn-primary {
+  margin-top: 42rpx;
+}
+.order-detail-goods-title {
+  color: var(--color-subtext);
+  font-size: 30rpx;
+  line-height: 1;
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
 }
