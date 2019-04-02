@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/goods-detail/goods-detail",
+    "pages/profile/profile",
+    "pages/feedback/feedback",
     "pages/coupon/coupon",
     "pages/coupon-all/coupon-all",
     "pages/order/order",
@@ -10,9 +13,8 @@
   "window": {
     "backgroundColor": "#999",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#FC7B7B",
-    "navigationBarTitleText": "女王驾到",
-    "navigationBarTextStyle": "white"
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#888888",

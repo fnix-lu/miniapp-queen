@@ -1,0 +1,23 @@
+<!--pages/feedback/feedback.wxml-->
+<container>
+  <view class="feedback-panel">
+    <view class="feedback-title">
+      <text>意见反馈</text>
+      <text class="feedback-count">0/200</text>
+    </view>
+    <textarea
+      class="feedback-text"
+      placeholder="请详细描述您的问题，以便我们给您提供更好的服务"
+      placeholder-style="color:#CCCCCC"
+      maxlength="200"
+    ></textarea>
+  </view>
+
+  <view>
+    <i-input i-class="phone" value="" type="number" title="联系电话" placeholder="请输入您的手机，方便我们联系您" />
+  </view>
+
+  <view class="submit-wrap">
+    <button class="btn btn-full btn-primary btn-submit" disabled="{{ true }}">提交</button>
+  </view>
+</container>

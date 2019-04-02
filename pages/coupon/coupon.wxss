@@ -42,3 +42,10 @@
   border-top: 2rpx solid #DDDDDD;
   border-bottom: 2rpx solid #DDDDDD;
 }
+
+.conpon-rules-desc {
+  text-align: left;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  color: var(--color-content);
+}

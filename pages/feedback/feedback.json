@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-input": "/iview/input/index"
+  },
+  "navigationBarTitleText": "意见反馈"
+}

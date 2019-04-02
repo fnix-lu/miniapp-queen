@@ -1,4 +1,4 @@
-// pages/coupon/coupon.js
+// pages/profile/profile.js
 Page({
 
   /**
@@ -62,12 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  /**
-   * 显示优惠券使用规则
-   */
-  showCouponRules () {
-    
   }
 })

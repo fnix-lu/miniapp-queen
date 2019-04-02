@@ -6,6 +6,7 @@ page {
   --color-content: #555555;
   --color-subtext: #888888;
   --color-border: #EEEEEE;
+  --color-placeholder: #CCCCCC;
 }
 .container {
   font-size: 24rpx;
@@ -14,6 +15,9 @@ page {
 .del {
   text-decoration: line-through;
   color: #999999;
+}
+.placeholder {
+  color: var(--color-placeholder);
 }
 
 /* 对齐 */
@@ -119,4 +123,20 @@ page {
 }
 .btn.btn-primary::after {
   border-color: var(--color-primary);
+}
+.btn[disabled] {
+  background-color: #DDDDDD !important;
+  color: var(--color-subtext) !important;
+}
+.btn[disabled]::after {
+  border-color: #DDDDDD !important;
+}
+
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 98rpx;
+  z-index: 20;
 }

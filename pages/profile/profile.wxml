@@ -1,0 +1,30 @@
+<!--pages/profile/profile.wxml-->
+<container>
+  <i-cell-group i-class="panel">
+    <i-cell title="手机号">
+      <input slot="footer" type="number" placeholder="请输入您的手机号" placeholder-class="placeholder" maxlength="11"/>
+    </i-cell>
+    <i-cell title="生日">
+      <picker slot="footer" mode="date">
+        <text wx-if="{{ true }}" class="placeholder">请选择您的生日</text>
+        <text>{{}}</text>
+      </picker>
+    </i-cell>
+    <i-cell title="省份">
+      <picker slot="footer">
+        <text wx-if="{{ true }}" class="placeholder">请选择</text>
+        <text>{{}}</text>
+      </picker>
+    </i-cell>
+    <i-cell title="城市">
+      <input slot="footer" type="text" placeholder="请选择" placeholder-class="placeholder"/>
+    </i-cell>
+    <i-cell title="学校">
+      <input slot="footer" type="text" placeholder="请选择" placeholder-class="placeholder"/>
+    </i-cell>
+  </i-cell-group>
+
+  <view class="submit-wrap">
+    <button class="btn btn-full btn-primary btn-submit" disabled="{{ false }}">保存</button>
+  </view>
+</container>

@@ -17,8 +17,19 @@
     <i-tab key="tab1" title="未使用"></i-tab>
     <i-tab key="tab2" title="已使用/已过期"></i-tab>
   </i-tabs>
+  <coupon-item invalid-type="{{ 0 }}"></coupon-item>
+  <coupon-item invalid-type="{{ 1 }}"></coupon-item>
+  <coupon-item invalid-type="{{ 2 }}"></coupon-item>
   <coupon-item></coupon-item>
-  <coupon-item></coupon-item>
-  <coupon-item></coupon-item>
-  <coupon-item></coupon-item>
+
+  <!-- 对话框 -->
+  <i-modal title="使用规则" visible="{{ false }}" show-cancel="{{ false }}" ok-text="我知道了">
+    <view class="conpon-rules-desc">
+      <view>a. 礼品卡在有效期内使用，过期作废。</view>
+      <view>b. 礼品卡不予兑现，购物金额不足部分以现金补足。</view>
+      <view>c. 礼品卡支付部分不开发票。</view>
+      <view>d. 发生退货时，礼品卡支付部分退回卡内，不予兑现。</view>
+      <view>e. 礼品卡一旦绑定，将只能被绑定账户使用，不能跨账户使用。</view>
+    </view>
+  </i-modal>
 </container>

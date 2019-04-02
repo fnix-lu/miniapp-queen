@@ -2,5 +2,8 @@
   "usingComponents": {
     "i-row": "/iview/row/index",
     "i-col": "/iview/col/index"
-  }
+  },
+  "navigationBarTitleText": "女王驾到",
+  "navigationBarBackgroundColor": "#FC7B7B",
+  "navigationBarTextStyle": "white"
 }

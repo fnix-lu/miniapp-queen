@@ -2,7 +2,5 @@
   "usingComponents": {
     "coupon-item": "/components/coupon-item/coupon-item"
   },
-  "navigationBarTitleText": "我的卡券",
-  "navigationBarBackgroundColor": "#fff",
-  "navigationBarTextStyle": "black"
+  "navigationBarTitleText": "我的卡券"
 }

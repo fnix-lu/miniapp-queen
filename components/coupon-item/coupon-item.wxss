@@ -22,8 +22,15 @@
   box-sizing: border-box;
   padding-left: 40rpx;
   padding-right: 20rpx;
-  padding-top: 36rpx;
   line-height: 1;
+  display: flex;
+  align-items: center;
+}
+.coupon-card-l.disabled {
+  background: #DDDDDD;
+}
+.coupon-card-r-inner {
+  width: 100%;
 }
 .coupon-img {
   width: 144rpx;
@@ -95,4 +102,13 @@
   right: 20rpx;
   top: 50%;
   transform: translateY(-50%);
+}
+
+/* 优惠券印章 */
+.coupon-signet {
+  width: 108rpx;
+  height: 112rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
 }

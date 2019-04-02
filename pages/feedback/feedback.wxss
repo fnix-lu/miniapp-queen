@@ -1,0 +1,30 @@
+/* pages/feedback/feedback.wxss */
+.feedback-panel {
+  background-color: #fff;
+  margin: 20rpx 0;
+  height: 480rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  font-size: 30rpx;
+}
+.feedback-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+.feedback-count {
+  color: var(--color-subtext);
+}
+.feedback-text {
+  width: 100%;
+  flex: 1;
+}
+.phone {
+  font-size: 30rpx;
+}
+.submit-wrap {
+  margin-top: 80rpx;
+  padding: 0 20rpx;
+}
