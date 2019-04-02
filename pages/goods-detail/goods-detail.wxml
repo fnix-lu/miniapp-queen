@@ -36,9 +36,7 @@
       <text style="margin-right:22rpx">已选</text><text class="selected-type">“5包起购”</text><text class="selected-type">“1件”</text>
       <image class="icon-arrow-right-picker" src="/assets/img/arrow_right_picker.png"></image>
     </view>
-    <view class="list-item">
-      正品保证 · 线下取货
-    </view>
+    <view class="list-item">正品保证 · 线下取货</view>
   </view>
 
   <!-- 进行中的拼团 -->
@@ -47,7 +45,7 @@
     <view class="list">
       <view class="list-item first flex flex-sides flex-middle">
         <image class="leader-headimg"></image>
-        <view class="group-name">小仙女儿<text style="margin-left:20rpx">的团</text></view>
+        <view class="group-name">小仙女儿<text style="margin-left:20rpx;color:var(--color-subtext)">的团</text></view>
         <view class="group-status">
           <view style="color:#353535">还差<text style="color:var(--color-primary)">1人</text>拼成</view>
           <view style="margin-top:14rpx">仅剩<text style="margin-left:20rpx">23:59:59</text></view>
@@ -56,7 +54,7 @@
       </view>
       <view class="list-item flex flex-sides flex-middle">
         <image class="leader-headimg"></image>
-        <view class="group-name">小仙女儿<text style="margin-left:20rpx">的团</text></view>
+        <view class="group-name">小仙女儿<text style="margin-left:20rpx;color:var(--color-subtext)">的团</text></view>
         <view class="group-status">
           <view style="color:#353535">还差<text style="color:var(--color-primary)">1人</text>拼成</view>
           <view style="margin-top:14rpx">仅剩<text style="margin-left:20rpx">23:59:59</text></view>
@@ -67,20 +65,33 @@
   </view>
 
   <!-- 商品详情 -->
-
+  <view class="goods-detail">
+    <view class="goods-detail-title">商品详情</view>
+  </view>
 
   <!-- 顶部信息栏 -->
   <view class="fixed-footer">
     <view class="btn-home">
-
+      <image class="icon-home" src="/assets/img/tabbar_home_on.png"></image>
+      <view>首页</view>
     </view>
     <view class="btn-buy-self">
       <view class="btn-price">￥26</view>
-      <view></view>
+      <view>单独购买</view>
     </view>
     <view class="btn-create-group">
       <view class="btn-price">￥24</view>
-      <view></view>
+      <view>发起拼单</view>
     </view>
+  </view>
+
+  <!-- 弹层 -->
+  <view class="cover" catchtouchmove="true"></view>
+  <!-- 购买选项 -->
+  <view class="dialog dialog-buy" catchtouchmove="true">
+    <view class="dialog-buy-inner">
+      做成组件（窗帘），或者拓展抽屉（上下）
+    </view>
+    <view class="btn-confirm">确定</view>
   </view>
 </container>
