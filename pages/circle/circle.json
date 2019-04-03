@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "i-count-down": "/iview/count-down/index"
-  }
+    "i-row": "/iview/row/index",
+    "i-col": "/iview/col/index"
+  },
+  "navigationBarTitleText": "闺蜜圈"
 }

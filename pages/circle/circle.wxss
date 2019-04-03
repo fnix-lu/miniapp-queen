@@ -1,4 +1,66 @@
 /* pages/circle/circle.wxss */
-.test {
-  line-height: 1;
+/* 瀑布流 */
+.waterfall {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rpx 20rpx;
+}
+.waterfall-col {
+  width: 344rpx;
+}
+
+/* 贴子卡片 */
+.post-card {
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin: 20rpx 0;
+  background-color: #fff;
+}
+.post-img {
+  width: 100%;
+  background-color: #FF8F37;
+}
+.post-info {
+  padding: 20rpx 20rpx 46rpx;
+}
+.post-title {
+  font-size: 26rpx;
+  color: #353535;
+}
+.post-content {
+  font-size: 22rpx;
+  margin-top: 20rpx;
+  line-height: 1.5;
+  max-height: 4.5em;
+  overflow: hidden;
+  color: #888888;
+}
+.post-footer {
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.post-user {
+  color: #555555;
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+}
+.user-headimg {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+  background-color: pink;
+  margin-right: 12rpx;
+  display: block;
+}
+.post-read {
+  color: #CCCCCC;
+  font-size: 22rpx;
+}
+.icon-eye {
+  width: 30rpx;
+  height: 16rpx;
+  margin-right: 12rpx;
 }

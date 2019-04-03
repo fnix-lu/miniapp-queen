@@ -1,14 +1,16 @@
 {
   "pages": [
+    "pages/circle/circle",
+    "pages/index/index",
+    "pages/pay-result/pay-result",
+    "pages/settlement/settlement",
     "pages/goods-detail/goods-detail",
     "pages/profile/profile",
     "pages/feedback/feedback",
     "pages/coupon/coupon",
     "pages/coupon-all/coupon-all",
     "pages/order/order",
-    "pages/mine/mine",
-    "pages/index/index",
-    "pages/circle/circle"
+    "pages/mine/mine"
   ],
   "window": {
     "backgroundColor": "#999",

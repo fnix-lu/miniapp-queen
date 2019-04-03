@@ -1,11 +1,12 @@
-// pages/goods-detail/goods-detail.js
+// pages/settlement/settlement.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    flagDrawerBuy: false
+    flagDrawerSelect: false,
+    currentConpon: '不使用优惠'
   },
 
   /**
@@ -65,11 +66,21 @@ Page({
   },
 
   /**
-   * 切换购买弹层
+   * 切换选择列表弹层
    */
-  toggleDrawerBuy () {
+  toggleDrawerSelect () {
     this.setData({
-      flagDrawerBuy: !this.data.flagDrawerBuy
+      flagDrawerSelect: !this.data.flagDrawerSelect,
     })
+  },
+
+  /**
+   * 选择优惠券
+   */
+  selectCoupon({ detail = {} }) {
+    this.setData({
+      currentConpon: detail.value
+    })
+    this.toggleDrawerSelect()
   }
 })

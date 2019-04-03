@@ -2,7 +2,9 @@
     <i-cell i-class="i-radio-cell">
         <label>
             <radio value="{{value}}" checked="{{checked}}" color="{{checked?color:''}}" disabled="{{disabled}}" class="i-radio-radio {{positionCls}}" />
-            <view class="i-radio-title">{{value}}</view>
+            <view class="i-radio-title">
+              <view class="i-radio-title-inner"><view class="i-option-icon"><slot></slot></view>{{value}}</view>
+            </view>
         </label>
     </i-cell>
 </view>

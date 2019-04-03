@@ -18,7 +18,7 @@ Component({
 
         mode: {
             type: String,
-            value: 'left' // left right
+            value: 'left' // left right top bottom
         }
     },
     data: {},

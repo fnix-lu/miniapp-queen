@@ -1,0 +1,66 @@
+/* pages/settlement/settlement.wxss */
+.container {
+  padding-bottom: 100rpx;
+}
+.title {
+  height: 110rpx;
+  line-height: 110rpx;
+  color: var(--color-subtext);
+  font-size: 30rpx;
+  padding: 0 20rpx;
+}
+.title-extra {
+  font-size: 22rpx;
+  color: var(--color-primary);
+  margin-left: 20rpx;
+}
+.goods-panel {
+  padding: 40rpx 0;
+  background-color: #fff;
+  margin-top: 20rpx;
+}
+.goods-panel.first {
+  margin-top: 0;
+}
+.list-item {
+  color: var(--color-subtext);
+}
+.panel {
+  margin: 20rpx 0;
+}
+.payment {
+  color: #555555;
+}
+.icon-logo-wechat {
+  width: 48rpx;
+  height: 48rpx;
+  display: block;
+}
+
+/* 底部结算栏 */
+.settlement-total {
+  flex: 1;
+  height: 100%;
+  font-size: 30rpx;
+  border-top: 2rpx solid var(--color-border);
+}
+.settlement-total-price {
+  font-size: 40rpx;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+.settlement-pay {
+  width: 280rpx;
+  background: var(--color-primary);
+  height: 100%;
+  font-size: 34rpx;
+  color: #fff;
+}
+
+/* 选择列表 */
+.select-item {
+  border-top: 2rpx solid var(--color-border);
+}
+.select-item.first {
+  border-top: none;
+}

@@ -99,7 +99,7 @@
 .group-status {
   text-align: right;
 }
-.btn-join {
+.btn-show-join {
   width: 138rpx;
   height: 72rpx;
   border-radius: 4rpx;
@@ -169,17 +169,6 @@
 }
 
 /* 购买弹层 */
-.dialog-buy {
-  width: 100%;
-  min-height: 600rpx;
-  bottom: 0;
-  transform: translate(-50%, 0);
-  display: flex;
-  flex-direction: column;
-}
-.dialog-buy-inner {
-  flex: 1;
-}
 .btn-confirm {
   width: 100%;
   height: 100rpx;
@@ -189,4 +178,61 @@
   align-items: center;
   font-size: 40rpx;
   color: #fff;
+}
+.buy-options-row {
+  padding: 20rpx;
+  border-top: 2rpx solid var(--color-border);
+}
+.buy-options-row.first {
+  border-top: none;
+}
+.buy-options-row-title {
+  font-size: 28rpx;
+}
+.buy-img {
+  width: 156rpx;
+  height: 156rpx;
+  background: pink;
+  border: 2rpx solid var(--color-border);
+  margin-right: 42rpx;
+}
+.buy-name {
+  font-size: 28rpx;
+}
+.buy-selected {
+  color: var(--color-subtext);
+  font-size: 22rpx;
+  margin-top: 14rpx;
+  margin-bottom: 20rpx;
+}
+.buy-price {
+  color: #FF8F37;
+  font-size: 36rpx;
+}
+.buy-price-del {
+  font-size: 22rpx;
+}
+.radios {
+  margin-top: 20rpx;
+}
+.radio-box {
+  display: inline-block;
+  padding: 14rpx 20rpx;
+  background-color: #EEEEEE;
+  color: #888888;
+  margin-left: 40rpx;
+  border-radius: 2rpx;
+}
+.radio-box.first {
+  margin-left: 0;
+}
+.radio-box.checked {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+/* 参与拼单弹层 */
+.btn-join {
+  margin-top: 40rpx;
+  margin-bottom: 10rpx;
 }

@@ -1,11 +1,11 @@
-// pages/goods-detail/goods-detail.js
+// pages/pay-result/pay-result.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    flagDrawerBuy: false
+
   },
 
   /**
@@ -62,14 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  /**
-   * 切换购买弹层
-   */
-  toggleDrawerBuy () {
-    this.setData({
-      flagDrawerBuy: !this.data.flagDrawerBuy
-    })
   }
 })

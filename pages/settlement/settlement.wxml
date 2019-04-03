@@ -1,0 +1,60 @@
+<!--pages/settlement/settlement.wxml-->
+<container>
+  <view class="title">请确认订单信息</view>
+  <view class="goods-panel first">
+    <goods></goods>
+  </view>
+  <view class="goods-panel">
+    <goods></goods>
+  </view>
+  <view class="title">请确认取货信息<text class="title-extra">*请您先确认学校后，再进行购买</text></view>
+  <i-cell-group>
+    <i-cell i-class="list-item" title="省份">
+      <picker slot="footer">
+        <text wx-if="{{ true }}" class="placeholder">请选择</text>
+        <text>{{}}</text>
+      </picker>
+    </i-cell>
+    <i-cell i-class="list-item" title="城市">
+      <input slot="footer" type="text" placeholder="请选择" placeholder-class="placeholder"/>
+    </i-cell>
+    <i-cell i-class="list-item" title="学校">
+      <input slot="footer" type="text" placeholder="请选择" placeholder-class="placeholder"/>
+    </i-cell>
+  </i-cell-group>
+
+  <!-- 优惠券 -->
+  <view class="panel">
+    <i-cell-group>
+      <i-cell i-class="list-item" title="优惠券" is-link bindtap="toggleDrawerSelect">
+        <!-- <text slot="footer">无可用</text> -->
+        <text slot="footer">{{ currentConpon }}</text>
+      </i-cell>
+    </i-cell-group>
+  </view>
+
+  <!-- 支付方式 -->
+  <view class="panel" style="margin-bottom:80rpx">
+    <i-radio-group i-class="payment" current="微信支付" bindchange="handleFruitChange">
+      <i-radio position="right" value="微信支付" color="var(--color-primary)">
+        <image class="icon-logo-wechat" src="/assets/img/logo_wechat.png"></image>
+      </i-radio>
+    </i-radio-group>
+  </view>
+
+  <!-- 底部结算栏 -->
+  <view class="fixed-footer flex flex-middle">
+    <view class="settlement-total flex flex-center flex-middle">实付款：<text class="settlement-total-price">￥24</text></view>
+    <view class="settlement-pay flex flex-center flex-middle">继续支付</view>
+  </view>
+
+  <!-- 弹层 选择列表 -->
+  <i-drawer mode="bottom" visible="{{ flagDrawerSelect }}" bindclose="toggleDrawerSelect">
+    <i-radio-group current="{{ currentConpon }}" bindchange="selectCoupon">
+      <i-radio i-class="select-item first" value="不使用优惠" color="var(--color-primary)"></i-radio>
+      <i-radio i-class="select-item" value="5元现金券" color="var(--color-primary)"></i-radio>
+      <i-radio i-class="select-item" value="10元现金券" color="var(--color-primary)"></i-radio>
+    </i-radio-group>
+  </i-drawer>
+  
+</container>

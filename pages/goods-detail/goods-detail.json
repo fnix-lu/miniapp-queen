@@ -1,7 +1,10 @@
 {
   "usingComponents": {
     "i-tabs": "/iview/tabs/index",
-    "i-tab": "/iview/tab/index"
+    "i-tab": "/iview/tab/index",
+    "i-drawer": "/iview/drawer/index",
+    "i-input-number": "/iview/input-number/index",
+    "i-modal": "/iview/modal/index"
   },
   "navigationBarTitleText": "女王拼团"
 }

@@ -32,7 +32,7 @@
       <view class="goods-name">七度空间夜用</view>
       <view class="goods-desc">恒安集团面向年轻女性推出的日用夜用</view>
     </view>
-    <view class="list-item">
+    <view class="list-item" bindtap="toggleDrawerBuy">
       <text style="margin-right:22rpx">已选</text><text class="selected-type">“5包起购”</text><text class="selected-type">“1件”</text>
       <image class="icon-arrow-right-picker" src="/assets/img/arrow_right_picker.png"></image>
     </view>
@@ -50,7 +50,7 @@
           <view style="color:#353535">还差<text style="color:var(--color-primary)">1人</text>拼成</view>
           <view style="margin-top:14rpx">仅剩<text style="margin-left:20rpx">23:59:59</text></view>
         </view>
-        <view class="btn-join">去参团</view>
+        <view class="btn-show-join">去参团</view>
       </view>
       <view class="list-item flex flex-sides flex-middle">
         <image class="leader-headimg"></image>
@@ -59,7 +59,7 @@
           <view style="color:#353535">还差<text style="color:var(--color-primary)">1人</text>拼成</view>
           <view style="margin-top:14rpx">仅剩<text style="margin-left:20rpx">23:59:59</text></view>
         </view>
-        <view class="btn-join">去参团</view>
+        <view class="btn-show-join">去参团</view>
       </view>
     </view>
   </view>
@@ -85,13 +85,46 @@
     </view>
   </view>
 
-  <!-- 弹层 -->
-  <view class="cover" catchtouchmove="true"></view>
-  <!-- 购买选项 -->
-  <view class="dialog dialog-buy" catchtouchmove="true">
-    <view class="dialog-buy-inner">
-      做成组件（窗帘），或者拓展抽屉（上下）
+  <!-- 弹层 购买选项 -->
+  <i-drawer mode="bottom" visible="{{ flagDrawerBuy }}" bindclose="toggleDrawerBuy">
+    <view>
+      <view class="buy-options-row flex">
+        <image class="buy-img"></image>
+        <view class="buy-goods">
+          <view class="buy-name">七度空间夜用</view>
+          <view class="buy-selected">
+            <text>您已选择：5包起购</text>
+          </view>
+          <view>
+            <text class="buy-price">￥24</text>
+            <text class="del buy-price-del">￥28</text>
+          </view>
+        </view>
+      </view>
+      <view class="buy-options-row">
+        <view class="buy-options-row-title">规格</view>
+        <view class="radios">
+          <view class="radio-box first">5包起购</view>
+          <view class="radio-box checked">5包起购</view>
+        </view>
+      </view>
+      <view class="buy-options-row flex flex-sides flex-middle" style="margin-bottom:20rpx">
+        <view class="buy-options-row-title">数量</view>
+        <i-input-number i-class="number-selector" value="1" min="0" max="5" />
+      </view>
+      <view class="btn-confirm">确定</view>
     </view>
-    <view class="btn-confirm">确定</view>
-  </view>
+  </i-drawer>
+
+  <!-- 弹层 参与拼单 -->
+  <i-modal title="参与“小仙女儿”拼单" visible="{{ true }}" show-ok="{{ false }}" show-cancel="{{ false }}">
+    <view style="margin-bottom:20rpx;font-size:28rpx">仅剩 <text style="color:var(--color-primary)">1</text> 个名额，23:59:59 后结束</view>
+    <group>
+      <group-member is-first is-leader></group-member>
+      <group-member></group-member>
+      <group-member></group-member>
+      <group-member></group-member>
+    </group>
+    <button class="btn btn-primary btn-full btn-join">参与拼单</button>
+  </i-modal>
 </container>
