@@ -1,0 +1,68 @@
+<!--pages/post-detail/post-detail.wxml-->
+<container>
+  <view class="panel">
+    <view class="user">
+      <image class="user-headimg"></image>
+      <view>
+        <view class="user-nickname">小仙女儿</view>
+        <view class="created-time">03-29</view>
+      </view>
+    </view>
+    <view class="post-title">苏菲的秘密</view>
+    <view class="post-content">你否定我的现在，我决定我的未来；你嘲笑我一无所有，不配去爱，我可怜你总是等待；你可以轻视我们的年轻，我们会证明这是谁的时代；梦想是注定孤独的旅行；路上少不了质疑和嘲笑；但那又怎样，哪怕遍体鳞伤，也要活得漂亮！</view>
+    <view class="post-imgs">
+      <image class="post-img"></image>
+    </view>
+  </view>
+
+  <!-- 评论区 -->
+  <view class="panel comment-area">
+    <view class="comment-area-title">评论 <text style="color:#888888">15</text></view>
+    <!-- 一条评论 -->
+    <view class="comment-item first">
+      <view class="user">
+        <image class="user-headimg"></image>
+        <view>
+          <view class="user-nickname">小仙女儿</view>
+          <view class="created-time">03-29</view>
+        </view>
+      </view>
+      <view class="comment-content-wrap">
+        <!-- 评论内容 -->
+        <view class="comment-content">楼主好细心啊楼主好细心啊楼主好细心啊楼主好细心啊楼主好细心啊楼主好细心啊<view class="btn-show-replybar">回复</view></view>
+        <!-- 已有的回复 -->
+        <view class="replies">
+          <view class="reply-item first"><text class="reply-user">小仙女儿</text>：赞同赞同赞同赞同赞同赞同赞同赞同赞同赞同</view>
+          <view class="reply-item"><text class="reply-user">大仙女儿</text>：我也赞同赞同</view>
+        </view>
+      </view>
+    </view>
+    <!-- end 一条评论 -->
+
+    <view class="comment-item">
+      <view class="user">
+        <image class="user-headimg"></image>
+        <view>
+          <view class="user-nickname">小仙女儿</view>
+          <view class="created-time">03-29</view>
+        </view>
+      </view>
+      <view class="comment-content-wrap">
+        <!-- 评论内容 -->
+        <view class="comment-content">楼主好细心啊楼主好细心啊楼主好细心啊楼主好细心啊楼主好细心啊楼主好细心啊<view class="btn-show-replybar">回复</view></view>
+        <!-- 已有的回复 -->
+        <view class="replies">
+          <view class="reply-item first"><text class="reply-user">小仙女儿</text>：赞同赞同赞同赞同赞同赞同赞同赞同赞同赞同</view>
+          <view class="reply-item"><text class="reply-user">大仙女儿</text>：我也赞同赞同</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 底部回复栏 -->
+  <view class="fixed-footer">
+    <view><input class="input-reply" placeholder="回复楼主的评论"></input></view>
+    <view><button class="btn btn-primary btn-reply" size="mini" disabled="{{ false }}">回复</button></view>
+  </view>
+</container>

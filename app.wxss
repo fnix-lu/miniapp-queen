@@ -135,6 +135,7 @@ page {
   border-color: #DDDDDD !important;
 }
 
+/* 底部固定栏 */
 .fixed-footer {
   position: fixed;
   bottom: 0;
@@ -143,4 +144,5 @@ page {
   height: 100rpx;
   z-index: 20;
   background-color: #fff;
+  box-sizing: border-box;
 }

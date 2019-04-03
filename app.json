@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/post-detail/post-detail",
     "pages/circle/circle",
     "pages/index/index",
     "pages/pay-result/pay-result",

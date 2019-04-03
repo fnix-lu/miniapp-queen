@@ -1,0 +1,129 @@
+/* pages/post-detail/post-detail.wxss */
+.container {
+  padding-bottom: 100rpx;
+}
+
+/* 底部回复栏 */
+.fixed-footer {
+  border-top: 2rpx solid #DDDDDD;
+  display: flex;
+  justify-content: space-between;
+  padding: 13rpx 20rpx 0;
+}
+.input-reply {
+  width: 520rpx;
+  height: 72rpx;
+  background-color: #F2F2F2;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  font-size: 30rpx;
+  border-radius: 8rpx;
+}
+.btn-reply {
+  width: 140rpx;
+  height: 72rpx;
+  line-height: 72rpx !important;
+  font-size: 30rpx;
+}
+.btn-reply[disabled] {
+  background: #FFD4C6 !important;
+  color: #fff !important;
+}
+.btn-reply[disabled]::after {
+  border-color: #FFD4C6 !important;
+}
+
+/* 面板 */
+.panel {
+  margin-bottom: 20rpx;
+  background-color: #fff;
+  padding: 0 20rpx 36rpx;
+}
+
+/* 贴子内容 */
+.user {
+  display: flex;
+  align-items: center;
+  padding-top: 18rpx;
+  padding-bottom: 40rpx;
+}
+.user-headimg {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  background-color: pink;
+}
+.user-nickname {
+  font-size: 30rpx;
+  color: var(--color-content);
+}
+.created-time {
+  color: var(--color-subtext);
+  font-size: 30rpx;
+}
+.post-title {
+  font-size: 34rpx;
+  padding: 0 12rpx;
+}
+.post-content {
+  color: var(--color-content);
+  font-size: 28rpx;
+  line-height: 48rpx;
+  margin-top: 30rpx;
+}
+.post-imgs {
+  margin-top: 40rpx;
+}
+.post-img {
+  width: 100%;
+  background-color: pink;
+  display: block;
+}
+
+/* 评论区 */
+.comment-area-title {
+  font-size: 28rpx;
+  padding: 20rpx 0;
+  color: var(--color-content);
+  border-bottom: 2rpx solid var(--color-border);
+}
+.comment-item {
+  margin-top: 20rpx;
+}
+.comment-item.first {
+  margin-top: 0;
+}
+.comment-content-wrap {
+  padding-left: 100rpx;
+}
+.comment-content {
+  font-size: 30rpx;
+  color: var(--color-content);
+  padding-right: 72rpx;
+  position: relative;
+}
+.btn-show-replybar {
+  color: #FF8860;
+  font-size: 26rpx;
+  position: absolute;
+  right: 0;
+  top: 2rpx;
+}
+.replies {
+  background-color: #F2F2F2;
+  padding: 20rpx;
+  font-size: 26rpx;
+  margin-top: 16rpx;
+}
+.reply-user {
+  color: #0083C9;
+  /* color: #FF8860; */
+}
+.reply-item {
+  line-height: 1.2;
+  margin-top: 10rpx;
+}
+.reply-item.first {
+  margin-top: 0;
+}

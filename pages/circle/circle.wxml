@@ -53,4 +53,21 @@
       </view>
     </view>
   </view>
+
+  <!-- 弹层 右下角固定菜单 -->
+  <view class="cover"></view>
+  <view class="fixed-menu">
+    <view class="fixed-menu-items">
+      <view class="fixed-menu-item">
+        <image class="icon-message" src="/assets/img/message.png"></image>
+        <view>消息</view>
+        <text class="message-badge">3</text>
+      </view>
+      <view class="fixed-menu-item">
+        <image class="icon-edit" src="/assets/img/edit.png"></image>
+        <view>发布</view>
+      </view>
+    </view>
+    <image class="icon-mark-menu" src="/assets/img/mark_menu.png"></image>
+  </view>
 </container>
