@@ -20,6 +20,13 @@ page {
   color: var(--color-placeholder);
 }
 
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 /* 对齐 */
 .left {
   text-align: left;

@@ -1,0 +1,116 @@
+/* pages/category/category.wxss */
+page {
+  height: 100%;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  padding: 20rpx;
+  border-bottom: 2rpx solid var(--color-border);
+}
+.discount-info {
+  padding: 10rpx;
+  background: #FFE6A1;
+  color: #9C6500;
+  font-size: 26rpx;
+  text-align: center;
+}
+.menu {
+  flex: 1;
+  background: #fcf;
+  display: flex;
+}
+.category-l,
+.category-r {
+  height: 100%;
+}
+.category-l {
+  background-color: #F4F4F4;
+  width: 154rpx;
+}
+.category-r {
+  background-color: #FFFFFF;
+  flex: 1;
+}
+
+.list-name,
+.list-content {
+  padding-bottom: 200rpx;
+}
+.name-item {
+  padding: 30rpx;
+  font-size: 28rpx;
+}
+.name-item.active {
+  background: #FFFFFF;
+}
+.list-content {
+  padding-top: 20rpx;
+}
+
+/* 菜单商品项 */
+.content-item {
+  height: 180rpx;
+  padding: 0 20rpx 0 26rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+}
+.content-item-img {
+  width: 180rpx;
+  height: 180rpx;
+  box-sizing: border-box;
+  border: 2rpx solid var(--color-border);
+  background-color: pink;
+  margin-right: 26rpx;
+}
+.content-item-info {
+  flex: 1;
+}
+.content-item-name {
+  font-size: 30rpx;
+  line-height: 1.5;
+  height: 1.5em;
+  overflow: hidden;
+}
+.content-item-desc {
+  color: var(--color-subtext);
+  font-size: 22rpx;
+  line-height: 1.5;
+  height: 3em;
+  overflow: hidden;
+}
+.content-item-foot {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 22rpx;
+}
+.price-current {
+  font-size: 36rpx;
+  color: #FF8F37;
+}
+.price-del {
+  color: #CCCCCC;
+  font-size: 22rpx;
+  margin-left: 12rpx;
+}
+
+
+.number-selector {
+  display: flex;
+  align-items: center;
+}
+.number-selector-value {
+  display: inline-block;
+  width: 50rpx;
+  text-align: center;
+}
+.icon-number-reduce,
+.icon-number-add {
+  width: 40rpx;
+  height: 40rpx;
+  background-color: pink;
+  border-radius: 50%;
+}

@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/category/category",
+    "pages/circle-message/circle-message",
+    "pages/post-new/post-new",
     "pages/post-detail/post-detail",
     "pages/circle/circle",
     "pages/index/index",
@@ -27,17 +30,20 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
+        "iconPath": "assets/img/tabbar_home_off.png",
         "selectedIconPath": "assets/img/tabbar_home_on.png"
       },
       {
         "pagePath": "pages/circle/circle",
         "text": "闺蜜圈",
-        "iconPath": "assets/img/tabbar_circle_off.png"
+        "iconPath": "assets/img/tabbar_circle_off.png",
+        "selectedIconPath": "assets/img/tabbar_circle_on.png"
       },
       {
         "pagePath": "pages/mine/mine",
         "text": "我的",
-        "iconPath": "assets/img/tabbar_mine_off.png"
+        "iconPath": "assets/img/tabbar_mine_off.png",
+        "selectedIconPath": "assets/img/tabbar_mine_on.png"
       }
     ]
   },

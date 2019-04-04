@@ -1,0 +1,16 @@
+<!--pages/post-new/post-new.wxml-->
+<container>
+  <view class="panel">
+    <view class="post-part post-title-wrap">
+      <input class="post-title" placeholder="请添加标题"></input>
+    </view>
+    <view class="post-part post-content-wrap">
+      <textarea class="post-content" placeholder="尽情发挥你的才华吧~尽情发挥你的才华吧~尽情发挥你的才华吧~"></textarea>
+      <text class="post-content-count">0/200</text>
+    </view>
+    <view class="post-part post-img-wrap">
+      <image class="post-img" src="/assets/img/img_null.png"></image>
+    </view>
+  </view>
+  <button class="btn btn-full btn-primary btn-submit" disabled="{{ false }}">发布</button>
+</container>
