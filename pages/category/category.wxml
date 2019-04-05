@@ -29,9 +29,9 @@
             <view class="content-item-foot">
               <view class="content-item-price"><text class="price-current">￥24</text><text class="price-del del">￥28</text></view>
               <view class="number-selector">
-                <image class="icon-number-reduce"></image>
+                <image class="icon-number-reduce" src="/assets/img/number_reduce.png"></image>
                 <text class="number-selector-value">1</text>
-                <image class="icon-number-add"></image>
+                <image class="icon-number-add" src="/assets/img/number_add.png"></image>
               </view>
             </view>
           </view>
@@ -46,9 +46,9 @@
             <view class="content-item-foot">
               <view class="content-item-price"><text class="price-current">￥24</text><text class="price-del del">￥28</text></view>
               <view class="number-selector">
-                <image class="icon-number-reduce"></image>
+                <image class="icon-number-reduce" src="/assets/img/number_reduce.png"></image>
                 <text class="number-selector-value">1</text>
-                <image class="icon-number-add"></image>
+                <image class="icon-number-add" src="/assets/img/number_add.png"></image>
               </view>
             </view>
           </view>
@@ -56,5 +56,54 @@
         <!-- end 商品项 -->
       </view>
     </scroll-view>
+  </view>
+
+  <!-- 底部小计 -->
+  <view class="fixed-footer cart-calc">
+    <view class="cart-total-info">
+      <view class="cart-price-total">￥89</view>
+      <view class="cart-price-desc">已经12元</view>
+    </view>
+    <view class="btn-submit-order">提交订单</view>
+  </view>
+
+  <!-- 购物车提示 -->
+  <view class="cart-tip">已减12元，再买10元减15元</view>
+
+  <!-- 弹层遮盖 -->
+  <view class="cover"></view>
+
+  <!-- 购物车弹层 -->
+  <view class="cart">
+    <view class="cart-icon-wrap">
+      <image class="icon-cart" src="/assets/img/cart.png"></image>
+      <text class="cart-badge">3</text>
+    </view>
+    <view class="cart-head">
+      head
+    </view>
+    <view class="cart-body">
+      <!-- 购物车商品项 -->
+      <view class="cart-goods-item">
+        <view class="cart-goods-item-l">
+          <i-checkbox i-class="checkbox" checked="{{ false }}"></i-checkbox>
+        </view>
+        <view class="cart-goods-item-r first">
+          <image class="cart-goods-img"></image>
+          <view class="cart-goods-info">
+            <view class="cart-goods-name">七度空间夜用</view>
+            <view class="cart-goods-foot">
+              <view class="cart-goods-price"><text class="cart-goods-price-current">￥24</text><text class="cart-goods-price-del del">￥28</text></view>
+              <view class="number-selector">
+                <image class="icon-number-reduce" src="/assets/img/number_reduce.png"></image>
+                <text class="number-selector-value">1</text>
+                <image class="icon-number-add" src="/assets/img/number_add.png"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- end 购物车商品项 -->
+    </view>
   </view>
 </container>

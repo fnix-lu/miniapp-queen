@@ -111,6 +111,140 @@ page {
 .icon-number-add {
   width: 40rpx;
   height: 40rpx;
-  background-color: pink;
   border-radius: 50%;
+}
+
+/* 购物车结算 */
+.cart-calc {
+  display: flex;
+  z-index: 102;
+}
+.cart-total-info {
+  flex: 1;
+  padding-left: 148rpx;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border-top: 2rpx solid var(--color-border);
+}
+.cart-price-total {
+  color: #FF8F37;
+  font-size: 40rpx;
+}
+.cart-price-desc {
+  color: #CCCCCC;
+  font-size: 26rpx;
+  padding-left: 12rpx;
+  border-left: 2rpx solid var(--color-border);
+  margin-left: 12rpx;
+}
+.btn-submit-order {
+  width: 240rpx;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 购物车提示 */
+.cart-tip {
+  position: fixed;
+  width: 100%;
+  bottom: 100rpx;
+  background-color: #FFE6A1;
+  color: #9C6500;
+  text-align: center;
+  padding: 14rpx 0;
+  z-index: 102;
+}
+
+/* 购物车商品项 */
+.checkbox {
+  /* padding: 0 !important; */
+  border-bottom: none !important;
+}
+.cart {
+  position: fixed;
+  width: 100%;
+  bottom: 100rpx;
+  padding-bottom: 60rpx;
+  z-index: 101;
+  background-color: #fff;
+}
+.cart-icon-wrap {
+  position: absolute;
+  left: 12rpx;
+  top: -140rpx;
+}
+.icon-cart {
+  width: 116rpx;
+  height: 116rpx;
+  display: block;
+}
+.cart-badge {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  background-color: #fff;
+  color: var(--color-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 4rpx;
+  top: -4rpx;
+}
+
+
+
+.cart-goods-item {
+  display: flex;
+  /* padding: 0 20rpx; */
+  padding-right: 20rpx;
+  align-items: center;
+}
+.cart-goods-item-l {
+  width: 92rpx;
+}
+.cart-goods-item-r {
+  flex: 1;
+  border-top: 2rpx solid #F8F8F8;
+  display: flex;
+  padding: 20rpx 0;
+}
+.cart-goods-item-r.first {
+  border-top: none;
+}
+.cart-goods-img {
+  width: 120rpx;
+  height: 120rpx;
+  box-sizing: border-box;
+  border: 2rpx solid var(--color-border);
+  background-color: pink;
+  margin-right: 20rpx;
+}
+.cart-goods-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cart-goods-name {
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+.cart-goods-foot {
+  display: flex;
+  justify-content: space-between;
+}
+.cart-goods-price-current {
+  color: #FF8F37;
+  font-size: 36rpx;
+}
+.cart-goods-price-del {
+  color: #CCCCCC;
+  font-size: 22rpx;
+  margin-left: 12rpx;
 }
