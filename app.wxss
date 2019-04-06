@@ -85,6 +85,10 @@ page {
   top: 0;
   background: rgba(0,0,0,0.3);
   z-index: 100;
+  display: none;
+}
+.cover.show {
+  display: block;
 }
 .dialog {
   position: fixed;

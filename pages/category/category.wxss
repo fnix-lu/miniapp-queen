@@ -114,7 +114,7 @@ page {
   border-radius: 50%;
 }
 
-/* 购物车结算 */
+/* 购物车底部固定结算 */
 .cart-calc {
   display: flex;
   z-index: 102;
@@ -148,7 +148,7 @@ page {
   align-items: center;
 }
 
-/* 购物车提示 */
+/* 购物车黄字提示 */
 .cart-tip {
   position: fixed;
   width: 100%;
@@ -160,23 +160,50 @@ page {
   z-index: 102;
 }
 
-/* 购物车商品项 */
-.checkbox {
-  /* padding: 0 !important; */
-  border-bottom: none !important;
-}
+/* 购物车弹层 */
 .cart {
   position: fixed;
   width: 100%;
   bottom: 100rpx;
   padding-bottom: 60rpx;
   z-index: 101;
+  border-radius: 16px 16px 0px 0px;
   background-color: #fff;
+  transform: translateY(200%);
+  /* transition: transform .3s linear; */
 }
+.cart.show {
+  transform: translateY(0)
+}
+/* 复选框 */
+.checkbox .wx-checkbox-input {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+}
+.checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  color: #fff;
+  font-size: 28rpx;
+}
+/* 购物车图标 */
 .cart-icon-wrap {
-  position: absolute;
   left: 12rpx;
+}
+.cart-icon-wrap.out {
+  position: fixed;
+  bottom: 14rpx;
+  z-index: 103;
+}
+.cart-icon-wrap.out.hidden {
+  display: none;
+}
+.cart-icon-wrap.in {
   top: -140rpx;
+  position: absolute;
 }
 .icon-cart {
   width: 116rpx;
@@ -196,17 +223,41 @@ page {
   right: 4rpx;
   top: -4rpx;
 }
-
-
-
+/* 购物车三角箭头 */
+.icon-card-triangle {
+  width: 28rpx;
+  height: 28rpx;
+  border-top-left-radius: 4rpx;
+  transform: rotate(45deg);
+  background-color: #fff;
+  position: absolute;
+  top: -14rpx;
+  left: 56rpx;
+}
+/* 购物车头部 */
+.cart-head {
+  display: flex;
+  padding: 20rpx;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 26rpx;
+  color: #888888;
+}
+.select-all {
+  display: flex;
+  align-items: center;
+}
+.select-all-checkbox-wrap {
+  width: 72rpx;
+}
+/* 购物车商品项 */
 .cart-goods-item {
   display: flex;
-  /* padding: 0 20rpx; */
-  padding-right: 20rpx;
+  padding: 0 20rpx;
   align-items: center;
 }
 .cart-goods-item-l {
-  width: 92rpx;
+  width: 72rpx;
 }
 .cart-goods-item-r {
   flex: 1;

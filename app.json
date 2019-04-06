@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/category/category",
-    "pages/circle-message/circle-message",
-    "pages/post-new/post-new",
     "pages/post-detail/post-detail",
+    "pages/post-new/post-new",
+    "pages/circle-message/circle-message",
+    "pages/settlement/settlement",
     "pages/circle/circle",
     "pages/index/index",
     "pages/pay-result/pay-result",
-    "pages/settlement/settlement",
     "pages/goods-detail/goods-detail",
     "pages/profile/profile",
     "pages/feedback/feedback",

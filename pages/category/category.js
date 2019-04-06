@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    flagShowCart: false,
+    flagShowCover: false
   },
 
   /**
@@ -62,5 +63,15 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 切换显示购物车弹层
+   */
+  toggleShowCart () {
+    this.setData({
+      flagShowCover: !this.data.flagShowCover,
+      flagShowCart: !this.data.flagShowCart
+    })
   }
 })

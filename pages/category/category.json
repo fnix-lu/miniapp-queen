@@ -1,6 +1,4 @@
 {
-  "usingComponents": {
-    "i-checkbox": "/iview/checkbox/index"
-  },
+  "usingComponents": {},
   "navigationBarTitleText": "自由搭配"
 }
