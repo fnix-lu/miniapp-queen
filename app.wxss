@@ -26,6 +26,10 @@ page {
   height: 0;
   color: transparent;
 }
+/* navigator点击态 */
+.navigator-hover {
+  background-color: transparent;
+}
 
 /* 对齐 */
 .left {

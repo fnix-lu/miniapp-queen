@@ -27,11 +27,7 @@
             <view class="content-item-desc">恒安集团面向年轻女性推出的日用夜用</view>
             <view class="content-item-foot">
               <view class="content-item-price"><text class="price-current">￥24</text><text class="price-del del">￥28</text></view>
-              <view class="number-selector">
-                <image class="icon-number-reduce" src="/assets/img/number_reduce.png"></image>
-                <text class="number-selector-value">1</text>
-                <image class="icon-number-add" src="/assets/img/number_add.png"></image>
-              </view>
+              <number-selector bindchange="handleSelectGoods"></number-selector>
             </view>
           </view>
         </view>
@@ -44,11 +40,7 @@
             <view class="content-item-desc">恒安集团面向年轻女性推出的日用夜用</view>
             <view class="content-item-foot">
               <view class="content-item-price"><text class="price-current">￥24</text><text class="price-del del">￥28</text></view>
-              <view class="number-selector">
-                <image class="icon-number-reduce" src="/assets/img/number_reduce.png"></image>
-                <text class="number-selector-value">1</text>
-                <image class="icon-number-add" src="/assets/img/number_add.png"></image>
-              </view>
+              <number-selector></number-selector>
             </view>
           </view>
         </view>
@@ -100,11 +92,7 @@
             <view class="cart-goods-name">七度空间夜用</view>
             <view class="cart-goods-foot">
               <view class="cart-goods-price"><text class="cart-goods-price-current">￥24</text><text class="cart-goods-price-del del">￥28</text></view>
-              <view class="number-selector">
-                <image class="icon-number-reduce" src="/assets/img/number_reduce.png"></image>
-                <text class="number-selector-value">1</text>
-                <image class="icon-number-add" src="/assets/img/number_add.png"></image>
-              </view>
+              <number-selector></number-selector>
             </view>
           </view>
         </view>
@@ -121,11 +109,7 @@
             <view class="cart-goods-name">七度空间夜用</view>
             <view class="cart-goods-foot">
               <view class="cart-goods-price"><text class="cart-goods-price-current">￥24</text><text class="cart-goods-price-del del">￥28</text></view>
-              <view class="number-selector">
-                <image class="icon-number-reduce" src="/assets/img/number_reduce.png"></image>
-                <text class="number-selector-value">1</text>
-                <image class="icon-number-add" src="/assets/img/number_add.png"></image>
-              </view>
+              <number-selector></number-selector>
             </view>
           </view>
         </view>
@@ -134,3 +118,13 @@
     </view>
   </view>
 </container>
+
+<wxs module="computed">
+  module.exports = {
+    currentGoodsList: function (currentBrandId, goodsList) {
+      return goodsList.filter(function (item) {
+        return item.brandId === currentBrandId
+      })[0].list
+    }
+  }
+</wxs>

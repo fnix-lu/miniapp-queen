@@ -85,6 +85,7 @@ page {
 .content-item-foot {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 22rpx;
 }
 .price-current {
@@ -95,23 +96,6 @@ page {
   color: #CCCCCC;
   font-size: 22rpx;
   margin-left: 12rpx;
-}
-
-
-.number-selector {
-  display: flex;
-  align-items: center;
-}
-.number-selector-value {
-  display: inline-block;
-  width: 50rpx;
-  text-align: center;
-}
-.icon-number-reduce,
-.icon-number-add {
-  width: 40rpx;
-  height: 40rpx;
-  border-radius: 50%;
 }
 
 /* 购物车底部固定结算 */

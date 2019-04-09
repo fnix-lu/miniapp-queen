@@ -1,6 +1,14 @@
 // pages/category/category.js
 const app = getApp()
 
+// class GoodsList {
+//   constructor (currentPage = 0, allPageCount = 1, list = []) {
+//     this.currentPage = currentPage
+//     this.allPageCount = allPageCount
+//     this.list = list
+//   }
+// }
+
 Page({
 
   /**
@@ -17,13 +25,25 @@ Page({
       allPageCount: 1,
       list: []
     },
-    goods: {
-      currentPage: 0,
-      allPageCount: 1
-    },
-    goodsMap: {
-      'brand-id': []
-    }
+    // goods: {
+    //   currentPage: 0,
+    //   allPageCount: 1
+    // },
+    goodsList: [ // 分页累加存储所有商品
+      {
+        brandId: 'aaa',
+        currentPage: 0,
+        allPageCount: 1,
+        list: []
+      },
+      {
+        brandId: 'bbb',
+        currentPage: 0,
+        allPageCount: 1,
+        list: []
+      }
+    ],
+    currentGoodsList: []
   },
 
   /**
@@ -110,7 +130,7 @@ Page({
         _this.setData({
           'brand.currentPage': res.PageIndex,
           'brand.allPageCount': res.AllPageCount,
-          'brand.list': _this.data.brand.list.concat(res.Data),
+          'brand.list': _this.data.brand.list.concat(res.Data)
         })
         // 设置初始选中的品牌
         if (res.PageIndex === 1) {
@@ -129,16 +149,46 @@ Page({
    */
   getGoods () {
     const _this = this
+    let { currentBrandId, goodsList } = _this.data
+
+    let index = goodsList.findIndex((item) => {
+      return item.brandId === currentBrandId
+    })
+
+    let pageIndex = 1
+
+    if (index > -1) {
+      if (goodsList[index].currentPage >= goodsList[index].allPageCount) {
+        return
+      } else {
+        pageIndex = goodsList[index].currentPage + 1
+      }
+    }
 
     app.api.getGoods({
-      BrandId: _this.data.currentBrandId
+      BrandId: currentBrandId,
+      PageIndex: pageIndex
     }).then(res => {
       console.log(res)
 
       if (res.Code === 1000) {
-        _this.setData({
-          // 'goodsMap[_this.data.currentBrandId]': _this.data.goodsMap[_this.data.currentBrandId]
-        })
+        if (index > -1) {
+          _this.setData({
+            ['goodsList[' + index + '].currentPage']: res.PageIndex,
+            ['goodsList[' + index + '].allPageCount']: res.AllPageCount,
+            ['goodsList[' + index + '].list']: _this.data.goodsList[index].list.concat(res.Data),
+          })
+        } else {
+          this.data.goodsList.push({
+            brandId: currentBrandId,
+            currentPage: res.PageIndex,
+            allPageCount: res.AllPageCount,
+            list: res.Data
+          })
+          _this.setData({
+            goodsList: _this.data.goodsList
+          })
+        }
       }
     })
   },
@@ -152,5 +202,13 @@ Page({
     })
     // 获取对应品牌的商品
     this.getGoods()
+  },
+
+  /**
+   * 选择商品
+   */
+  handleSelectGoods (e) {
+    let { value } = e.detail
+    console.log(value)
   }
 })

@@ -1,0 +1,8 @@
+<!--components/number-selector/number-selector.wxml-->
+<view class="number-selector">
+  <block wx:if="{{ currentValue > 0 }}">
+    <image class="icon-number-reduce" src="/assets/img/number_reduce.png" data-type="reduce" bindtap="handleChange"></image>
+    <text class="number-selector-value">{{ currentValue }}</text>
+  </block>
+  <image class="icon-number-add" src="/assets/img/number_add.png" data-type="add" bindtap="handleChange"></image>
+</view>

@@ -1,14 +1,14 @@
 {
   "pages": [
+    "pages/goods-detail/goods-detail",
     "pages/category/category",
+    "pages/index/index",
     "pages/post-detail/post-detail",
     "pages/post-new/post-new",
     "pages/circle-message/circle-message",
     "pages/settlement/settlement",
     "pages/circle/circle",
-    "pages/index/index",
     "pages/pay-result/pay-result",
-    "pages/goods-detail/goods-detail",
     "pages/profile/profile",
     "pages/feedback/feedback",
     "pages/coupon/coupon",
@@ -52,6 +52,7 @@
     "container": "components/container/container",
     "group": "components/group/group",
     "group-member": "components/group-member/group-member",
-    "goods": "components/goods/goods"
+    "goods": "components/goods/goods",
+    "number-selector": "components/number-selector/number-selector"
   }
 }

@@ -1,0 +1,16 @@
+/* components/number-selector/number-selector.wxss */
+.number-selector {
+  display: flex;
+  align-items: center;
+}
+.number-selector-value {
+  display: inline-block;
+  width: 50rpx;
+  text-align: center;
+}
+.icon-number-reduce,
+.icon-number-add {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+}
