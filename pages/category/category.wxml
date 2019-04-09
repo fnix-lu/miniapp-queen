@@ -4,18 +4,17 @@
     <view class="discount-info">全场满30 - 5 , 40 - 8 , 50 - 12</view>
   </view>
   <view class="menu">
-    <scroll-view class="category-l" scroll-y>
+    <scroll-view class="category-l" scroll-y bindscrolltolower="getBrands">
       <view class="list-name">
-        <view class="name-item active"><text>苏</text></view>
-        <view class="name-item"><text>苏菲</text></view>
-        <view class="name-item"><text>苏菲苏</text></view>
-        <view class="name-item"><text>苏菲苏菲</text></view>
-        <view class="name-item"><text>苏菲苏菲苏</text></view>
-        <view class="name-item"><text>苏</text></view>
-        <view class="name-item"><text>苏菲</text></view>
-        <view class="name-item"><text>苏菲苏</text></view>
-        <view class="name-item"><text>苏菲苏菲</text></view>
-        <view class="name-item"><text>苏菲苏菲苏</text></view>
+        <view
+          wx:for="{{ brand.list }}"
+          wx:key="{{ item.Id }}"
+          class="name-item {{ currentBrandId === item.Id ? 'active' : '' }}"
+          bindtap="changeBrand"
+          data-id="{{ item.Id }}"
+        >
+          <text>{{ item.Name }}</text>
+        </view>
       </view>
     </scroll-view>
     <scroll-view class="category-r" scroll-y>
@@ -67,7 +66,7 @@
     <view class="btn-submit-order">提交订单</view>
   </view>
   <!-- 购物车图标 -->
-  <view class="cart-icon-wrap out {{ flagShowCart ? 'hidden' : '' }}">
+  <view class="cart-icon-wrap out {{ flag.showCart ? 'hidden' : '' }}">
     <image class="icon-cart" src="/assets/img/cart.png"></image>
     <text class="cart-badge">3</text>
   </view>
@@ -76,10 +75,10 @@
   <view class="cart-tip">已减12元，再买10元减15元</view>
 
   <!-- 弹层遮盖 -->
-  <view class="cover {{ flagShowCover ? 'show' : '' }}"></view>
+  <view class="cover {{ flag.showCover ? 'show' : '' }}"></view>
 
   <!-- 购物车弹层 -->
-  <view class="cart {{ flagShowCart ? 'show' : '' }}">
+  <view class="cart {{ flag.showCart ? 'show' : '' }}">
     <view class="icon-card-triangle"></view>
       <view class="cart-icon-wrap in">
       <image class="icon-cart" src="/assets/img/cart.png"></image>
