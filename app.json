@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/category/category",
     "pages/goods-detail/goods-detail",
-    "pages/index/index",
     "pages/post-detail/post-detail",
     "pages/post-new/post-new",
     "pages/circle-message/circle-message",
@@ -54,5 +54,10 @@
     "group-member": "components/group-member/group-member",
     "goods": "components/goods/goods",
     "number-selector": "components/number-selector/number-selector"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": " "
+    }
   }
 }

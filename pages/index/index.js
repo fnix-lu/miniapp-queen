@@ -1,11 +1,28 @@
 // pages/index/index.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    city: '定位',
+    currentTab: 'hot',
+    currentBrandId: '',
+    brand: {
+      currentPage: 0,
+      allPageCount: 1,
+      list: []
+    },
+    goodsList: [ // 分页累加存储各品牌的商品
+      // {
+      //   brandId: 'aaa',
+      //   currentPage: 0,
+      //   allPageCount: 1,
+      //   list: []
+      // }
+    ]
   },
 
   /**
@@ -54,7 +71,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    this.getGoodsByBrandId()
   },
 
   /**
@@ -62,5 +79,130 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  /**
+   * 获取品牌（分页）
+   */
+  getBrands() {
+    const _this = this
+
+    if (_this.data.brand.currentPage >= _this.data.brand.allPageCount) {
+      return
+    }
+    app.api.getBrands({
+      PageIndex: _this.data.brand.currentPage + 1,
+      PageSize: 10
+    }).then(res => {
+      if (res.Code === 1000) {
+        _this.setData({
+          'brand.currentPage': res.PageIndex,
+          'brand.allPageCount': res.AllPageCount,
+          'brand.list': _this.data.brand.list.concat(res.Data)
+        })
+        // 如果是第一次请求，即第一页，设置初始选中的品牌
+        // if (res.PageIndex === 1) {
+        //   _this.setData({
+        //     'currentBrandId': res.Data[0].Id
+        //   })
+        // }
+        // 如果尚未获取任何品牌的商品，获取初始品牌的商品
+        if (_this.data.goodsList.length === 0) {
+          _this.getGoodsByBrandId()
+        }
+      }
+    })
+  },
+
+  /**
+   * 切换品牌
+   */
+  changeBrand(e) {
+    this.setData({
+      currentBrandId: e.currentTarget.dataset.id
+    })
+    // 获取对应品牌的商品
+    this.getGoodsByBrandId()
+  },
+
+  /**
+   * 获取商品（分页）
+   */
+  getGoodsByBrandId() {
+    const _this = this
+    let { currentBrandId, goodsList } = _this.data
+
+    let index = goodsList.findIndex((item) => {
+      return item.brandId === currentBrandId
+    })
+
+    let pageIndex = 1
+
+    if (index > -1) {
+      if (goodsList[index].currentPage >= goodsList[index].allPageCount) {
+        return
+      } else {
+        pageIndex = goodsList[index].currentPage + 1
+      }
+    }
+
+    app.api.getGoods({
+      BrandId: currentBrandId,
+      PageIndex: pageIndex
+    }).then(res => {
+      if (res.Code === 1000) {
+        if (index > -1) {
+          _this.setData({
+            ['goodsList[' + index + '].currentPage']: res.PageIndex,
+            ['goodsList[' + index + '].allPageCount']: res.AllPageCount,
+            ['goodsList[' + index + '].list']: _this.data.goodsList[index].list.concat(res.Data),
+          })
+        } else {
+          _this.data.goodsList.push({
+            brandId: currentBrandId,
+            currentPage: res.PageIndex,
+            allPageCount: res.AllPageCount,
+            list: res.Data
+          })
+          _this.setData({
+            goodsList: _this.data.goodsList
+          })
+        }
+      }
+
+      console.log(goodsList)
+    })
+  },
+
+  /**
+   * 点击热门组合标签
+   */
+  tapTabHot () {
+    this.setData({
+      currentTab: 'hot'
+    })
+  },
+
+  /**
+   * 点击品牌分类标签
+   */
+  tapTabBrand() {
+    const _this = this
+    const { brand } = this.data
+    this.setData({
+      currentTab: 'brand'
+    })
+
+    // 如果还没获取品牌数据
+    if (brand.list.length === 0) {
+      _this.getBrands()
+    }
+  },
+
+  /**
+   * 获取定位城市
+   */
+  getLocation () {
+    app.getLocation()
   }
 })

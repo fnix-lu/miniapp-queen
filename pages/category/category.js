@@ -108,7 +108,7 @@ Page({
   },
 
   /**
-   * 获取品牌
+   * 获取品牌（分页）
    */
   getBrands () {
     const _this = this
@@ -134,16 +134,27 @@ Page({
         }
         // 如果尚未获取任何品牌的商品，获取初始品牌的商品
         if (_this.data.goodsList.length === 0) {
-          _this.getGoods()
+          _this.getGoodsByBrandId()
         }
       }
     })
   },
 
   /**
-   * 获取商品
+   * 切换品牌
    */
-  getGoods () {
+  changeBrand(e) {
+    this.setData({
+      currentBrandId: e.currentTarget.dataset.id
+    })
+    // 获取对应品牌的商品
+    this.getGoodsByBrandId()
+  },
+
+  /**
+   * 获取商品（分页）
+   */
+  getGoodsByBrandId () {
     const _this = this
     let { currentBrandId, goodsList } = _this.data
 
@@ -189,17 +200,6 @@ Page({
 
       console.log(goodsList)
     })
-  },
-
-  /**
-   * 切换品牌
-   */
-  changeBrand (e) {
-    this.setData({
-      currentBrandId: e.currentTarget.dataset.id
-    })
-    // 获取对应品牌的商品
-    this.getGoods()
   },
 
   /**

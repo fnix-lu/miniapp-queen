@@ -4,7 +4,7 @@
   <view class="waterfall">
     <view class="waterfall-col">
       <!-- 贴子卡片 -->
-      <view class="post-card">
+      <navigator class="post-card" url="/pages/post-detail/post-detail">
         <image class="post-img" src="/assets/img/test_1.png" mode="widthFix"></image>
         <view class="post-info">
           <view class="post-title">苏菲的秘密</view>
@@ -14,9 +14,9 @@
             <view class="post-read"><image class="icon-eye" src="/assets/img/eye.png"></image>99999</view>
           </view>
         </view>
-      </view>
+      </navigator>
       <!-- end 贴子卡片 -->
-      <view class="post-card">
+      <navigator class="post-card" url="/pages/post-detail/post-detail">
         <image class="post-img" src="/assets/img/test_2.png" mode="widthFix"></image>
         <view class="post-info">
           <view class="post-title">苏菲的秘密</view>
@@ -26,10 +26,10 @@
             <view class="post-read"><image class="icon-eye" src="/assets/img/eye.png"></image>99999</view>
           </view>
         </view>
-      </view>
+      </navigator>
     </view>
     <view class="waterfall-col">
-      <view class="post-card">
+      <navigator class="post-card" url="/pages/post-detail/post-detail">
         <image class="post-img" src="/assets/img/test_2.png" mode="widthFix"></image>
         <view class="post-info">
           <view class="post-title">苏菲的秘密</view>
@@ -39,8 +39,8 @@
             <view class="post-read"><image class="icon-eye" src="/assets/img/eye.png"></image>99999</view>
           </view>
         </view>
-      </view>
-      <view class="post-card">
+      </navigator>
+      <navigator class="post-card" url="/pages/post-detail/post-detail">
         <image class="post-img" src="/assets/img/test_1.png" mode="widthFix"></image>
         <view class="post-info">
           <view class="post-title">苏菲的秘密</view>
@@ -50,7 +50,7 @@
             <view class="post-read"><image class="icon-eye" src="/assets/img/eye.png"></image>99999</view>
           </view>
         </view>
-      </view>
+      </navigator>
     </view>
   </view>
 
@@ -58,15 +58,15 @@
   <view class="cover"></view>
   <view class="fixed-menu">
     <view class="fixed-menu-items">
-      <view class="fixed-menu-item">
+      <navigator class="fixed-menu-item" url="/pages/circle-message/circle-message">
         <image class="icon-message" src="/assets/img/message.png"></image>
         <view>消息</view>
         <text class="message-badge">3</text>
-      </view>
-      <view class="fixed-menu-item">
+      </navigator>
+      <navigator class="fixed-menu-item" url="/pages/post-new/post-new">
         <image class="icon-edit" src="/assets/img/edit.png"></image>
         <view>发布</view>
-      </view>
+      </navigator>
     </view>
     <image class="icon-mark-menu" src="/assets/img/mark_menu.png"></image>
   </view>

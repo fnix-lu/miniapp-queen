@@ -87,6 +87,7 @@
   padding: 10rpx 20rpx;
 }
 .goods-card {
+  display: block;
   width: 344rpx;
   height: 532rpx;
   border-radius: 16rpx;

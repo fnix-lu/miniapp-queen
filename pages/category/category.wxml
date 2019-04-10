@@ -17,7 +17,7 @@
         </view>
       </view>
     </scroll-view>
-    <scroll-view class="category-r" scroll-y>
+    <scroll-view class="category-r" scroll-y bindscrolltolower="getGoodsByBrandId">
       <view class="list-content">
         <!-- 商品项 -->
         <view
@@ -26,7 +26,7 @@
           wx:key="item.Id"
           data-id="{{ item.Id }}"
         >
-          <image class="content-item-img"></image>
+          <image class="content-item-img" src="{{ item.ImageUrl }}"></image>
           <view class="content-item-info">
             <view class="content-item-name">{{ item.Name }}</view>
             <view class="content-item-desc">{{ item.Description }}</view>
@@ -127,9 +127,11 @@
 <wxs module="computed">
   module.exports = {
     currentGoodsList: function (currentBrandId, goodsList) {
-      return goodsList.filter(function (item) {
+      var result = goodsList.filter(function (item) {
         return item.brandId === currentBrandId
-      })[0].list
+      })[0]
+
+      return result ? result.list : []
     }
   }
 </wxs>

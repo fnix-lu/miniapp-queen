@@ -6,18 +6,18 @@
     <view class="header-info">
       <image class="my-headimg"></image>
       <view class="my-nickname">小仙女儿</view>
-      <navigator class="to-edit-info">个人资料修改</navigator>
+      <navigator class="to-edit-info" url="/pages/profile/profile">个人资料修改</navigator>
     </view>
   </view>
   <!-- 菜单 -->
   <i-cell-group>
-    <i-cell title="我的订单" is-link>
+    <i-cell title="我的订单" is-link url="/pages/order/order">
       <image slot="icon" class="menu-icon" src="/assets/img/menu_order.png"></image>
     </i-cell>
-    <i-cell title="我的卡券" is-link>
+    <i-cell title="我的卡券" is-link url="/pages/coupon/coupon">
       <image slot="icon" class="menu-icon" src="/assets/img/menu_coupon.png"></image>
     </i-cell>
-    <i-cell title="意见反馈" is-link>
+    <i-cell title="意见反馈" is-link url="/pages/feedback/feedback">
       <image slot="icon" class="menu-icon" src="/assets/img/menu_suggest.png"></image>
     </i-cell>
   </i-cell-group>

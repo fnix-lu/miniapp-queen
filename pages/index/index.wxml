@@ -1,9 +1,9 @@
 <!--pages/index/index.wxml-->
 <container>
   <!-- 定位 -->
-  <view class="current-location">
+  <view class="current-location" bindtap="getLocation">
     <image class="icon-location" src="/assets/img/location.png"></image>
-    <text>定位</text>
+    <text>{{ city }}</text>
   </view>
 
   <!-- 广告图 -->
@@ -12,12 +12,12 @@
   <!-- 标签 -->
   <i-row i-class="tabs">
     <i-col span="8">
-      <view class="tabs-item active">
+      <view class="tabs-item {{ currentTab === 'hot' ? 'active' : '' }}" bindtap="tapTabHot">
         <text>热门组合</text>
       </view>
     </i-col>
     <i-col span="8">
-      <view class="tabs-item">
+      <view class="tabs-item {{ currentTab === 'brand' ? 'active' : '' }}" bindtap="tapTabBrand">
         <text>品牌分类</text>
       </view>
     </i-col>
@@ -31,24 +31,23 @@
     </i-col>
   </i-row>
   <!-- 二级标签 -->
-  <view class="subtabs">
-    <scroll-view class="brand-tabs" scroll-x>
-      <text class="brand-tab active">全部</text>
-      <text class="brand-tab">苏菲</text>
-      <text class="brand-tab">七度空间七度空间</text>
-      <text class="brand-tab">ABC</text>
-      <text class="brand-tab">小护士</text>
-      <text class="brand-tab">苏菲</text>
-      <text class="brand-tab">七度空间七度空间</text>
-      <text class="brand-tab">ABC</text>
-      <text class="brand-tab">小护士</text>
+  <view class="subtabs" wx:if="{{ currentTab === 'brand' }}">
+    <scroll-view class="brand-tabs" scroll-x bindscrolltolower="getBrands">
+      <text class="brand-tab {{ currentBrandId ? '' : 'active' }}" bindtap="changeBrand" data-id="">全部</text>
+      <text
+        class="brand-tab {{ currentBrandId === item.Id ? 'active' : '' }}"
+        wx:for="{{ brand.list }}"
+        wx:key="item.Id"
+        data-id="{{ item.Id }}"
+        bindtap="changeBrand"
+      >{{ item.Name }}</text>
     </scroll-view>
     <image class="icon-arrow-right-suntabs" src="/assets/img/arrow_right_subtabs.png"></image>
   </view>
 
-  <!-- 商品列表 -->
-  <view class="goods-list">
-    <view class="goods-card">
+  <!-- 热门组合商品列表 -->
+  <view class="goods-list" wx:if="{{ currentTab === 'hot' }}">
+    <navigator class="goods-card" url="/pages/goods-detail/goods-detail?goodsId={{ item.Id }}">
       <image class="icon-hot" src="/assets/img/hot.png"></image>
       <image class="goods-img"></image>
       <view class="goods-name">七度空间日用七度空间日用七度空间日用</view>
@@ -61,34 +60,40 @@
           <text class="sale-monthly">月销量9999</text>
         </view>
       </view>
-    </view>
-    <view class="goods-card">
+    </navigator>
+  </view>
+  <!-- 品牌分类商品列表 -->
+  <view class="goods-list" wx:if="{{ currentTab === 'brand' }}">
+    <navigator
+      url="/pages/goods-detail/goods-detail?goodsId={{ item.Id }}"
+      class="goods-card"
+      wx:for="{{ computed.currentGoodsList(currentBrandId, goodsList) }}"
+      wx:key="{{ item.Id }}"
+    >
       <image class="icon-hot" src="/assets/img/hot.png"></image>
-      <image class="goods-img"></image>
-      <view class="goods-name">七度空间日用七度空间日用七度空间日用</view>
+      <image class="goods-img" src="{{ item.ImageUrl }}"></image>
+      <view class="goods-name">{{ item.Name }}</view>
       <view class="goods-info">
         <view>
-          <text class="price-single">单独购买：<text class="del">￥26</text></text>
+          <text class="price-single">单独购买：<text class="del">￥{{ item.Price }}</text></text>
         </view>
         <view class="flex flex-sides flex-bottom">
-          <text class="price-group"><text class="price-group-char">￥</text>24</text>
+          <text class="price-group"><text class="price-group-char">￥</text>{{ item.CostPrice }}</text>
           <text class="sale-monthly">月销量9999</text>
         </view>
       </view>
-    </view>
-    <view class="goods-card">
-      <image class="icon-hot" src="/assets/img/hot.png"></image>
-      <image class="goods-img"></image>
-      <view class="goods-name">七度空间日用七度空间日用七度空间日用</view>
-      <view class="goods-info">
-        <view>
-          <text class="price-single">单独购买：<text class="del">￥26</text></text>
-        </view>
-        <view class="flex flex-sides flex-bottom">
-          <text class="price-group"><text class="price-group-char">￥</text>24</text>
-          <text class="sale-monthly">月销量9999</text>
-        </view>
-      </view>
-    </view>
+    </navigator>
   </view>
 </container>
+
+<wxs module="computed">
+  module.exports = {
+    currentGoodsList: function (currentBrandId, goodsList) {
+      var result = goodsList.filter(function (item) {
+        return item.brandId === currentBrandId
+      })[0]
+
+      return result ? result.list : []
+    }
+  }
+</wxs>

@@ -34,9 +34,22 @@ App({
         }
       }
     })
+
+    // 获取当前城市
+    // this.getLocation()
   },
   globalData: {
     userInfo: null
   },
-  api
+  api,
+  /**
+   * 获取定位城市
+   */
+  getLocation () {
+    wx.getLocation({
+      success: res => {
+        console.log(res)
+      }
+    })
+  }
 })
