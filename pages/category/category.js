@@ -29,21 +29,15 @@ Page({
     //   currentPage: 0,
     //   allPageCount: 1
     // },
-    goodsList: [ // 分页累加存储所有商品
-      {
-        brandId: 'aaa',
-        currentPage: 0,
-        allPageCount: 1,
-        list: []
-      },
-      {
-        brandId: 'bbb',
-        currentPage: 0,
-        allPageCount: 1,
-        list: []
-      }
-    ],
-    currentGoodsList: []
+    //
+    goodsList: [ // 分页累加存储各品牌的商品，由于每个品牌下的商品均为分页获取，不适合做品牌混合的商品列表，菜单无法左右联动
+      // {
+      //   brandId: 'aaa',
+      //   currentPage: 0,
+      //   allPageCount: 1,
+      //   list: []
+      // }
+    ]
   },
 
   /**
@@ -132,14 +126,16 @@ Page({
           'brand.allPageCount': res.AllPageCount,
           'brand.list': _this.data.brand.list.concat(res.Data)
         })
-        // 设置初始选中的品牌
+        // 如果是第一次请求，即第一页，设置初始选中的品牌
         if (res.PageIndex === 1) {
           _this.setData({
             'currentBrandId': res.Data[0].Id
           })
         }
-        // 获取初始品牌的商品
-        _this.getGoods()
+        // 如果尚未获取任何品牌的商品，获取初始品牌的商品
+        if (_this.data.goodsList.length === 0) {
+          _this.getGoods()
+        }
       }
     })
   },
@@ -169,7 +165,7 @@ Page({
       BrandId: currentBrandId,
       PageIndex: pageIndex
     }).then(res => {
-      console.log(res)
+      // console.log(res)
 
       if (res.Code === 1000) {
         if (index > -1) {
@@ -179,7 +175,7 @@ Page({
             ['goodsList[' + index + '].list']: _this.data.goodsList[index].list.concat(res.Data),
           })
         } else {
-          this.data.goodsList.push({
+          _this.data.goodsList.push({
             brandId: currentBrandId,
             currentPage: res.PageIndex,
             allPageCount: res.AllPageCount,
@@ -190,6 +186,8 @@ Page({
           })
         }
       }
+
+      console.log(goodsList)
     })
   },
 

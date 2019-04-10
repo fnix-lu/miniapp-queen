@@ -43,6 +43,7 @@ page {
 .name-item {
   padding: 30rpx;
   font-size: 28rpx;
+  word-break: break-all;
 }
 .name-item.active {
   background: #FFFFFF;
@@ -81,6 +82,7 @@ page {
   line-height: 1.5;
   height: 3em;
   overflow: hidden;
+  word-break: break-all;
 }
 .content-item-foot {
   display: flex;

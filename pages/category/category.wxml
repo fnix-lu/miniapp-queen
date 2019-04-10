@@ -20,20 +20,25 @@
     <scroll-view class="category-r" scroll-y>
       <view class="list-content">
         <!-- 商品项 -->
-        <view class="content-item">
+        <view
+          class="content-item"
+          wx:for="{{ computed.currentGoodsList(currentBrandId, goodsList) }}"
+          wx:key="item.Id"
+          data-id="{{ item.Id }}"
+        >
           <image class="content-item-img"></image>
           <view class="content-item-info">
-            <view class="content-item-name">七度空间夜用</view>
-            <view class="content-item-desc">恒安集团面向年轻女性推出的日用夜用</view>
+            <view class="content-item-name">{{ item.Name }}</view>
+            <view class="content-item-desc">{{ item.Description }}</view>
             <view class="content-item-foot">
-              <view class="content-item-price"><text class="price-current">￥24</text><text class="price-del del">￥28</text></view>
+              <view class="content-item-price"><text class="price-current">￥{{ item.CostPrice }}</text><text class="price-del del">￥{{ item.Price }}</text></view>
               <number-selector bindchange="handleSelectGoods"></number-selector>
             </view>
           </view>
         </view>
         <!-- end 商品项 -->
         <!-- 商品项 -->
-        <view class="content-item">
+        <!-- <view class="content-item">
           <image class="content-item-img"></image>
           <view class="content-item-info">
             <view class="content-item-name">七度空间夜用</view>
@@ -43,7 +48,7 @@
               <number-selector></number-selector>
             </view>
           </view>
-        </view>
+        </view> -->
         <!-- end 商品项 -->
       </view>
     </scroll-view>
