@@ -5,7 +5,8 @@
     <image class="header-bg" src="/assets/img/mine_header.png"></image>
     <view class="header-info">
       <image class="my-headimg"></image>
-      <view class="my-nickname">小仙女儿</view>
+      <view class="my-nickname">{{ userInfo ? userInfo.nickName : '点击登录' }}</view>
+      <button class="btn-auth" open-type="getUserInfo" bindgetuserinfo="handleAuth"></button>
       <navigator class="to-edit-info" url="/pages/profile/profile">个人资料修改</navigator>
     </view>
   </view>

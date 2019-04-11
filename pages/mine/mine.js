@@ -1,11 +1,13 @@
 // pages/mine/mine.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    userInfo: null
   },
 
   /**
@@ -62,5 +64,13 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  /**
+   * 获取用户信息后的回调
+   */
+  handleAuth ({ detail }) {
+    console.log(detail.userInfo)
+    app.globalData.userInfo = detail.userInfo || null
   }
 })
