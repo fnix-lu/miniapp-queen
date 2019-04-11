@@ -37,6 +37,10 @@ Page({
       //   allPageCount: 1,
       //   list: []
       // }
+    ],
+    cart: [
+      { id: 'x0000', name: 'A', checked: false },
+      { id: 'y1111', name: 'Z', checked: false }
     ]
   },
 
@@ -203,10 +207,22 @@ Page({
   },
 
   /**
-   * 选择商品
+   * 选择列表商品数量
    */
   handleSelectGoods (e) {
     let { value } = e.detail
     console.log(value)
-  }
+  },
+
+  /**
+   * 购物车勾选商品
+   */
+  handleCart (e) {
+    console.log(e.detail)
+    console.log(this.data.cart)
+  }/* ,
+  handleCartItem (e) {
+    console.log(e)
+    console.log(this.data.cart)
+  } */
 })

@@ -63,7 +63,7 @@
     <view class="btn-submit-order">提交订单</view>
   </view>
   <!-- 购物车图标 -->
-  <view class="cart-icon-wrap out {{ flag.showCart ? 'hidden' : '' }}">
+  <view class="cart-icon-wrap out {{ flag.showCart ? 'hidden' : '' }}" bindtap="toggleShowCart">
     <image class="icon-cart" src="/assets/img/cart.png"></image>
     <text class="cart-badge">3</text>
   </view>
@@ -77,7 +77,7 @@
   <!-- 购物车弹层 -->
   <view class="cart {{ flag.showCart ? 'show' : '' }}">
     <view class="icon-card-triangle"></view>
-      <view class="cart-icon-wrap in">
+      <view class="cart-icon-wrap in" bindtap="toggleShowCart">
       <image class="icon-cart" src="/assets/img/cart.png"></image>
       <text class="cart-badge">3</text>
     </view>
@@ -86,15 +86,16 @@
       <view class="btn-clean-cart">清空购物车</view>
     </view>
     <view class="cart-body">
+      <checkbox-group bindchange="handleCart">
       <!-- 购物车商品项 -->
-      <view class="cart-goods-item">
+      <view class="cart-goods-item" wx:for="{{ cart }}" wx:key="{{ item.id }}">
         <view class="cart-goods-item-l">
-          <checkbox class="checkbox"/>
+          <checkbox class="checkbox" value="{{ item.id }}" checked="{{ item.checked }}" />
         </view>
         <view class="cart-goods-item-r first">
           <image class="cart-goods-img"></image>
           <view class="cart-goods-info">
-            <view class="cart-goods-name">七度空间夜用</view>
+            <view class="cart-goods-name">{{ item.name }}</view>
             <view class="cart-goods-foot">
               <view class="cart-goods-price"><text class="cart-goods-price-current">￥24</text><text class="cart-goods-price-del del">￥28</text></view>
               <number-selector></number-selector>
@@ -103,8 +104,9 @@
         </view>
       </view>
       <!-- end 购物车商品项 -->
+      </checkbox-group>
       <!-- 购物车商品项 -->
-      <view class="cart-goods-item">
+      <!-- <view class="cart-goods-item">
         <view class="cart-goods-item-l">
           <checkbox class="checkbox"/>
         </view>
@@ -118,7 +120,7 @@
             </view>
           </view>
         </view>
-      </view>
+      </view> -->
       <!-- end 购物车商品项 -->
     </view>
   </view>

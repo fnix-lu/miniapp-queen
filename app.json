@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/auth/auth",
     "pages/category/category",
     "pages/goods-detail/goods-detail",
     "pages/post-detail/post-detail",

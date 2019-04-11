@@ -53,14 +53,52 @@ App({
    * 登录
    */
   login () {
-    // 判断登录态是否存在，是否过期
+    if (valid) {
+      // resolve
+    } else if (auth) {
+      // request -> resolve
+    } else {
+      // auth
+    }
 
-    // 如果不存在或已过期，发起登录
+    if (!auth) {
+      // auth
+    } else if (valid) {
+      // resolve
+    } else {
+      // request -> resolve
+    }
+
+
+
+    // 判断登录态是否有效，如果无效，发起登录
     wx.login({
       success: res => {
         console.log(res)
-        if (res.code) {
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) { // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          // 如果接口是需要用户授权信息的：
+          //   判断是否有授权，没有则跳转到授权页完成授权和登录
+          //   有授权则 res.code + 用户信息调用接口，设置用户信息
+          // 如果接口不需要用户授权而由服务端请求用户信息的，直接 res.code 请求接口，设置用户信息
+        }
+      }
+    })
+  },
+  /**
+   * 登录2
+   */
+  login2 () {
+    // 如果接口是需要用户授权信息的：
+    //   判断是否有授权，没有则跳转到授权页完成授权和登录
+    //   有授权则 res.code + 用户信息调用接口，设置用户信息
+    // 如果接口不需要用户授权而由服务端请求用户信息的，直接 res.code 请求接口，设置用户信息
+
+    // 判断登录态是否有效，如果无效，发起登录
+    wx.login({
+      success: res => {
+        console.log(res)
+        if (res.code) { // 发送 res.code 到后台换取 openId, sessionKey, unionId
+
         }
       }
     })
