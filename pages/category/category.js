@@ -112,7 +112,7 @@ Page({
   },
 
   /**
-   * 获取品牌（分页）
+   * 获取下一页品牌
    */
   getBrands () {
     const _this = this
@@ -151,12 +151,18 @@ Page({
     this.setData({
       currentBrandId: e.currentTarget.dataset.id
     })
-    // 获取对应品牌的商品
-    this.getGoodsByBrandId()
+    // 如果该品牌商品未曾获取过，则获取该品牌的商品
+    let { currentBrandId, goodsList } = this.data
+    let index = goodsList.findIndex((item) => {
+      return item.brandId === currentBrandId
+    })
+    if (index < 0) {
+      this.getGoodsByBrandId()
+    }
   },
 
   /**
-   * 获取商品（分页）
+   * 获取对应品牌的下一页商品
    */
   getGoodsByBrandId () {
     const _this = this
