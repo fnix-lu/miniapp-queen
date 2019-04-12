@@ -1,6 +1,10 @@
 const HOST = 'http://39.98.241.13:997/api'
 
 const fetch = (url, data = {}, method = 'GET') => new Promise((resolve, reject) => {
+  wx.showLoading({
+    title: '努力加载中...',
+    mask: true
+  })
   wx.request({
     url: `${HOST}/${url}`,
     data: {
@@ -12,6 +16,7 @@ const fetch = (url, data = {}, method = 'GET') => new Promise((resolve, reject) 
     },
     method,
     success (res) {
+      wx.hideLoading()
       res.statusCode === 200 ? resolve(res.data) : reject(res)
     }
   })
