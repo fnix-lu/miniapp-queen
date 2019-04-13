@@ -6,3 +6,7 @@
   margin-top: 80rpx;
   padding: 0 20rpx;
 }
+
+.footer-wrap {
+  width: 480rpx;
+}

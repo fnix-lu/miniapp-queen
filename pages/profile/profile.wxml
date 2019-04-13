@@ -2,25 +2,41 @@
 <container>
   <i-cell-group i-class="panel">
     <i-cell title="手机号">
-      <input slot="footer" type="number" placeholder="请输入您的手机号" placeholder-class="placeholder" maxlength="11"/>
+      <view slot="footer" class="footer-wrap">
+        <input type="number" placeholder="请输入您的手机号" placeholder-class="placeholder" maxlength="11"/>
+      </view>
     </i-cell>
     <i-cell title="生日">
-      <picker slot="footer" mode="date">
-        <text wx-if="{{ true }}" class="placeholder">请选择您的生日</text>
-        <text>{{}}</text>
-      </picker>
+      <view slot="footer" class="footer-wrap">
+        <picker mode="date" value="{{ profile.birthday }}" bindchange="changeBirthday">
+          <text wx:if="{{ profile.birthday }}">{{ profile.birthday }}</text>
+          <text wx:else class="placeholder">请选择您的生日</text>
+        </picker>
+      </view>
     </i-cell>
     <i-cell title="省份">
-      <picker slot="footer">
-        <text wx-if="{{ true }}" class="placeholder">请选择</text>
-        <text>{{}}</text>
-      </picker>
+      <view slot="footer" class="footer-wrap">
+        <picker range="{{ range.province }}">
+          <text wx:if="{{ profile.province }}">{{ profile.birthday }}</text>
+          <text wx:else class="placeholder">请选择</text>
+        </picker>
+      </view>
     </i-cell>
     <i-cell title="城市">
-      <input slot="footer" type="text" placeholder="请选择" placeholder-class="placeholder"/>
+      <view slot="footer" class="footer-wrap">
+        <picker range="{{ range.city }}">
+          <text wx:if="{{ profile.city }}">{{ profile.birthday }}</text>
+          <text wx:else class="placeholder">请选择</text>
+        </picker>
+      </view>
     </i-cell>
     <i-cell title="学校">
-      <input slot="footer" type="text" placeholder="请选择" placeholder-class="placeholder"/>
+      <view slot="footer" class="footer-wrap">
+        <picker range="{{ range.school }}">
+          <text wx:if="{{ profile.school }}">{{ profile.birthday }}</text>
+          <text wx:else class="placeholder">请选择</text>
+        </picker>
+      </view>
     </i-cell>
   </i-cell-group>
 

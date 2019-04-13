@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/profile/profile",
     "pages/settlement/settlement",
     "pages/index/index",
     "pages/auth/auth",
@@ -10,7 +11,6 @@
     "pages/circle-message/circle-message",
     "pages/circle/circle",
     "pages/pay-result/pay-result",
-    "pages/profile/profile",
     "pages/feedback/feedback",
     "pages/coupon/coupon",
     "pages/coupon-all/coupon-all",

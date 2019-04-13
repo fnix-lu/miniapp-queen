@@ -5,7 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    profile: {
+      phone: '',
+      birthday: '',
+      province: '',
+      city: '',
+      school: ''
+    },
+    range: {
+      province: ['江苏', '浙江'],
+      city: ['苏州', '无锡'],
+      school: ['a', 'b']
+    }
   },
 
   /**
@@ -62,5 +73,27 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 选择生日
+   */
+  changeBirthday (e) {
+    const { detail: { value } } = e
+    this.setData({
+      'profile.birthday': value
+    })
   }
+
+  /**
+   * 选择省份
+   */
+
+  /**
+   * 选择城市
+   */
+
+  /**
+   * 选择学校
+   */
 })
