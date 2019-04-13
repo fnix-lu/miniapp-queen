@@ -64,3 +64,10 @@
 .select-item.first {
   border-top: none;
 }
+
+.footer-wrap {
+  width: 480rpx;
+}
+.picker-disabled {
+  background: #f8f8f8 !important;
+}

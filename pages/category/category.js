@@ -1,14 +1,6 @@
 // pages/category/category.js
 const app = getApp()
 
-// class GoodsList {
-//   constructor (currentPage = 0, allPageCount = 1, list = []) {
-//     this.currentPage = currentPage
-//     this.allPageCount = allPageCount
-//     this.list = list
-//   }
-// }
-
 Page({
 
   /**
@@ -25,11 +17,6 @@ Page({
       allPageCount: 1,
       list: []
     },
-    // goods: {
-    //   currentPage: 0,
-    //   allPageCount: 1
-    // },
-    //
     goodsList: [ // 分页累加存储各品牌的商品，由于每个品牌下的商品均为分页获取，不适合做品牌混合的商品列表，菜单无法左右联动
       // {
       //   brandId: 'aaa',
@@ -130,7 +117,7 @@ Page({
           'brand.allPageCount': res.AllPageCount,
           'brand.list': _this.data.brand.list.concat(res.Data)
         })
-        // 如果是第一次请求，即第一页，设置初始选中的品牌
+        // 如果是第一次请求品牌，设置初始选中的品牌
         if (res.PageIndex === 1) {
           _this.setData({
             'currentBrandId': res.Data[0].Id

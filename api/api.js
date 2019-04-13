@@ -31,5 +31,15 @@ module.exports = {
   // 获取商品列表
   getGoods (data) {
     return fetch('product/GetProducts', data)
+  },
+
+  // 获取省份
+  getProvinces (data) {
+    return fetch('system/GetProvinces', data)
+  },
+
+  // 获取城市
+  getCities (data) {
+    return fetch('system/GetCities', data)
   }
 }

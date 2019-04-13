@@ -100,7 +100,7 @@ Page({
           'brand.allPageCount': res.AllPageCount,
           'brand.list': _this.data.brand.list.concat(res.Data)
         })
-        // 如果是第一次请求，即第一页，设置初始选中的品牌
+        // 如果是第一次请求品牌，设置初始选中的品牌（首页有'全部'，无需另行设置初始品牌）
         // if (res.PageIndex === 1) {
         //   _this.setData({
         //     'currentBrandId': res.Data[0].Id
@@ -134,7 +134,7 @@ Page({
   /**
    * 获取对应品牌的下一页商品
    */
-  getGoodsByBrandId() {
+  getGoodsByBrandId () {
     const _this = this
     let { currentBrandId, goodsList } = _this.data
 

@@ -6,7 +6,22 @@ Page({
    */
   data: {
     flagDrawerSelect: false,
-    currentConpon: '不使用优惠'
+    currentConpon: '不使用优惠',
+    profile: {
+      phone: '',
+      birthday: '2019-3-30',
+      provinceIndex: '1',
+      province: '',
+      cityIndex: '1',
+      city: '',
+      schoolIndex: '1',
+      school: 'b'
+    },
+    range: {
+      province: ['江苏', '浙江'],
+      city: ['苏州', '无锡'],
+      school: ['a', 'b']
+    }
   },
 
   /**
@@ -82,5 +97,56 @@ Page({
       currentConpon: detail.value
     })
     this.toggleDrawerSelect()
+  },
+
+  /**
+   * 选择生日
+   */
+  changeBirthday(e) {
+    const { detail: { value } } = e
+    this.setData({
+      'profile.birthday': value,
+    })
+  },
+
+  /**
+   * 选择省份
+   */
+  changeProvince(e) {
+    const { data: { range: { province } } } = this
+    const { detail: { value } } = e
+    this.setData({
+      'profile.province': province[value]
+    })
+  },
+
+  /**
+   * 选择城市
+   */
+  changeCity(e) {
+    const { data: { range: { city } } } = this
+    const { detail: { value } } = e
+    this.setData({
+      'profile.city': city[value]
+    })
+  },
+
+  /**
+   * 选择学校
+   */
+  changeSchool(e) {
+    const { data: { range: { school } } } = this
+    const { detail: { value } } = e
+    this.setData({
+      'profile.school': school[value]
+    })
+  },
+
+  /**
+   * 获取选中项的index
+   */
+  selectedIndexOf(key) {
+    const { profile, range } = this.data
+    return range[key].indexOf(profile[key])
   }
 })

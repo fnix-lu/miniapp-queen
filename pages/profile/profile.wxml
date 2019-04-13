@@ -16,24 +16,24 @@
     </i-cell>
     <i-cell title="省份">
       <view slot="footer" class="footer-wrap">
-        <picker range="{{ range.province }}">
-          <text wx:if="{{ profile.province }}">{{ profile.birthday }}</text>
+        <picker range="{{ range.province }}" value="{{ profile.provinceIndex }}" bindchange="changeProvince">
+          <text wx:if="{{ profile.province }}">{{ profile.province }}</text>
           <text wx:else class="placeholder">请选择</text>
         </picker>
       </view>
     </i-cell>
-    <i-cell title="城市">
+    <i-cell title="城市" i-class="{{ !profile.province ? 'picker-disabled' : '' }}">
       <view slot="footer" class="footer-wrap">
-        <picker range="{{ range.city }}">
-          <text wx:if="{{ profile.city }}">{{ profile.birthday }}</text>
+        <picker range="{{ range.city }}" value="{{ profile.cityIndex }}" bindchange="changeCity" disabled="{{ !profile.province }}">
+          <text wx:if="{{ profile.city }}">{{ profile.city }}</text>
           <text wx:else class="placeholder">请选择</text>
         </picker>
       </view>
     </i-cell>
     <i-cell title="学校">
       <view slot="footer" class="footer-wrap">
-        <picker range="{{ range.school }}">
-          <text wx:if="{{ profile.school }}">{{ profile.birthday }}</text>
+        <picker range="{{ range.school }}" value="{{ profile.schoolIndex }}" bindchange="changeSchool">
+          <text wx:if="{{ profile.school }}">{{ profile.school }}</text>
           <text wx:else class="placeholder">请选择</text>
         </picker>
       </view>
