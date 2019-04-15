@@ -10,17 +10,17 @@ Page({
     profile: {
       phone: '',
       birthday: '2019-3-30',
-      provinceIndex: '1',
+      provinceIndex: '0',
       province: '',
-      cityIndex: '1',
+      cityIndex: '0',
       city: '',
-      schoolIndex: '1',
+      schoolIndex: '0',
       school: 'b'
     },
     range: {
-      province: ['江苏', '浙江'],
-      city: ['苏州', '无锡'],
-      school: ['a', 'b']
+      province: [],
+      city: [],
+      school: []
     }
   },
 
@@ -97,7 +97,8 @@ Page({
     const { data: { range: { province } } } = this
     const { detail: { value } } = e
     this.setData({
-      'profile.province': province[value]
+      'profile.provinceIndex': value,
+      'profile.province': province[value].Name
     })
     this.getCitiesByProvinceId()
   },
@@ -109,7 +110,8 @@ Page({
     const { data: { range: { city } } } = this
     const { detail: { value } } = e
     this.setData({
-      'profile.city': city[value]
+      'profile.cityIndex': value,
+      'profile.city': city[value].Name
     })
   },
 
@@ -136,10 +138,16 @@ Page({
    * 请求所有省份
    */
   getProvincesAll () {
+    const _this = this
     app.api.getProvinces({
       PageSize: 50
     }).then(res => {
       console.log('province', res)
+      if (res.Code === 1000) {
+        _this.setData({
+          'range.province': res.Data
+        })
+      }
     })
   },
 
@@ -147,10 +155,18 @@ Page({
    * 请求省份对应的城市
    */
   getCitiesByProvinceId () {
+    const _this = this
+    const { profile, range } = this.data
     app.api.getCities({
-      PageSize: 50
+      PageSize: 50,
+      ProvinceId: range.province[profile.provinceIndex].Id
     }).then(res => {
-      console.log('city', res)
+      if (res.Code === 1000) {
+        console.log('city', res)
+        _this.setData({
+          'range.city': res.Data
+        })
+      }
     })
   }
 })

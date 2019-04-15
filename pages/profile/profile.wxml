@@ -16,7 +16,7 @@
     </i-cell>
     <i-cell title="省份">
       <view slot="footer" class="footer-wrap">
-        <picker range="{{ range.province }}" value="{{ profile.provinceIndex }}" bindchange="changeProvince">
+        <picker range="{{ range.province }}" range-key="Name" value="{{ profile.provinceIndex }}" bindchange="changeProvince">
           <text wx:if="{{ profile.province }}">{{ profile.province }}</text>
           <text wx:else class="placeholder">请选择</text>
         </picker>
@@ -24,7 +24,7 @@
     </i-cell>
     <i-cell title="城市" i-class="{{ !profile.province ? 'picker-disabled' : '' }}">
       <view slot="footer" class="footer-wrap">
-        <picker range="{{ range.city }}" value="{{ profile.cityIndex }}" bindchange="changeCity" disabled="{{ !profile.province }}">
+        <picker range="{{ range.city }}" range-key="Name" value="{{ profile.cityIndex }}" bindchange="changeCity" disabled="{{ !profile.province }}">
           <text wx:if="{{ profile.city }}">{{ profile.city }}</text>
           <text wx:else class="placeholder">请选择</text>
         </picker>
