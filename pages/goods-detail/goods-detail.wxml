@@ -22,18 +22,19 @@
   <view class="price-wrap">
     <view class="price-name">拼团价</view>
     <view class="price-content">
-      ￥<text class="price-current">24.9</text><text class="del">￥28</text>
+      ￥<text class="price-current">{{ goods.CostPrice }}</text><text class="del">￥{{ goods.Price }}</text>
     </view>
   </view>
 
   <!-- 信息 -->
   <view class="list">
     <view class="list-item first">
-      <view class="goods-name">七度空间夜用</view>
+      <view class="goods-name">{{ goods.Name }}</view>
       <view class="goods-desc">恒安集团面向年轻女性推出的日用夜用</view>
     </view>
     <view class="list-item" bindtap="toggleDrawerBuy">
-      <text style="margin-right:22rpx">已选</text><text class="selected-type">“5包起购”</text><text class="selected-type">“1件”</text>
+      <text style="margin-right:22rpx">已选</text>
+      <text class="selected-type" wx:for="{{ selected }}">“{{ item }}”</text>
       <image class="icon-arrow-right-picker" src="/assets/img/arrow_right_picker.png"></image>
     </view>
     <view class="list-item">正品保证 · 线下取货</view>
@@ -67,57 +68,65 @@
   <!-- 商品详情 -->
   <view class="goods-detail">
     <view class="goods-detail-title">商品详情</view>
+    <view>
+      <rich-text nodes="{{ goods.Description }}"></rich-text>
+    </view>
   </view>
 
   <!-- 顶部信息栏 -->
   <view class="fixed-footer">
-    <view class="btn-home">
+    <navigator class="btn-home" url="/pages/index/index" open-type="switchTab">
       <image class="icon-home" src="/assets/img/tabbar_home_on.png"></image>
       <view>首页</view>
-    </view>
-    <view class="btn-buy-self">
-      <view class="btn-price">￥26</view>
+    </navigator>
+    <navigator class="btn-buy-self">
+      <view class="btn-price">￥28</view>
       <view>单独购买</view>
-    </view>
-    <view class="btn-create-group">
+    </navigator>
+    <navigator class="btn-create-group">
       <view class="btn-price">￥24</view>
       <view>发起拼单</view>
-    </view>
+    </navigator>
   </view>
 
   <!-- 弹层 购买选项 -->
-  <i-drawer mode="bottom" visible="{{ flagDrawerBuy }}" bindclose="toggleDrawerBuy">
+  <i-drawer mode="bottom" visible="{{ flag.drawerBuy }}" bindclose="toggleDrawerBuy">
     <view>
       <view class="buy-options-row flex">
         <image class="buy-img"></image>
         <view class="buy-goods">
-          <view class="buy-name">七度空间夜用</view>
+          <view class="buy-name">{{ goods.Name }}</view>
           <view class="buy-selected">
             <text>您已选择：5包起购</text>
           </view>
           <view>
-            <text class="buy-price">￥24</text>
-            <text class="del buy-price-del">￥28</text>
+            <text class="buy-price">￥{{ goods.CostPrice }}</text>
+            <text class="del buy-price-del">￥{{ goods.Price }}</text>
           </view>
         </view>
       </view>
       <view class="buy-options-row">
         <view class="buy-options-row-title">规格</view>
         <view class="radios">
-          <view class="radio-box first">5包起购</view>
-          <view class="radio-box checked">5包起购</view>
+          <view
+            wx:for="{{ goods.Specifications }}"
+            wx:key="item.Id"
+            class="radio-box {{ index === 0 ? 'first' : '' }} {{ selected.specification === item.Name ? 'checked' : '' }}"
+            bindtap="selectSpecification"
+            data-item="{{ item }}"
+          >{{ item.Name }}</view>
         </view>
       </view>
       <view class="buy-options-row flex flex-sides flex-middle" style="margin-bottom:20rpx">
         <view class="buy-options-row-title">数量</view>
-        <i-input-number i-class="number-selector" value="1" min="0" max="5" />
+        <i-input-number i-class="number-selector" value="{{ selected.amount }}" min="1" bindchange="selectAmount" />
       </view>
       <view class="btn-confirm">确定</view>
     </view>
   </i-drawer>
 
   <!-- 弹层 参与拼单 -->
-  <i-modal title="参与“小仙女儿”拼单" visible="{{ true }}" show-ok="{{ false }}" show-cancel="{{ false }}">
+  <i-modal title="参与“小仙女儿”拼单" visible="{{ flag.modalJoin }}" show-ok="{{ false }}" show-cancel="{{ false }}">
     <view style="margin-bottom:20rpx;font-size:28rpx">仅剩 <text style="color:var(--color-primary)">1</text> 个名额，23:59:59 后结束</view>
     <group>
       <group-member is-first is-leader></group-member>
@@ -127,4 +136,5 @@
     </group>
     <button class="btn btn-primary btn-full btn-join">参与拼单</button>
   </i-modal>
+
 </container>

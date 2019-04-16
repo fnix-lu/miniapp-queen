@@ -15,6 +15,11 @@ Page({
       allPageCount: 1,
       list: []
     },
+    hotGroup: {
+      currentPage: 0,
+      allPageCount: 1,
+      list: []
+    },
     goodsList: [ // 分页累加存储各品牌的商品
       // {
       //   brandId: 'aaa',
@@ -29,7 +34,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getHotGroup()
   },
 
   /**
@@ -79,6 +84,24 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  /**
+   * 获取下一页热门组合
+   */
+  getHotGroup () {
+    const _this = this
+    const { hotGroup } = this.data
+
+    if (hotGroup.currentPage >= hotGroup.allPageCount) {
+      return
+    }
+    app.api.getGoods({
+      PageIndex: hotGroup.currentPage + 1,
+      ProductSpecificationType: 3
+    }).then(res => {
+      console.log(res)
+    })
   },
 
   /**

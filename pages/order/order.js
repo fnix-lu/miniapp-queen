@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    targetTime: new Date('2019-4-12 00:00:00').getTime()
+    targetTime: new Date('2019-5-1 00:00:00').getTime(),
+    flag: {
+      showOrderDetail: false
+    }
   },
 
   /**
@@ -73,5 +76,10 @@ Page({
       confirmText: '确认取消',
       confirmColor: '#888888'
     })
-  }
+  },
+
+  /**
+   * 加载显示订单详情
+   */
+  
 })

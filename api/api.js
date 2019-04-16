@@ -41,5 +41,10 @@ module.exports = {
   // 获取城市
   getCities (data) {
     return fetch('system/GetCities', data)
+  },
+
+  // 获取单个商品详情
+  getSingleGoods (data) {
+    return fetch('product/GetProductById', data)
   }
 }

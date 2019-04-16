@@ -1,18 +1,28 @@
 // pages/goods-detail/goods-detail.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    flagDrawerBuy: false
+    flag: {
+      drawerBuy: false,
+      modalJoin: false
+    },
+    goods: {},
+    selected: {
+      specification: '',
+      amount: 1
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function (query) {
+    this.getGoodsById(query.goodsId)
   },
 
   /**
@@ -69,7 +79,54 @@ Page({
    */
   toggleDrawerBuy () {
     this.setData({
-      flagDrawerBuy: !this.data.flagDrawerBuy
+      'flag.drawerBuy': !this.data.flag.drawerBuy
+    })
+  },
+
+  /**
+   * 获取对应商品id的商品信息
+   */
+  getGoodsById (id) {
+    const _this = this
+    app.api.getSingleGoods({
+      Id: id,
+      IsContainSpecification: true,
+      IsDefaultSpecification: true
+    }).then(res => {
+      if (!res.Data) {
+        wx.showToast({
+          title: '加载失败，请稍后再试',
+          icon: 'none'
+        })
+        return
+      }
+      if (res.Code === 1000 && res.Data) {
+        _this.setData({
+          goods: res.Data,
+          'selected.specification': res.Data.Specifications[0].Name
+        })
+      }
+    })
+  },
+
+  /**
+   * 选择规格
+   */
+  selectSpecification (e) {
+    const { currentTarget: { dataset: { item } } } = e
+    this.setData({
+      'selected.specification': item.Name
+    })
+  },
+
+  /**
+   * 选择数量
+   */
+  selectAmount (e) {
+    const { detail: { value, type } } = e
+    console.log(value,type)
+    this.setData({
+      'selected.amount': value
     })
   }
 })
