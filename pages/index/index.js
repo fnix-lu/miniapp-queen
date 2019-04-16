@@ -177,7 +177,10 @@ Page({
 
     app.api.getGoods({
       BrandId: currentBrandId,
-      PageIndex: pageIndex
+      PageIndex: pageIndex,
+      ProductSpecificationType: 2, // 多规格
+      IsContainSpecification: true,
+      IsDefaultSpecification: true
     }).then(res => {
       if (res.Code === 1000) {
         if (index > -1) {

@@ -1,11 +1,11 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/category/category",
     "pages/order/order",
     "pages/profile/profile",
     "pages/settlement/settlement",
     "pages/auth/auth",
-    "pages/category/category",
     "pages/goods-detail/goods-detail",
     "pages/post-detail/post-detail",
     "pages/post-new/post-new",

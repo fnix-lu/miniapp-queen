@@ -171,10 +171,9 @@ Page({
 
     app.api.getGoods({
       BrandId: currentBrandId,
-      PageIndex: pageIndex
+      PageIndex: pageIndex,
+      ProductSpecificationType: 1 // 单品
     }).then(res => {
-      // console.log(res)
-
       if (res.Code === 1000) {
         if (index > -1) {
           _this.setData({

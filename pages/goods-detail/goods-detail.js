@@ -90,8 +90,8 @@ Page({
     const _this = this
     app.api.getSingleGoods({
       Id: id,
-      IsContainSpecification: true,
-      IsDefaultSpecification: true
+      IsContainSpecification: true/* ,
+      IsDefaultSpecification: true */
     }).then(res => {
       if (!res.Data) {
         wx.showToast({
@@ -106,6 +106,7 @@ Page({
           'selected.specification': res.Data.Specifications[0].Name
         })
       }
+      console.log(_this.data.goods)
     })
   },
 
