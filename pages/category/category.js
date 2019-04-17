@@ -9,7 +9,8 @@ Page({
   data: {
     flag: {
       showCart: false,
-      showCover: false
+      showCover: false,
+      isCartAllSelected: false
     },
     currentBrandId: '',
     brand: {
@@ -194,7 +195,7 @@ Page({
         }
       }
 
-      console.log(goodsList)
+      console.log('自由搭配单品显示列表 累加', goodsList)
     })
   },
 
@@ -207,14 +208,55 @@ Page({
   },
 
   /**
-   * 购物车勾选商品
+   * 购物车勾选单个商品
    */
-  handleCart (e) {
-    console.log(e.detail)
-    console.log(this.data.cart)
-  }/* ,
-  handleCartItem (e) {
-    console.log(e)
-    console.log(this.data.cart)
-  } */
+  handleCartItemChange (e) {
+    const { currentTarget: { dataset: { index } } } = e
+    this.setData({
+      ['cart[' + index + '].checked']: !this.data.cart[index].checked
+    })
+    this.setData({
+      'flag.isCartAllSelected': this.isCartAllSelected()
+    })
+    console.log('购物车', this.data.cart)
+    console.log('是否已全选', this.data.flag.isCartAllSelected)
+  },
+
+  /**
+   * 购物车全选、反选
+   */
+  handleCartAllChange () {
+    const _this = this
+    let { flag, cart } = this.data
+    this.setData({
+      'flag.isCartAllSelected': !flag.isCartAllSelected
+    })
+    cart.forEach((item, index) => {
+      _this.setData({
+        ['cart[' + index + '].checked']: flag.isCartAllSelected
+      })
+    })
+  },
+
+  /**
+   * 检查购物车是否已全部选中
+   */
+  isCartAllSelected () {
+    return this.data.cart.every(item => item.checked)
+  },
+
+  /**
+   * 提交订单
+   */
+  toSettlement () {
+    console.log('去结算的商品', this.getToSettleItems())
+  },
+
+  /**
+   * 返回选中的商品id组成的数组
+   */
+  getToSettleItems () {
+    let arr = []
+    return arr
+  }
 })

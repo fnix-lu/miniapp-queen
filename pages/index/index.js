@@ -98,9 +98,9 @@ Page({
     }
     app.api.getGoods({
       PageIndex: hotGroup.currentPage + 1,
-      ProductSpecificationType: 3
+      ProductSpecificationType: 3 // 组合
     }).then(res => {
-      console.log(res)
+      console.log('热门组合接口返回', res)
     })
   },
 
@@ -179,8 +179,8 @@ Page({
       BrandId: currentBrandId,
       PageIndex: pageIndex,
       ProductSpecificationType: 2, // 多规格
-      IsContainSpecification: true,
-      IsDefaultSpecification: true
+      IsContainSpecification: true,  // 包含多规格字段
+      IsDefaultSpecification: true // 最低价规格信息用于显示
     }).then(res => {
       if (res.Code === 1000) {
         if (index > -1) {
@@ -202,7 +202,7 @@ Page({
         }
       }
 
-      console.log(goodsList)
+      console.log('品牌分类展示列表 累加', goodsList)
     })
   },
 

@@ -47,7 +47,7 @@
       <view class="cart-price-total">￥89</view>
       <view class="cart-price-desc">已减12元</view>
     </view>
-    <view class="btn-submit-order">提交订单</view>
+    <view class="btn-submit-order" bindtap="toSettlement">提交订单</view>
   </view>
   <!-- 购物车图标 -->
   <view class="cart-icon-wrap out {{ flag.showCart ? 'hidden' : '' }}" bindtap="toggleShowCart">
@@ -69,15 +69,19 @@
       <text class="cart-badge">3</text>
     </view>
     <view class="cart-head">
-      <label class="select-all"><view class="select-all-checkbox-wrap"><checkbox class="checkbox"/></view><text style="color:#555555">全选</text>（已选9件）</label>
+      <label class="select-all">
+        <view class="select-all-checkbox-wrap">
+          <checkbox class="checkbox" checked="{{ flag.isCartAllSelected }}" bindtap="handleCartAllChange"/>
+        </view>
+        <text style="color:#555555">全选</text>（已选9件）
+      </label>
       <view class="btn-clean-cart">清空购物车</view>
     </view>
     <view class="cart-body">
-      <checkbox-group bindchange="handleCart">
       <!-- 购物车商品项 -->
       <view class="cart-goods-item" wx:for="{{ cart }}" wx:key="{{ item.id }}">
         <view class="cart-goods-item-l">
-          <checkbox class="checkbox" value="{{ item.id }}" checked="{{ item.checked }}" />
+          <checkbox class="checkbox" value="{{ item.id }}" checked="{{ item.checked }}" data-index="{{ index }}" bindtap="handleCartItemChange"/>
         </view>
         <view class="cart-goods-item-r first">
           <image class="cart-goods-img"></image>
@@ -91,7 +95,6 @@
         </view>
       </view>
       <!-- end 购物车商品项 -->
-      </checkbox-group>
       <!-- 购物车商品项 -->
       <!-- <view class="cart-goods-item">
         <view class="cart-goods-item-l">

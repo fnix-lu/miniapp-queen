@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/profile/profile",
     "pages/category/category",
     "pages/order/order",
-    "pages/profile/profile",
     "pages/settlement/settlement",
     "pages/auth/auth",
     "pages/goods-detail/goods-detail",
