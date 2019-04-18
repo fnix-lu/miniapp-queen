@@ -4,6 +4,7 @@
     <view class="discount-info">全场满30 - 5 , 40 - 8 , 50 - 12</view>
   </view>
   <view class="menu">
+    <!-- 品牌列 -->
     <scroll-view class="category-l" scroll-y bindscrolltolower="getBrands">
       <view class="list-name">
         <view
@@ -17,6 +18,7 @@
         </view>
       </view>
     </scroll-view>
+    <!-- 商品列 -->
     <scroll-view class="category-r" scroll-y bindscrolltolower="getGoodsByBrandId">
       <view class="list-content">
         <!-- 商品项 -->
@@ -31,7 +33,9 @@
             <view class="content-item-name">{{ item.Name }}</view>
             <view class="content-item-desc">{{ item.Description }}</view>
             <view class="content-item-foot">
-              <view class="content-item-price"><text class="price-current">￥{{ item.CostPrice }}</text><text class="price-del del">￥{{ item.Price }}</text></view>
+              <view class="content-item-price">
+                <text class="price-current">￥{{ '???' }}</text><text class="price-del del">￥{{ item.Price }}</text>
+              </view>
               <number-selector bindchange="handleSelectGoods"></number-selector>
             </view>
           </view>

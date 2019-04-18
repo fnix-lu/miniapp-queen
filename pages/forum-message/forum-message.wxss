@@ -1,4 +1,4 @@
-/* pages/circle-message/circle-message.wxss */
+/* pages/forum-message/forum-message.wxss */
 .panel {
   padding: 0 20rpx 40rpx;
   background-color: #fff;

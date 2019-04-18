@@ -33,6 +33,11 @@ module.exports = {
     return fetch('product/GetProducts', data)
   },
 
+  // 获取单个商品详情
+  getSingleGoods (data) {
+    return fetch('product/GetProductById', data)
+  },
+
   // 获取省份
   getProvinces (data) {
     return fetch('system/GetProvinces', data)
@@ -43,8 +48,8 @@ module.exports = {
     return fetch('system/GetCities', data)
   },
 
-  // 获取单个商品详情
-  getSingleGoods (data) {
-    return fetch('product/GetProductById', data)
+  // 获取闺蜜圈列表
+  getForumList (data) {
+    return fetch('forum/GetGirlForums', data)
   }
 }

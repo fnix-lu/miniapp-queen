@@ -13,7 +13,7 @@ Page({
     },
     goods: {},
     selected: {
-      specification: '',
+      specification: {},
       amount: 1
     }
   },
@@ -90,8 +90,8 @@ Page({
     const _this = this
     app.api.getSingleGoods({
       Id: id,
-      IsContainSpecification: true/* ,
-      IsDefaultSpecification: true */
+      ProductSpecificationType: 2, // 多规格
+      IsContainSpecification: true // 包含所有规格列表
     }).then(res => {
       if (!res.Data) {
         wx.showToast({
@@ -103,10 +103,10 @@ Page({
       if (res.Code === 1000 && res.Data) {
         _this.setData({
           goods: res.Data,
-          'selected.specification': res.Data.Specifications[0].Name
+          'selected.specification': res.Data.Specifications[0] // 默认选中第一个规格，显示对应价格
         })
       }
-      console.log(_this.data.goods)
+      console.log('商品信息', _this.data.goods)
     })
   },
 
@@ -116,7 +116,7 @@ Page({
   selectSpecification (e) {
     const { currentTarget: { dataset: { item } } } = e
     this.setData({
-      'selected.specification': item.Name
+      'selected.specification': item
     })
   },
 
@@ -124,8 +124,7 @@ Page({
    * 选择数量
    */
   selectAmount (e) {
-    const { detail: { value, type } } = e
-    console.log(value,type)
+    const { detail: { value, type } } = e // type: minus plus
     this.setData({
       'selected.amount': value
     })

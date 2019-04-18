@@ -70,16 +70,16 @@
       wx:for="{{ computed.currentGoodsList(currentBrandId, goodsList) }}"
       wx:key="{{ item.Id }}"
     >
-      <image class="icon-hot" src="/assets/img/hot.png"></image>
-      <image class="goods-img" src="{{ item.ImageUrl }}"></image>
-      <view class="goods-name">{{ item.Name }}</view>
+      <image wx:if="{{ item.Specifications[0].IsHot }}" class="icon-hot" src="/assets/img/hot.png"></image>
+      <image class="goods-img" src="{{ item.Specifications[0].ImageUrl }}"></image>
+      <view class="goods-name">{{ item.Specifications[0].Name }}</view>
       <view class="goods-info">
         <view>
-          <text class="price-single">单独购买：<text class="del">￥{{ item.Price }}</text></text>
+          <text class="price-single">单独购买：<text class="del">￥{{ item.Specifications[0].Price }}</text></text>
         </view>
         <view class="flex flex-sides flex-bottom">
-          <text class="price-group"><text class="price-group-char">￥</text>{{ item.CostPrice }}</text>
-          <text class="sale-monthly">月销量9999</text>
+          <text class="price-group"><text class="price-group-char">￥</text>{{ item.Specifications[0].GroupPrice }}</text>
+          <text class="sale-monthly">月销量{{ item.Specifications[0].MonthSaleCount }}</text>
         </view>
       </view>
     </navigator>

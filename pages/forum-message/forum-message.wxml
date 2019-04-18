@@ -1,4 +1,4 @@
-<!--pages/circle-message/circle-message.wxml-->
+<!--pages/forum-message/forum-message.wxml-->
 <container>
   <view class="panel">
     <view class="panel-head">

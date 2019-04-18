@@ -123,6 +123,10 @@
   padding-top: 28rpx;
   font-size: 28rpx;
 }
+.goods-detail-content {
+  padding: 28rpx 20rpx;
+  background-color: #fff;
+}
 
 /* 底栏 */
 .fixed-footer {

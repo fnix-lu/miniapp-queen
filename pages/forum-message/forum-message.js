@@ -1,4 +1,4 @@
-// pages/circle-message/circle-message.js
+// pages/forum-message/forum-message.js
 Page({
 
   /**

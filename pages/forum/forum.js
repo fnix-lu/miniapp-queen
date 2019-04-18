@@ -1,4 +1,6 @@
-// pages/circle/circle.js
+// pages/forum/forum.js
+const app = getApp()
+
 Page({
 
   /**
@@ -12,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getForumList()
   },
 
   /**
@@ -62,5 +64,12 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  /**
+   * 获取下一页帖子列表
+   */
+  getForumList () {
+    app.api.getForumList()
   }
 })

@@ -1,16 +1,16 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/profile/profile",
+    "pages/auth/auth",
     "pages/category/category",
+    "pages/forum/forum",
+    "pages/profile/profile",
     "pages/order/order",
     "pages/settlement/settlement",
-    "pages/auth/auth",
     "pages/goods-detail/goods-detail",
     "pages/post-detail/post-detail",
     "pages/post-new/post-new",
-    "pages/circle-message/circle-message",
-    "pages/circle/circle",
+    "pages/forum-message/forum-message",
     "pages/pay-result/pay-result",
     "pages/feedback/feedback",
     "pages/coupon/coupon",
@@ -35,10 +35,10 @@
         "selectedIconPath": "assets/img/tabbar_home_on.png"
       },
       {
-        "pagePath": "pages/circle/circle",
+        "pagePath": "pages/forum/forum",
         "text": "闺蜜圈",
-        "iconPath": "assets/img/tabbar_circle_off.png",
-        "selectedIconPath": "assets/img/tabbar_circle_on.png"
+        "iconPath": "assets/img/tabbar_forum_off.png",
+        "selectedIconPath": "assets/img/tabbar_forum_on.png"
       },
       {
         "pagePath": "pages/mine/mine",

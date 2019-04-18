@@ -1,4 +1,4 @@
-/* pages/circle/circle.wxss */
+/* pages/forum/forum.wxss */
 /* 瀑布流 */
 .waterfall {
   display: flex;

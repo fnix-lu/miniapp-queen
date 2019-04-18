@@ -22,7 +22,7 @@
   <view class="price-wrap">
     <view class="price-name">拼团价</view>
     <view class="price-content">
-      ￥<text class="price-current">{{ goods.CostPrice }}</text><text class="del">￥{{ goods.Price }}</text>
+      ￥<text class="price-current">{{ selected.specification.GroupPrice }}</text><text class="del">￥{{ selected.specification.Price }}</text>
     </view>
   </view>
 
@@ -30,11 +30,12 @@
   <view class="list">
     <view class="list-item first">
       <view class="goods-name">{{ goods.Name }}</view>
-      <view class="goods-desc">恒安集团面向年轻女性推出的日用夜用</view>
+      <view class="goods-desc">{{ goods.Description }}</view>
     </view>
     <view class="list-item" bindtap="toggleDrawerBuy">
       <text style="margin-right:22rpx">已选</text>
-      <text class="selected-type" wx:for="{{ selected }}">“{{ item }}”</text>
+      <text class="selected-type">“{{ selected.specification.Name }}”</text>
+      <text class="selected-type">“{{ selected.amount }}”</text>
       <image class="icon-arrow-right-picker" src="/assets/img/arrow_right_picker.png"></image>
     </view>
     <view class="list-item">正品保证 · 线下取货</view>
@@ -68,7 +69,7 @@
   <!-- 商品详情 -->
   <view class="goods-detail">
     <view class="goods-detail-title">商品详情</view>
-    <view>
+    <view class="goods-detail-content">
       <rich-text nodes="{{ goods.Description }}"></rich-text>
     </view>
   </view>
@@ -80,11 +81,11 @@
       <view>首页</view>
     </navigator>
     <navigator class="btn-buy-self">
-      <view class="btn-price">￥28</view>
+      <view class="btn-price">￥{{ selected.specification.Price * selected.amount }}</view>
       <view>单独购买</view>
     </navigator>
     <navigator class="btn-create-group">
-      <view class="btn-price">￥24</view>
+      <view class="btn-price">￥{{ selected.specification.GroupPrice * selected.amount }}</view>
       <view>发起拼单</view>
     </navigator>
   </view>
@@ -97,11 +98,11 @@
         <view class="buy-goods">
           <view class="buy-name">{{ goods.Name }}</view>
           <view class="buy-selected">
-            <text>您已选择：5包起购</text>
+            <text>您已选择：{{ selected.specification.Name }}</text>
           </view>
           <view>
-            <text class="buy-price">￥{{ goods.CostPrice }}</text>
-            <text class="del buy-price-del">￥{{ goods.Price }}</text>
+            <text class="buy-price">￥{{ selected.specification.GroupPrice }}</text>
+            <text class="del buy-price-del">￥{{ selected.specification.Price }}</text>
           </view>
         </view>
       </view>
@@ -111,7 +112,7 @@
           <view
             wx:for="{{ goods.Specifications }}"
             wx:key="item.Id"
-            class="radio-box {{ index === 0 ? 'first' : '' }} {{ selected.specification === item.Name ? 'checked' : '' }}"
+            class="radio-box {{ index === 0 ? 'first' : '' }} {{ selected.specification.Id === item.Id ? 'checked' : '' }}"
             bindtap="selectSpecification"
             data-item="{{ item }}"
           >{{ item.Name }}</view>
@@ -119,9 +120,9 @@
       </view>
       <view class="buy-options-row flex flex-sides flex-middle" style="margin-bottom:20rpx">
         <view class="buy-options-row-title">数量</view>
-        <i-input-number i-class="number-selector" value="{{ selected.amount }}" min="1" bindchange="selectAmount" />
+        <i-input-number value="{{ selected.amount }}" min="1" max="999" bindchange="selectAmount" />
       </view>
-      <view class="btn-confirm">确定</view>
+      <view class="btn-confirm" bindtap="toggleDrawerBuy">确定</view>
     </view>
   </i-drawer>
 

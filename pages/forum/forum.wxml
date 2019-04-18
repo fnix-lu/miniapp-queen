@@ -1,4 +1,4 @@
-<!--pages/circle/circle.wxml-->
+<!--pages/forum/forum.wxml-->
 <container>
   <!-- 瀑布流 -->
   <view class="waterfall">
@@ -58,7 +58,7 @@
   <view class="cover"></view>
   <view class="fixed-menu">
     <view class="fixed-menu-items">
-      <navigator class="fixed-menu-item" url="/pages/circle-message/circle-message">
+      <navigator class="fixed-menu-item" url="/pages/forum-message/forum-message">
         <image class="icon-message" src="/assets/img/message.png"></image>
         <view>消息</view>
         <text class="message-badge">3</text>
