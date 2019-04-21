@@ -75,7 +75,7 @@
       <view class="goods-name">{{ item.Specifications[0].Name }}</view>
       <view class="goods-info">
         <view>
-          <text class="price-single">单独购买：<text class="del">￥{{ item.Specifications[0].Price }}</text></text>
+          <text class="price-single">单独购买：<text class="del">￥{{ item.Specifications[0].CostPrice }}</text></text>
         </view>
         <view class="flex flex-sides flex-bottom">
           <text class="price-group"><text class="price-group-char">￥</text>{{ item.Specifications[0].GroupPrice }}</text>

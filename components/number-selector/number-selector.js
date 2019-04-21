@@ -35,12 +35,13 @@ Component({
   methods: {
     handleChange (e) {
       const { currentValue, min, max, step } = this.data
+      const { currentTarget: { dataset: { type } } } = e
       let newValue = currentValue
 
-      if (e.currentTarget.dataset.type === 'reduce') {
+      if (type === 'reduce') {
         newValue = currentValue - step < min ? min : currentValue - step
       }
-      if (e.currentTarget.dataset.type === 'add') {
+      if (type === 'add') {
         newValue = currentValue + step > max ? max : currentValue + step
       }
 
@@ -50,7 +51,8 @@ Component({
 
       if (currentValue !== newValue) {
         this.triggerEvent('change', {
-          value: this.data.currentValue
+          value: this.data.currentValue,
+          type
         })
       }
     }

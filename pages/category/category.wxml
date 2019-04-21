@@ -26,7 +26,6 @@
           class="content-item"
           wx:for="{{ computed.currentGoodsList(currentBrandId, goodsList) }}"
           wx:key="item.Id"
-          data-id="{{ item.Id }}"
         >
           <image class="content-item-img" src="{{ item.ImageUrl }}"></image>
           <view class="content-item-info">
@@ -34,9 +33,9 @@
             <view class="content-item-desc">{{ item.Description }}</view>
             <view class="content-item-foot">
               <view class="content-item-price">
-                <text class="price-current">￥{{ '???' }}</text><text class="price-del del">￥{{ item.Price }}</text>
+                <text class="price-current">￥{{ item.Specifications[0].Price }}</text><text class="price-del del">￥{{ item.Specifications[0].CostPrice }}</text>
               </view>
-              <number-selector bindchange="handleSelectGoods"></number-selector>
+              <number-selector data-goods="{{ item }}" value="{{ computed.initGoodsCount(item.Id, cart) }}" bindchange="handleSelectGoods"></number-selector>
             </view>
           </view>
         </view>
@@ -99,23 +98,6 @@
         </view>
       </view>
       <!-- end 购物车商品项 -->
-      <!-- 购物车商品项 -->
-      <!-- <view class="cart-goods-item">
-        <view class="cart-goods-item-l">
-          <checkbox class="checkbox"/>
-        </view>
-        <view class="cart-goods-item-r">
-          <image class="cart-goods-img"></image>
-          <view class="cart-goods-info">
-            <view class="cart-goods-name">七度空间夜用</view>
-            <view class="cart-goods-foot">
-              <view class="cart-goods-price"><text class="cart-goods-price-current">￥24</text><text class="cart-goods-price-del del">￥28</text></view>
-              <number-selector></number-selector>
-            </view>
-          </view>
-        </view>
-      </view> -->
-      <!-- end 购物车商品项 -->
     </view>
   </view>
 </container>
@@ -128,6 +110,18 @@
       })[0]
 
       return result ? result.list : []
+    },
+
+    initGoodsCount: function (goodsId, cart) {
+      var index = -1
+      for (var i = 0; i < cart.length; i++) {
+        if (cart[i].Id === goodsId) {
+          index = i
+          break
+        }
+      }
+
+      return index > -1 ? cart[index].count : 0
     }
   }
 </wxs>

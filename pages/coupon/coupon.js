@@ -1,4 +1,6 @@
 // pages/coupon/coupon.js
+const app = getApp()
+
 Page({
 
   /**
@@ -68,6 +70,13 @@ Page({
    * 显示优惠券使用规则
    */
   showCouponRules () {
+    
+  },
+
+  /**
+   * 获取卡券列表
+   */
+  getCoupons () {
     
   }
 })

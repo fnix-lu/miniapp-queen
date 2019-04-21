@@ -9,6 +9,9 @@ const fetch = (url, data = {}, method = 'GET') => new Promise((resolve, reject) 
     url: `${HOST}/${url}`,
     data: {
       Platform: 1,
+      // CustomerId: '5d7f97ca-7563-4c38-a6e6-ce35ef65cf3b',
+      MemberId: '5d7f97ca-7563-4c38-a6e6-ce35ef65cf3b',
+      // Id: '5d7f97ca-7563-4c38-a6e6-ce35ef65cf3b',
       ...data
     },
     header: {
@@ -50,6 +53,21 @@ module.exports = {
 
   // 获取闺蜜圈列表
   getForumList (data) {
-    return fetch('forum/GetGirlForums', data)
+    return fetch('forum/GetGirlForums', data, 'POST')
+  },
+
+  // 获取购物车列表
+  getCart (data) {
+    return fetch('order/GetBuyShopCarts', data)
+  },
+
+  // 新增购物车商品
+  addCart (data) {
+    return fetch('order/AddBuyShopCart', data, 'POST')
+  },
+
+  // 获取卡券列表
+  getCoupons (data) {
+    return fetch('coupon/GetCoupons', data)
   }
 }

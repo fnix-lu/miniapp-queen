@@ -7,7 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    currentPage: 0,
+    allPageCount: 1,
+    postList: [],
+    postCol1: [],
+    postCol2: []
   },
 
   /**
@@ -70,6 +74,12 @@ Page({
    * 获取下一页帖子列表
    */
   getForumList () {
-    app.api.getForumList()
+    if (this.data.currentPage >= this.data.allPageCount) {
+      return
+    }
+    app.api.getForumList({
+      IsContainImage: true,
+      IsDefaultImage: true
+    })
   }
 })

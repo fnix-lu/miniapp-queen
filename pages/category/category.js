@@ -37,7 +37,8 @@ Page({
    */
   onLoad: function (options) {
     const _this = this
-    _this.getBrands()
+    this.getBrands()
+    this.getCart()
   },
 
   /**
@@ -173,7 +174,8 @@ Page({
     app.api.getGoods({
       BrandId: currentBrandId,
       PageIndex: pageIndex,
-      ProductSpecificationType: 1 // 单品
+      ProductSpecificationType: 1, // 单品
+      IsContainSpecification: true // 包含规格列表
     }).then(res => {
       if (res.Code === 1000) {
         if (index > -1) {
@@ -203,8 +205,17 @@ Page({
    * 选择列表商品数量
    */
   handleSelectGoods (e) {
-    let { value } = e.detail
-    console.log(value)
+    const { dataset: { goods } } = e.currentTarget
+    let { value, type } = e.detail
+    console.log('商品列表选择的数量', value, type)
+    if (value === 1 && type === 'add') {
+      this.addCart({
+        ProductId: goods.Id,
+        ProductSpecificationId: goods.Specifications[0].Id,
+        BuyCount: value,
+        BuyPrice: goods.Specifications[0].Price
+      })
+    }
   },
 
   /**
@@ -258,5 +269,30 @@ Page({
   getToSettleItems () {
     let arr = []
     return arr
+  },
+
+  /**
+   * 获取购物车并渲染
+   */
+  getCart () {
+    const _this = this
+    app.api.getCart({
+      PageSize: 100
+    }).then(res => {
+      console.log('购物车接口返回', res)
+    })
+  },
+
+  /**
+   * 新增购物车商品
+   */
+  addCart (data) {
+    const _this = this
+    app.api.addCart(data).then(res => {
+      console.log('添加购物车返回', res)
+      if (res.Data) {
+        _this.getCart()
+      }
+    })
   }
 })
