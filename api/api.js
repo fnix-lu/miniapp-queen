@@ -66,6 +66,21 @@ module.exports = {
     return fetch('order/AddBuyShopCart', data, 'POST')
   },
 
+  // 修改购物车商品
+  editCart(data) {
+    return fetch('order/UpdateBuyShopCart', data, 'POST')
+  },
+
+  // 删除单个购物车商品
+  deleteCartItem (data) {
+    return fetch('order/DeleteBuyShopCart', data, 'POST')
+  },
+
+  // 清空购物车
+  clearCart (data) {
+    return fetch('order/ClearBuyShopCart', data)
+  },
+
   // 获取卡券列表
   getCoupons (data) {
     return fetch('coupon/GetCoupons', data)

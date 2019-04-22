@@ -237,6 +237,17 @@ page {
   width: 72rpx;
 }
 /* 购物车商品项 */
+.cart-list {
+  max-height: 720rpx;
+}
+.cart-empty-tips {
+  height: 160rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-placeholder);
+  font-size: 28rpx;
+}
 .cart-goods-item {
   display: flex;
   padding: 0 20rpx;

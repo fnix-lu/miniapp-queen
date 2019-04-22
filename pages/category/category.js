@@ -26,10 +26,8 @@ Page({
       //   list: []
       // }
     ],
-    cart: [
-      { id: 'x0000', name: 'A', checked: false },
-      { id: 'y1111', name: 'Z', checked: false }
-    ]
+    cart: [],
+    cartCheckedCount: 0
   },
 
   /**
@@ -209,12 +207,22 @@ Page({
     let { value, type } = e.detail
     console.log('商品列表选择的数量', value, type)
     if (value === 1 && type === 'add') {
+      // 由0到1为新增
       this.addCart({
         ProductId: goods.Id,
         ProductSpecificationId: goods.Specifications[0].Id,
-        BuyCount: value,
-        BuyPrice: goods.Specifications[0].Price
+        Count: value,
+        Price: goods.Specifications[0].Price,
+        CostPrice: goods.Specifications[0].CostPrice,
+        GroupPrice: goods.Specifications[0].GroupPrice
       })
+    } else if (value === 0 && type === 'reduce') {
+      // 减到0为删除
+      this.deleteCartItem({
+        // Id: 
+      })
+    } else {
+      // 其余增减均为修改
     }
   },
 
@@ -224,7 +232,7 @@ Page({
   handleCartItemChange (e) {
     const { currentTarget: { dataset: { index } } } = e
     this.setData({
-      ['cart[' + index + '].checked']: !this.data.cart[index].checked
+      ['cart[' + index + '].Checked']: !this.data.cart[index].Checked
     })
     this.setData({
       'flag.isCartAllSelected': this.isCartAllSelected()
@@ -244,7 +252,7 @@ Page({
     })
     cart.forEach((item, index) => {
       _this.setData({
-        ['cart[' + index + '].checked']: flag.isCartAllSelected
+        ['cart[' + index + '].Checked']: flag.isCartAllSelected
       })
     })
   },
@@ -253,7 +261,7 @@ Page({
    * 检查购物车是否已全部选中
    */
   isCartAllSelected () {
-    return this.data.cart.every(item => item.checked)
+    return this.data.cart.every(item => item.Checked)
   },
 
   /**
@@ -279,7 +287,12 @@ Page({
     app.api.getCart({
       PageSize: 100
     }).then(res => {
-      console.log('购物车接口返回', res)
+      if (res.Code === 1000) {
+        _this.setData({
+          cart: res.Data.map(item => ({ ...item, Checked: false }))
+        })
+        console.log('购物车列表', _this.data.cart)
+      }
     })
   },
 
@@ -290,6 +303,45 @@ Page({
     const _this = this
     app.api.addCart(data).then(res => {
       console.log('添加购物车返回', res)
+      if (res.Data) {
+        _this.getCart()
+      }
+    })
+  },
+
+  /**
+   * 修改购物车
+   */
+  editCart (data) {
+    const _this = this
+    app.api.editCart(data).then(res => {
+      console.log('修改购物车返回', res)
+      if (res.Data) {
+        _this.getCart()
+      }
+    })
+  },
+
+  /**
+   * 删除单个购物车商品
+   */
+  deleteCartItem (data) {
+    const _this = this
+    app.api.deleteCartItem(data).then(res => {
+      console.log('删除单个购物车商品返回', res)
+      if (res.Data) {
+        _this.getCart()
+      }
+    })
+  },
+
+  /**
+   * 清空购物车
+   */
+  clearCart () {
+    const _this = this
+    app.api.clearCart().then(res => {
+      console.log('清空购物车返回', res)
       if (res.Data) {
         _this.getCart()
       }
