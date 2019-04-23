@@ -20,7 +20,22 @@ const fetch = (url, data = {}, method = 'GET') => new Promise((resolve, reject) 
     method,
     success (res) {
       wx.hideLoading()
-      res.statusCode === 200 ? resolve(res.data) : reject(res)
+      // res.statusCode === 200 ? resolve(res.data) : reject(res)
+      if (res.statusCode !== 200) {
+        wx.showToast({
+          title: res.data.Message,
+          icon: 'none'
+        })
+        return
+      }
+      if (res.data.Code === 1000) {
+        resolve(res.data)
+      } else {
+        wx.showToast({
+          title: res.data.Message,
+          icon: 'none'
+        })
+      }
     }
   })
 })
@@ -78,7 +93,7 @@ module.exports = {
 
   // 清空购物车
   clearCart (data) {
-    return fetch('order/ClearBuyShopCart', data)
+    return fetch('order/ClearBuyShopCart', data, 'POST')
   },
 
   // 获取卡券列表

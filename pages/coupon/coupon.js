@@ -7,14 +7,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    currentPage: 0,
+    allPageCount: 1,
+    coupons: [],
+    flag: {
+      showRules: false
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getCoupons({
+      IsUsed: false
+    })
   },
 
   /**
@@ -70,13 +77,39 @@ Page({
    * 显示优惠券使用规则
    */
   showCouponRules () {
-    
+    this.setData({
+      'flag.showRules': true
+    })
   },
 
   /**
-   * 获取卡券列表
+   * 关闭优惠券使用规则
    */
-  getCoupons () {
-    
+  hideCouponRules () {
+    this.setData({
+      'flag.showRules': false
+    })
+  },
+
+  /**
+   * 获取下一页卡券列表
+   */
+  getCoupons (data) {
+    const _this = this
+
+    if (this.data.currentPage >= this.data.allPageCount) {
+      return
+    }
+    app.api.getCoupons({
+      ...data,
+      PageIndex: this.data.currentPage + 1
+    }).then(res => {
+      console.log('请求卡券列表返回', res)
+      _this.setData({
+        currentPage: res.PageIndex,
+        allPageCount: res.AllPageCount,
+        coupons: _this.data.coupons.concat(res.Data)
+      })
+    })
   }
 })

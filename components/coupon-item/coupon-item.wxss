@@ -75,6 +75,9 @@
 .coupon-rules {
   color: var(--color-primary);
 }
+.coupon-remark {
+  color: var(--color-subtext);
+}
 .coupon-amount {
   font-size: 36rpx;
   color: var(--color-content);
@@ -89,7 +92,7 @@
 }
 
 /* 查看取货码按钮 */
-.btn-show-code {
+.btn-coupon {
   width: 160rpx;
   height: 56rpx;
   border-radius: 28rpx;
@@ -111,4 +114,12 @@
   position: absolute;
   right: 0;
   top: 0;
+}
+
+/* 取货码 */
+.coupon-barcode {
+  font-size: 80rpx;
+  font-weight: bold;
+  color: #353535;
+  padding: 40rpx 0;
 }

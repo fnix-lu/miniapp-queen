@@ -203,27 +203,38 @@ Page({
    * 选择列表商品数量
    */
   handleSelectGoods (e) {
-    const { dataset: { goods } } = e.currentTarget
+    const { dataset: { goods, cartId, origin } } = e.currentTarget
     let { value, type } = e.detail
-    console.log('商品列表选择的数量', value, type)
+
     if (value === 1 && type === 'add') {
       // 由0到1为新增
-      this.addCart({
-        ProductId: goods.Id,
-        ProductSpecificationId: goods.Specifications[0].Id,
+      console.log('新增')
+      this.addCart({ // 参数前者为购物车商品项的专有字段，后者为正常商品项的字段
+        ProductId: origin === 'cart' ? goods.ProductId : goods.Id,
+        ProductSpecificationId: origin === 'cart' ? goods.ProductSpecificationId : goods.Specifications[0].Id,
         Count: value,
-        Price: goods.Specifications[0].Price,
-        CostPrice: goods.Specifications[0].CostPrice,
-        GroupPrice: goods.Specifications[0].GroupPrice
+        Price: origin === 'cart' ? goods.Price : goods.Specifications[0].Price,
+        CostPrice: origin === 'cart' ? goods.CostPrice : goods.Specifications[0].CostPrice,
+        GroupPrice: origin === 'cart' ? goods.GroupPrice : goods.Specifications[0].GroupPrice
       })
     } else if (value === 0 && type === 'reduce') {
       // 减到0为删除
+      console.log('删除')
       this.deleteCartItem({
-        // Id: 
+        Id: cartId
       })
     } else {
       // 其余增减均为修改
+      console.log('修改')
+      this.editCart({
+        Id: cartId,
+        Count: value,
+        Price: origin === 'cart' ? goods.Price : goods.Specifications[0].Price,
+        CostPrice: origin === 'cart' ? goods.CostPrice : goods.Specifications[0].CostPrice,
+        GroupPrice: origin === 'cart' ? goods.GroupPrice : goods.Specifications[0].GroupPrice
+      })
     }
+
   },
 
   /**
@@ -248,11 +259,11 @@ Page({
     const _this = this
     let { flag, cart } = this.data
     this.setData({
-      'flag.isCartAllSelected': !flag.isCartAllSelected
-    })
-    cart.forEach((item, index) => {
-      _this.setData({
-        ['cart[' + index + '].Checked']: flag.isCartAllSelected
+      'flag.isCartAllSelected': !flag.isCartAllSelected,
+      cart: cart.map(item => {
+        let newItem = { ...item }
+        newItem.Checked = !flag.isCartAllSelected
+        return newItem
       })
     })
   },
@@ -303,7 +314,7 @@ Page({
     const _this = this
     app.api.addCart(data).then(res => {
       console.log('添加购物车返回', res)
-      if (res.Data) {
+      if (res.Code === 1000) {
         _this.getCart()
       }
     })
@@ -329,7 +340,7 @@ Page({
     const _this = this
     app.api.deleteCartItem(data).then(res => {
       console.log('删除单个购物车商品返回', res)
-      if (res.Data) {
+      if (res.Code === 1000) {
         _this.getCart()
       }
     })
@@ -342,9 +353,9 @@ Page({
     const _this = this
     app.api.clearCart().then(res => {
       console.log('清空购物车返回', res)
-      if (res.Data) {
-        _this.getCart()
-      }
+      // if (res.Data) {
+      //   _this.getCart()
+      // }
     })
   }
 })

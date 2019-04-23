@@ -37,7 +37,9 @@
               </view>
               <number-selector
                 data-goods="{{ item }}"
-                value="{{ computed.initGoodsCount(item.Id, cart) }}"
+                data-cart-id = "{{ computed.initGoodsInCart(item.Id, cart).cartId }}"
+                data-origin="goods"
+                value="{{ computed.initGoodsInCart(item.Id, cart).count }}"
                 bindchange="handleSelectGoods"
               ></number-selector>
             </view>
@@ -76,21 +78,21 @@
       <text class="cart-badge">{{ cart.length }}</text>
     </view>
     <view class="cart-head">
-      <label class="select-all">
+      <label class="select-all" bindtap="handleCartAllChange">
         <view class="select-all-checkbox-wrap">
-          <checkbox class="checkbox" checked="{{ flag.isCartAllSelected }}" bindtap="handleCartAllChange"/>
+          <checkbox class="checkbox" checked="{{ flag.isCartAllSelected }}"/>
         </view>
         <text style="color:#555555">全选</text>（已选{{ computed.cartCheckedCount(cart) }}件）
       </label>
-      <view class="btn-clean-cart" bindtap="clearCart">清空购物车</view>
+      <view wx:if="{{ cart.length > 0 }}" class="btn-clean-cart" bindtap="clearCart">清空购物车</view>
     </view>
     <view class="cart-body">
       <scroll-view class="cart-list" scroll-y>
         <block wx:if="{{ cart.length > 0 }}">
           <!-- 购物车商品项 -->
-          <view class="cart-goods-item" wx:for="{{ cart }}" wx:key="{{ item.Id }}">
+          <view class="cart-goods-item" wx:for="{{ cart }}" wx:key="{{ item.Id }}" data-index="{{ index }}" bindtap="handleCartItemChange">
             <view class="cart-goods-item-l">
-              <checkbox class="checkbox" checked="{{ item.Checked }}" data-index="{{ index }}" bindtap="handleCartItemChange"/>
+              <checkbox class="checkbox" checked="{{ item.Checked }}"/>
             </view>
             <view class="cart-goods-item-r {{ index === 0 ? 'first' : '' }}">
               <image class="cart-goods-img" src="{{ item.ImageUrl }}"></image>
@@ -102,6 +104,8 @@
                   </view>
                   <number-selector
                     data-goods="{{ item }}"
+                    data-cart-id="{{ item.Id }}"
+                    data-origin="cart"
                     value="{{ item.Count }}"
                     bindchange="handleSelectGoods"
                   ></number-selector>
@@ -112,7 +116,7 @@
           <!-- end 购物车商品项 -->
         </block>
         <block wx:else>
-          <view class="cart-empty-tips">为最亲爱的自己挑选几件心仪的商品吧~</view>
+          <view class="cart-empty-tips">去挑选几件心仪的商品吧~</view>
         </block>
       </scroll-view>
     </view>
@@ -130,17 +134,27 @@
       return result ? result.list : []
     },
 
-    // 商品列表中计数器的初始化数据
-    initGoodsCount: function (goodsId, cart) {
+    // 商品列表中的初始化数据 存在于购物车的数量和Id
+    initGoodsInCart: function (goodsId, cart) {
       var index = -1
       for (var i = 0; i < cart.length; i++) {
-        if (cart[i].Id === goodsId) {
+        if (cart[i].ProductId === goodsId) {
           index = i
           break
         }
       }
 
-      return index > -1 ? cart[index].Count : 0
+      var count = 0
+      var cartId = ''
+      if (index > -1) {
+        count = cart[index].Count
+        cartId = cart[index].Id
+      }
+
+      return {
+        count: count,
+        cartId: cartId
+      }
     },
 
     // 购物车选中商品的数量

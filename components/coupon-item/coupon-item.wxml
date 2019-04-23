@@ -1,32 +1,38 @@
 <!--components/coupon-item/coupon-item.wxml-->
 <view class="coupon-card">
-  <view class="coupon-card-l {{ invalidType == 1 || invalidType == 2 ? 'disabled' : '' }}">
-    <!-- <image class="coupon-img" src=""></image> -->
-    <view class="coupon-value">
-      <view class="coupon-price"><text class="coupon-price-mark">￥</text>5</view>
+  <view class="coupon-card-l {{ coupon.IsUsed ? 'disabled' : '' }}">
+    <image wx:if="{{ couponData.CouponType === '商品抵用券' }}" class="coupon-img" src="{{ couponData.ImageUrl }}"></image>
+    <view wx:if="{{ couponData.CouponType === '现金抵用券' }}" class="coupon-value">
+      <view class="coupon-price"><text class="coupon-price-mark">￥</text>{{ couponData.DiscountMoney }}</view>
       <view>满10可用</view>
     </view>
   </view>
   <view class="coupon-card-r">
     <view class="coupon-card-r-inner">
       <view class="coupon-info-row">
-        <view class="coupon-name">七度空间夜用</view>
-        <view class="coupon-all">
+        <view class="coupon-name">{{ couponData.Name }}</view>
+        <view class="coupon-all" wx:if="{{ couponData.UsedCount > 0 }}">
           查看全部<image class="icon-arrow-right-coupon" src="/assets/img/arrow_right_coupon.png"></image>
         </view>
       </view>
-      <!-- <view class="coupon-info-row coupon-subinfo" style="margin-top:22rpx">有效期至 2019-12-31</view> -->
+      <view class="coupon-info-row coupon-subinfo" style="margin-top:22rpx">有效期至 2019-12-31</view>
       <view class="coupon-info-row" style="margin-top:34rpx;align-items:center">
-        <view class="coupon-rules">点击这里查看使用规则</view>
-        <view class="coupon-amount">x10</view>
+        <!-- <view class="coupon-rules">点击这里查看使用规则</view> -->
+        <view class="coupon-remark">{{ couponData.Remark }}</view>
+        <view class="coupon-amount" wx:if="{{ couponData.UsedCount > 0 }}">x{{ couponData.UsedCount }}</view>
       </view>
     </view>
   </view>
 
   <!-- 查看取货码按钮 -->
-  <view class="btn-show-code">查看取货码</view>
+  <view class="btn-coupon" wx:if="{{ couponData.CouponType === '商品抵用券' }}" bindtap="showBarCode">查看取货码</view>
 
   <!-- 优惠券印章 -->
   <image wx-if="{{ invalidType == 1 }}" class="coupon-signet" src="/assets/img/signet_used.png"></image>
   <image wx-if="{{ invalidType == 2 }}" class="coupon-signet" src="/assets/img/signet_expired.png"></image>
+
+  <!-- 取货码弹层 -->
+  <i-modal title="商品取货码" visible="{{ flag.showBarCode }}" show-cancel="{{ false }}" ok-text="关闭" bindok="hideBarCode">
+    <view class="coupon-barcode">{{ couponData.BarCode }}</view>
+  </i-modal>
 </view>
