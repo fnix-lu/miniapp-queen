@@ -1,22 +1,28 @@
 <!--pages/coupon/coupon.wxml-->
 <container>
-  <view class="header flex">
-    <view class="header-l"></view>
-    <view class="tabs flex">
-      <text class="tab active">商品券</text>
-      <text class="tab">现金券</text>
-    </view>
-    <view class="header-r">
-      <view class="header-sides-item flex flex-cross flex-sides flex-middle" bindtap="showCouponRules">
-        <image class="icon-question" src="/assets/img/question.png"></image>
-        <text style="color:var(--color-primary);line-height:1">使用规则</text>
+  <view class="header-wrap">
+    <view class="header flex">
+      <view class="header-l"></view>
+      <view class="tabs flex">
+        <text class="tab {{ couponType === '商品抵用券' ? 'active' : '' }}">商品券</text>
+        <text class="tab">现金券</text>
+      </view>
+      <view class="header-r">
+        <view class="header-sides-item flex flex-cross flex-sides flex-middle" bindtap="showCouponRules">
+          <image class="icon-question" src="/assets/img/question.png"></image>
+          <text style="color:var(--color-primary);line-height:1">使用规则</text>
+        </view>
       </view>
     </view>
   </view>
-  <i-tabs i-class="subtabs" current="tab1" color="var(--color-primary)">
-    <i-tab key="tab1" title="未使用"></i-tab>
-    <i-tab key="tab2" title="已使用/已过期"></i-tab>
-  </i-tabs>
+  <view class="subtabs-wrap">
+    <view class="subtabs-bar">
+      <i-tabs i-class="subtabs" current="{{ isUsed }}" color="var(--color-primary)">
+        <i-tab key="{{ false }}" title="未使用"></i-tab>
+        <i-tab key="{{ true }}" title="已使用/已过期"></i-tab>
+      </i-tabs>
+    </view>
+  </view>
   <coupon-item wx:for="{{ coupons }}" wx:key="{{ index }}" coupon-data="{{ item }}"></coupon-item>
 
   <!-- 对话框 -->

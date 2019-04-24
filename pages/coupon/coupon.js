@@ -12,16 +12,16 @@ Page({
     coupons: [],
     flag: {
       showRules: false
-    }
+    },
+    couponType: '商品抵用券',
+    isUsed: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCoupons({
-      IsUsed: false
-    })
+    this.getCoupons()
   },
 
   /**
@@ -94,15 +94,15 @@ Page({
   /**
    * 获取下一页卡券列表
    */
-  getCoupons (data) {
+  getCoupons () {
     const _this = this
 
     if (this.data.currentPage >= this.data.allPageCount) {
       return
     }
     app.api.getCoupons({
-      ...data,
-      PageIndex: this.data.currentPage + 1
+      PageIndex: this.data.currentPage + 1,
+      IsUsed: this.data.isUsed
     }).then(res => {
       console.log('请求卡券列表返回', res)
       _this.setData({

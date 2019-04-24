@@ -11,7 +11,11 @@ Page({
     allPageCount: 1,
     postList: [],
     postCol1: [],
-    postCol2: []
+    postCol2: [],
+    flag: {
+      showCover: false,
+      showMenu: false
+    }
   },
 
   /**
@@ -39,7 +43,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    this.hideLayers()
   },
 
   /**
@@ -71,15 +75,46 @@ Page({
   },
 
   /**
+   * 切换菜单显示
+   */
+  toggleMenuShow () {
+    this.setData({
+      'flag.showMenu': !this.data.flag.showMenu,
+      'flag.showCover': !this.data.flag.showMenu
+    })
+  },
+
+  /**
+   * 隐藏弹层
+   */
+  hideLayers () {
+    Object.keys(this.data.flag).forEach(key => {
+      this.data.flag[key] = false
+    })
+    this.setData({
+      flag: this.data.flag
+    })
+  },
+
+  /**
    * 获取下一页帖子列表
    */
   getForumList () {
+    const _this = this
     if (this.data.currentPage >= this.data.allPageCount) {
       return
     }
     app.api.getForumList({
       IsContainImage: true,
       IsDefaultImage: true
+    }).then(res => {
+      console.log('论坛帖子列表', res)
+      // 遍历结果，按图片高宽比分列
+
+
+      _this.setData({
+        postCol1: res.Data
+      })
     })
   }
 })

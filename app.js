@@ -53,36 +53,62 @@ App({
    * 登录
    */
   login () {
-    if (valid) {
-      // resolve
-    } else if (auth) {
-      // request -> resolve
-    } else {
-      // auth
-    }
+    // if (valid) {
+    //   // resolve
+    // } else if (auth) {
+    //   // request -> resolve
+    // } else {
+    //   // auth
+    // }
 
-    if (!auth) {
-      // auth
-    } else if (valid) {
-      // resolve
-    } else {
-      // request -> resolve
-    }
+    let token = wx.getStorageSync('token')
+
+    return new Promise((resolve, reject) => {
+      wx.getSetting({
+        success: res => {
+          console.log('微信授权信息', res)
+          if (!res.authSetting['scope.userInfo']) {
+            wx.navigateTo({
+              url: '/pages/auth/auth'
+            })
+          } else if (!token) {
+            wx.login({
+              success: res => {
+                console.log('微信登录接口', res)
+                // 发送 res.code 到后台换取 openId, sessionKey, unionId
+                // 请求成功后设置 token, userInfo
+                // resolve()
+              }
+            })
+          } else {
+            resolve()
+          }
+        }
+      })
+    })
+
+    // if (!auth) {
+    //   // auth
+    // } else if (valid) {
+    //   // resolve
+    // } else {
+    //   // request -> resolve
+    // }
 
 
 
     // 判断登录态是否有效，如果无效，发起登录
-    wx.login({
-      success: res => {
-        console.log(res)
-        if (res.code) { // 发送 res.code 到后台换取 openId, sessionKey, unionId
-          // 如果接口是需要用户授权信息的：
-          //   判断是否有授权，没有则跳转到授权页完成授权和登录
-          //   有授权则 res.code + 用户信息调用接口，设置用户信息
-          // 如果接口不需要用户授权而由服务端请求用户信息的，直接 res.code 请求接口，设置用户信息
-        }
-      }
-    })
+    // wx.login({
+    //   success: res => {
+    //     console.log(res)
+    //     if (res.code) { // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    //       // 如果接口是需要用户授权信息的：
+    //       //   判断是否有授权，没有则跳转到授权页完成授权和登录
+    //       //   有授权则 res.code + 用户信息调用接口，设置用户信息
+    //       // 如果接口不需要用户授权而由服务端请求用户信息的，直接 res.code 请求接口，设置用户信息
+    //     }
+    //   }
+    // })
   },
   /**
    * 登录2

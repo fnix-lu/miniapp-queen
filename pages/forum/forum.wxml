@@ -2,13 +2,19 @@
 <container>
   <!-- 瀑布流 -->
   <view class="waterfall">
+    <!-- 第一列 -->
     <view class="waterfall-col">
       <!-- 贴子卡片 -->
-      <navigator class="post-card" url="/pages/post-detail/post-detail">
-        <image class="post-img" src="/assets/img/test_1.png" mode="widthFix"></image>
+      <navigator
+        wx:for="{{ postCol1 }}"
+        wx:key="index"
+        class="post-card"
+        url="/pages/post-detail/post-detail?postId={{ item.Id }}"
+      >
+        <image class="post-img" src="{{ item.Images[0] }}" mode="widthFix"></image>
         <view class="post-info">
-          <view class="post-title">苏菲的秘密</view>
-          <view class="post-content">你只闻到我的香水，却没看到我的汗水；你有你的规则，我有我的选择</view>
+          <view class="post-title">{{ item.Name }}</view>
+          <view class="post-content">{{ item.Description }}</view>
           <view class="post-footer">
             <view class="post-user"><image class="user-headimg"></image>小仙女儿</view>
             <view class="post-read"><image class="icon-eye" src="/assets/img/eye.png"></image>99999</view>
@@ -28,6 +34,8 @@
         </view>
       </navigator>
     </view>
+
+    <!-- 第二列 -->
     <view class="waterfall-col">
       <navigator class="post-card" url="/pages/post-detail/post-detail">
         <image class="post-img" src="/assets/img/test_2.png" mode="widthFix"></image>
@@ -55,9 +63,9 @@
   </view>
 
   <!-- 弹层 右下角固定菜单 -->
-  <view class="cover"></view>
+  <view class="cover {{ flag.showCover ? 'show' : '' }}" bindtap="hideLayers"></view>
   <view class="fixed-menu">
-    <view class="fixed-menu-items">
+    <view class="fixed-menu-items {{ flag.showMenu ? 'show' : '' }}">
       <navigator class="fixed-menu-item" url="/pages/forum-message/forum-message">
         <image class="icon-message" src="/assets/img/message.png"></image>
         <view>消息</view>
@@ -68,6 +76,6 @@
         <view>发布</view>
       </navigator>
     </view>
-    <image class="icon-mark-menu" src="/assets/img/mark_menu.png"></image>
+    <image class="icon-mark-menu" src="/assets/img/mark_menu.png" catchtap="toggleMenuShow"></image>
   </view>
 </container>

@@ -2,7 +2,7 @@
 <view class="coupon-card">
   <view class="coupon-card-l {{ coupon.IsUsed ? 'disabled' : '' }}">
     <image wx:if="{{ couponData.CouponType === '商品抵用券' }}" class="coupon-img" src="{{ couponData.ImageUrl }}"></image>
-    <view wx:if="{{ couponData.CouponType === '现金抵用券' }}" class="coupon-value">
+    <view wx:if="{{ couponData.CouponType === '现金券' }}" class="coupon-value">
       <view class="coupon-price"><text class="coupon-price-mark">￥</text>{{ couponData.DiscountMoney }}</view>
       <view>满10可用</view>
     </view>
