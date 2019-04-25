@@ -71,6 +71,16 @@ module.exports = {
     return fetch('forum/GetGirlForums', data, 'POST')
   },
 
+  // 获取帖子内容
+  getPostContent (data) {
+    return fetch('forum/GetGirlForumById', data, 'POST')
+  },
+
+  // 获取帖子评论列表
+  getPostComments (data) {
+    return fetch('/forum/GetGirlForumReplyAndLeaves', data, 'POST')
+  },
+
   // 获取购物车列表
   getCart (data) {
     return fetch('order/GetBuyShopCarts', data)

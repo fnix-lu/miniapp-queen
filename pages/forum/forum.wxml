@@ -9,7 +9,7 @@
         wx:for="{{ postCol1 }}"
         wx:key="index"
         class="post-card"
-        url="/pages/post-detail/post-detail?postId={{ item.Id }}"
+        url="/pages/post-detail/post-detail?postId={{ item.Id }}&postMemberId={{ item.MemberId }}"
       >
         <image class="post-img" src="{{ item.Images[0] }}" mode="widthFix"></image>
         <view class="post-info">
@@ -17,7 +17,7 @@
           <view class="post-content">{{ item.Description }}</view>
           <view class="post-footer">
             <view class="post-user"><image class="user-headimg"></image>小仙女儿</view>
-            <view class="post-read"><image class="icon-eye" src="/assets/img/eye.png"></image>99999</view>
+            <view class="post-read"><image class="icon-eye" src="/assets/img/eye.png"></image>{{ item.ViewCount }}</view>
           </view>
         </view>
       </navigator>

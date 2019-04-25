@@ -8,16 +8,16 @@
         <view class="created-time">03-29</view>
       </view>
     </view>
-    <view class="post-title">苏菲的秘密</view>
-    <view class="post-content">你否定我的现在，我决定我的未来；你嘲笑我一无所有，不配去爱，我可怜你总是等待；你可以轻视我们的年轻，我们会证明这是谁的时代；梦想是注定孤独的旅行；路上少不了质疑和嘲笑；但那又怎样，哪怕遍体鳞伤，也要活得漂亮！</view>
-    <view class="post-imgs">
-      <image class="post-img"></image>
+    <view class="post-title">{{ postContent.Name }}</view>
+    <view class="post-content">{{ postContent.Description }}</view>
+    <view class="post-imgs" wx:if="{{ postContent.Images.length > 0 }}">
+      <image class="post-img" wx:for="{{ postContent.Images }}" wx:key="{{ index }}" src="{{ item }}"></image>
     </view>
   </view>
 
   <!-- 评论区 -->
   <view class="panel comment-area">
-    <view class="comment-area-title">评论 <text style="color:#888888">15</text></view>
+    <view class="comment-area-title">评论 <text style="color:#888888">{{ comments.length }}</text></view>
     <!-- 一条评论 -->
     <view class="comment-item first">
       <view class="user">
