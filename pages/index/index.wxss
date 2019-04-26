@@ -18,11 +18,14 @@
 }
 
 /* 广告图 */
-.banner {
-  width: 100%;
+.swiper-goods-imgs {
   height: 400rpx;
+  box-sizing: border-box;
   background-color: pink;
-  display: block;
+}
+.swiper-img {
+  width: 100%;
+  height: 100%;
 }
 
 /* 标签 */

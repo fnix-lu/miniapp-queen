@@ -109,5 +109,15 @@ module.exports = {
   // 获取卡券列表
   getCoupons (data) {
     return fetch('coupon/GetCoupons', data)
+  },
+
+  // 提交反馈
+  submitFeedback (data) {
+    return fetch('customer/AddMemberSuggest', data, 'POST')
+  },
+
+  // 获取首页轮播广告
+  getAdvertisements (data) {
+    return fetch('advertise/GetAdvertises', data)
   }
 }

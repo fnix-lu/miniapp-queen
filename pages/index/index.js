@@ -27,7 +27,8 @@ Page({
       //   allPageCount: 1,
       //   list: []
       // }
-    ]
+    ],
+    ad: []
   },
 
   /**
@@ -35,6 +36,7 @@ Page({
    */
   onLoad: function (options) {
     this.getHotGroup()
+    this.getAdvertisements()
   },
 
   /**
@@ -236,5 +238,19 @@ Page({
    */
   getLocation () {
     app.getLocation()
+  },
+
+  /**
+   * 获取广告
+   */
+  getAdvertisements () {
+    app.api.getAdvertisements({
+      PositionType: 2,
+      AdvertiseType: 1,
+      IsContainAdvertise: true,
+      IsPlatformActivated: true
+    }).then(res => {
+      console.log('广告列表', res)
+    })
   }
 })

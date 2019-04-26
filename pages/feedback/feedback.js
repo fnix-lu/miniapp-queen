@@ -1,11 +1,14 @@
 // pages/feedback/feedback.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    text: '',
+    phone: ''
   },
 
   /**
@@ -62,5 +65,31 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  handleInputText (e) {
+    this.setData({
+      text: e.detail.value
+    })
+  },
+  
+  handleInputPhone (e) {
+    this.setData({
+      phone: e.detail.detail.value
+    })
+  },
+
+  submitFeedback () {
+    const _this = this
+    app.api.submitFeedback({
+      Content: this.data.text,
+      Phone: this.data.phone
+    }).then(res => {
+      console.log('反馈提交结果', res)
+      _this.setData({
+        text: '',
+        phone: ''
+      })
+    })
   }
 })

@@ -7,7 +7,16 @@
   </view>
 
   <!-- 广告图 -->
-  <image class="banner"></image>
+  <swiper
+    class="swiper-goods-imgs"
+    indicator-dots
+    indicator-color="#DDDDDD"
+    indicator-active-color="var(--color-primary)"
+    circular
+  >
+    <swiper-item><image class="swiper-img"></image></swiper-item>
+    <swiper-item><image class="swiper-img"></image></swiper-item>
+  </swiper>
 
   <!-- 标签 -->
   <i-row i-class="tabs">

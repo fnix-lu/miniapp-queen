@@ -3,21 +3,31 @@
   <view class="feedback-panel">
     <view class="feedback-title">
       <text>意见反馈</text>
-      <text class="feedback-count">0/200</text>
+      <text class="feedback-count">{{ text.length }}/200</text>
     </view>
     <textarea
       class="feedback-text"
       placeholder="请详细描述您的问题，以便我们给您提供更好的服务"
       placeholder-style="color:#CCCCCC"
+      value="{{ text }}"
       maxlength="200"
+      bindinput="handleInputText"
     ></textarea>
   </view>
 
   <view>
-    <i-input i-class="phone" value="" type="number" title="联系电话" placeholder="请输入您的手机，方便我们联系您" />
+    <i-input
+      i-class="phone"
+      type="number"
+      title="联系电话"
+      value="{{ phone }}"
+      placeholder="请输入您的手机，方便我们联系您"
+      bindchange="handleInputPhone"
+      maxlength="11"
+    />
   </view>
 
   <view class="submit-wrap">
-    <button class="btn btn-full btn-primary btn-submit" disabled="{{ true }}">提交</button>
+    <button class="btn btn-full btn-primary btn-submit" disabled="{{ text.length === 0 }}" bindtap="submitFeedback">提交</button>
   </view>
 </container>
