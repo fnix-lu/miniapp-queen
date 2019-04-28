@@ -1,17 +1,19 @@
 /* pages/coupon/coupon.wxss */
 .header-wrap {
-  height: 120rpx;
-  background-color: red;
+  height: 204rpx;
 }
-.header {
-  padding: 14rpx 20rpx 34rpx;
-  height: 72rpx;
-  background-color: #fff;
+.header-wrap-inner {
+  height: 204rpx;
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   z-index: 10;
+}
+.header {
+  padding: 14rpx 20rpx 34rpx;
+  height: 72rpx;
+  background-color: #fff;
 }
 .header-l,
 .header-r {
@@ -46,17 +48,6 @@
 .icon-question {
   width: 36rpx;
   height: 36rpx;
-}
-.subtabs-wrap {
-  height: 42px;
-  background-color: blue;
-}
-.subtabs-bar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 120rpx;
-  z-index: 10;
 }
 .subtabs {
   border-top: 2rpx solid #DDDDDD;

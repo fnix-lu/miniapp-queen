@@ -2,15 +2,34 @@
 <container>
   <view class="panel">
     <view class="post-part post-title-wrap">
-      <input class="post-title" placeholder="请添加标题"></input>
+      <input class="post-title" placeholder="请添加标题" bindinput="handleInputTitle"></input>
     </view>
     <view class="post-part post-content-wrap">
-      <textarea class="post-content" placeholder="尽情发挥你的才华吧~尽情发挥你的才华吧~尽情发挥你的才华吧~"></textarea>
-      <text class="post-content-count">0/200</text>
+      <textarea
+        class="post-content"
+        placeholder="尽情发挥你的才华吧~尽情发挥你的才华吧~尽情发挥你的才华吧~"
+        bindinput="handleInputText"
+        maxlength="200"
+      ></textarea>
+      <text class="post-content-count">{{ text.length }}/200</text>
     </view>
     <view class="post-part post-img-wrap">
-      <image class="post-img" src="/assets/img/img_null.png"></image>
+      <image
+        class="post-img"
+        wx:for="{{ images }}"
+        wx:key="{{ index }}"
+        data-index="{{ index }}"
+        src="{{ item }}"
+        mode="aspectFill"
+        bindtap="previewImage"
+        bindlongtap="removeImage"
+      ></image>
+      <image wx:if="{{ images.length < 9 }}" class="post-img" src="/assets/img/img_null.png" bindtap="chooseImage"></image>
     </view>
   </view>
-  <button class="btn btn-full btn-primary btn-submit" disabled="{{ false }}">发布</button>
+  <button class="btn btn-full btn-primary btn-submit" disabled="{{ !title || !text }}" bindtap="submitPost">发布</button>
+
+  <!-- <i-modal title="提示" visible="{{ visible1 }}" bind:ok="handleClose1">
+    <view>删除该图片？</view>
+  </i-modal> -->
 </container>

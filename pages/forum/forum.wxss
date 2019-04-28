@@ -74,6 +74,7 @@
 .icon-message {
   width: 40rpx;
   height: 8rpx;
+  margin-bottom: 4rpx;
 }
 .icon-edit {
   width: 28rpx;

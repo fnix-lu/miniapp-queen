@@ -14,8 +14,9 @@
     indicator-active-color="var(--color-primary)"
     circular
   >
-    <swiper-item><image class="swiper-img"></image></swiper-item>
-    <swiper-item><image class="swiper-img"></image></swiper-item>
+    <swiper-item wx:for="{{ ad }}" wx:key="{{ index }}">
+      <image class="swiper-img" src="{{ item.ItemResourceUrl }}" mode="aspectFill"></image>
+    </swiper-item>
   </swiper>
 
   <!-- 标签 -->
@@ -56,17 +57,22 @@
 
   <!-- 热门组合商品列表 -->
   <view class="goods-list" wx:if="{{ currentTab === 'hot' }}">
-    <navigator class="goods-card" url="/pages/goods-detail/goods-detail?goodsId={{ item.Id }}">
-      <image class="icon-hot" src="/assets/img/hot.png"></image>
-      <image class="goods-img"></image>
-      <view class="goods-name">七度空间日用七度空间日用七度空间日用</view>
+    <navigator
+      url="/pages/goods-detail/goods-detail?goodsId={{ item.Id }}"
+      class="goods-card"
+      wx:for="{{ hotGroup.list }}"
+      wx:key="{{ index }}"
+    >
+      <image wx:if="{{ item.Specifications[0].IsHot }}" class="icon-hot" src="/assets/img/hot.png"></image>
+      <image class="goods-img" src="{{ item.Specifications[0].ImageUrl }}" mode="aspectFill"></image>
+      <view class="goods-name">{{ item.Specifications[0].Name }}</view>
       <view class="goods-info">
         <view>
-          <text class="price-single">单独购买：<text class="del">￥26</text></text>
+          <text class="price-single">单独购买：<text class="del">￥{{ item.Specifications[0].CostPrice }}</text></text>
         </view>
         <view class="flex flex-sides flex-bottom">
-          <text class="price-group"><text class="price-group-char">￥</text>24</text>
-          <text class="sale-monthly">月销量9999</text>
+          <text class="price-group"><text class="price-group-char">￥</text>{{ item.Specifications[0].GroupPrice }}</text>
+          <text class="sale-monthly">月销量{{ item.Specifications[0].MonthSaleCount }}</text>
         </view>
       </view>
     </navigator>
@@ -80,7 +86,7 @@
       wx:key="{{ item.Id }}"
     >
       <image wx:if="{{ item.Specifications[0].IsHot }}" class="icon-hot" src="/assets/img/hot.png"></image>
-      <image class="goods-img" src="{{ item.Specifications[0].ImageUrl }}"></image>
+      <image class="goods-img" src="{{ item.Specifications[0].ImageUrl }}" mode="aspectFill"></image>
       <view class="goods-name">{{ item.Specifications[0].Name }}</view>
       <view class="goods-info">
         <view>

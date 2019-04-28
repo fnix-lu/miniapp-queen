@@ -86,10 +86,19 @@ Page({
       Phone: this.data.phone
     }).then(res => {
       console.log('反馈提交结果', res)
-      _this.setData({
-        text: '',
-        phone: ''
-      })
+      if (res.Data) {
+        _this.setData({
+          text: '',
+          phone: ''
+        })
+        wx.showToast({
+          title: '感谢您的反馈！',
+        })
+      } else {
+        wx.showToast({
+          title: '提交失败，请重试！',
+        })
+      }
     })
   }
 })

@@ -78,7 +78,12 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.getGoodsByBrandId()
+    if (this.data.currentTab === 'hot') {
+      this.getHotGroup()
+    }
+    if (this.data.currentTab === 'brand') {
+      this.getGoodsByBrandId()
+    }
   },
 
   /**
@@ -100,9 +105,16 @@ Page({
     }
     app.api.getGoods({
       PageIndex: hotGroup.currentPage + 1,
-      ProductSpecificationType: 3 // 组合
+      ProductSpecificationType: 3, // 组合
+      IsContainSpecification: true,
+      IsDefaultSpecification: true
     }).then(res => {
       console.log('热门组合接口返回', res)
+      _this.setData({
+        'hotGroup.currentPage': res.PageIndex,
+        'hotGroup.allPageCount': res.AllPageCount,
+        'hotGroup.list': res.Data
+      })
     })
   },
 
@@ -244,13 +256,18 @@ Page({
    * 获取广告
    */
   getAdvertisements () {
+    const _this = this
     app.api.getAdvertisements({
       PositionType: 2,
       AdvertiseType: 1,
       IsContainAdvertise: true,
-      IsPlatformActivated: true
+      IsPlatformActivated: true,
+      IsRelease: true
     }).then(res => {
       console.log('广告列表', res)
+      _this.setData({
+        ad: res.Data[0] ? res.Data[0].AdvertiseItems : []
+      })
     })
   }
 })

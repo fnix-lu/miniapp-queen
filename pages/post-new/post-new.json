@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "i-modal": "/iview/modal/index"
+  },
   "navigationBarTitleText": "发布新帖"
 }

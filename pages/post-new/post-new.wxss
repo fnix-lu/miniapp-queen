@@ -20,7 +20,6 @@
   padding-bottom: 0;
 }
 .post-content {
-  background-color: #cff;
   font-size: 30rpx;
   color: var(--color-content);
   width: 100%;
@@ -33,10 +32,15 @@
   color: #CCCCCC;
   font-size: 22rpx;
 }
+.post-img-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
 .post-img {
   width: 160rpx;
   height: 160rpx;
-  display: block;
+  margin-right: 17.5rpx;
+  margin-bottom: 17.5rpx;
 }
 
 .btn-submit {

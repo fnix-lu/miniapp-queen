@@ -357,5 +357,15 @@ Page({
       //   _this.getCart()
       // }
     })
-  }
+  },
+
+  /**
+   * 隐藏弹层
+   */
+  hideLayers() {
+    this.setData({
+      'flag.showCart': false,
+      'flag.showCover': false
+    })
+  },
 })

@@ -68,7 +68,7 @@
   <view class="cart-tip">已减12元，再买10元减15元</view>
 
   <!-- 弹层遮盖 -->
-  <view class="cover {{ flag.showCover ? 'show' : '' }}"></view>
+  <view class="cover {{ flag.showCover ? 'show' : '' }}" bindtap="hideLayers"></view>
 
   <!-- 购物车弹层 -->
   <view class="cart {{ flag.showCart ? 'show' : '' }}">

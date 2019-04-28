@@ -1,11 +1,15 @@
 // pages/post-new/post-new.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    title: '',
+    text: '',
+    images: []
   },
 
   /**
@@ -62,5 +66,85 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 输入标题
+   */
+  handleInputTitle (e) {
+    this.setData({
+      title: e.detail.value
+    })
+  },
+
+  /**
+   * 输入内容
+   */
+  handleInputText(e) {
+    this.setData({
+      text: e.detail.value
+    })
+  },
+
+  /**
+   * 选择图片
+   */
+  chooseImage () {
+    const _this = this
+    wx.chooseImage({
+      success: res => {
+        console.log('选择图片', res)
+        let { tempFilePaths, tempFiles } = res
+        _this.setData({
+          images: tempFilePaths
+        })
+      }
+    })
+  },
+
+  /**
+   * 预览图片
+   */
+  previewImage (e) {
+    let { images } = this.data
+    let { index } = e.currentTarget.dataset
+    wx.previewImage({
+      urls: images,
+      current: images[index]
+    })
+  },
+
+  /**
+   * 移除图片
+   */
+  removeImage (e) {
+    const _this = this
+    let { images } = this.data
+    let { index } = e.currentTarget.dataset
+    wx.showModal({
+      title: '提示',
+      content: '删除该图片？',
+      confirmColor: '#FC7B7B',
+      success: res => {
+        if (res.confirm) {
+          images.splice(index, 1)
+          _this.setData({
+            images
+          })
+        }
+      }
+    })
+  },
+
+  /**
+   * 发布帖子
+   */
+  submitPost () {
+    app.api.submitPost({
+      Name: this.data.title,
+      Description: this.data.text
+    }).then(res => {
+      console.log('发帖结果', res)
+    })
   }
 })
