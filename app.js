@@ -9,7 +9,7 @@ App({
     // wx.setStorageSync('logs', logs)
 
     // 登录
-    // this.login()
+    this.login()
     
     // 获取用户信息
     // wx.getSetting({
@@ -36,7 +36,7 @@ App({
     // this.getLocation()
   },
   globalData: {
-    userInfo: null
+    // userInfo: null
   },
   api,
   /**
@@ -60,8 +60,9 @@ App({
     // } else {
     //   // auth
     // }
+    const _this = this
 
-    let token = wx.getStorageSync('token')
+    let memberInfo = wx.getStorageSync('memberInfo')
 
     return new Promise((resolve, reject) => {
       wx.getSetting({
@@ -71,13 +72,35 @@ App({
             wx.navigateTo({
               url: '/pages/auth/auth'
             })
-          } else if (!token) {
+          } else if (!memberInfo || !memberInfo.Id) {
             wx.login({
-              success: res => {
-                console.log('微信登录接口', res)
-                // 发送 res.code 到后台换取 openId, sessionKey, unionId
-                // 请求成功后设置 token, userInfo
+              success: ({ code }) => {
+                console.log('Code', code)
+                // 发送 res.code 到后台
+                // 请求成功后设置 memberInfo
                 // resolve()
+                wx.getUserInfo({
+                  lang: 'zh_CN',
+                  success: ({ userInfo }) => {
+                    console.log('UserInfo',userInfo)
+                    let gender = '保密'
+                    if (userInfo.gender === 1) gender = '男'
+                    if (userInfo.gender === 2) gender = '女'
+                    api.login({
+                      WXAuthCode: code,
+                      WechatNickName: userInfo.nickName,
+                      Gender: gender,
+                      Province: userInfo.province,
+                      City: userInfo.city,
+                      CutomerType: 1,
+                      HeadImgUrl: userInfo.avatarUrl
+                    }).then(res => {
+                      console.log('After Login', res)
+                      wx.setStorageSync('memberInfo', res.Data)
+                      resolve()
+                    })
+                  }
+                })
               }
             })
           } else {

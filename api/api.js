@@ -116,6 +116,11 @@ module.exports = {
     return fetch('coupon/GetCoupons', data)
   },
 
+  // 登录
+  login (data) {
+    return fetch('customer/AddMember', data, 'POST')
+  },
+
   // 提交反馈
   submitFeedback (data) {
     return fetch('customer/AddMemberSuggest', data, 'POST')

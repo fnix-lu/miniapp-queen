@@ -25,7 +25,7 @@
 .my-headimg {
   width: 140rpx;
   height: 140rpx;
-  background-color: pink;
+  background-color: #e6e6e6;
   border-radius: 50%;
   border: 4rpx solid #fff;
   margin-top: -74rpx;

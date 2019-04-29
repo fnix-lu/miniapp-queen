@@ -4,9 +4,8 @@
   <view class="header">
     <image class="header-bg" src="/assets/img/mine_header.png"></image>
     <view class="header-info">
-      <image class="my-headimg"></image>
-      <view class="my-nickname">{{ userInfo ? userInfo.nickName : '点击登录' }}</view>
-      <!-- <button class="btn-auth" open-type="getUserInfo" bindgetuserinfo="handleAuth"></button> -->
+      <image class="my-headimg" src="{{ memberInfo.HeadImgUrl }}" mode="aspectFill"></image>
+      <view class="my-nickname">{{ memberInfo ? memberInfo.WechatNickName : '点击登录' }}</view>
       <navigator class="to-edit-info" url="/pages/profile/profile">个人资料修改</navigator>
     </view>
   </view>

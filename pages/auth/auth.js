@@ -70,7 +70,6 @@ Page({
    * 授权后的回调
    */
   handleGetUserInfo (e) {
-    // console.log('授权按钮操作结果', e.detail)
     // 获取到授权信息后先再次验证或尝试登录，后返回，因个人中心若直接返回会无用户信息
     if (e.detail.userInfo) {
       app.login().then(() => {
