@@ -36,7 +36,7 @@ Page({
   onLoad: function (options) {
     const _this = this
     this.getBrands()
-    this.getCart()
+    app.login()
   },
 
   /**
@@ -50,7 +50,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    const memberInfo = wx.getStorageSync('memberInfo')
+    if (memberInfo && memberInfo.Id) {
+      this.getCart()
+    }
   },
 
   /**

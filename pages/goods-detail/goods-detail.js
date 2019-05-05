@@ -23,6 +23,7 @@ Page({
    */
   onLoad: function (query) {
     this.getGoodsById(query.goodsId)
+    this.getGoodsGroupsById(query.goodsId)
   },
 
   /**
@@ -127,6 +128,20 @@ Page({
     const { detail: { value, type } } = e // type: minus plus
     this.setData({
       'selected.amount': value
+    })
+  },
+
+  /**
+   * 获取正在进行的拼团
+   */
+  getGoodsGroupsById (id) {
+    const _this = this
+    app.api.getGoodsGroups({
+      PageSize: 100,
+      IsContainParticipation: true,
+      ProductId: id
+    }).then(res => {
+      console.log('拼团列表', res)
     })
   }
 })

@@ -34,8 +34,7 @@
     </view>
     <view class="list-item" bindtap="toggleDrawerBuy">
       <text style="margin-right:22rpx">已选</text>
-      <text class="selected-type">“{{ selected.specification.Name }}”</text>
-      <text class="selected-type">“{{ selected.amount }}”</text>
+      <text class="selected-type">“{{ selected.specification.Name }}” “{{ selected.amount }}”</text>
       <image class="icon-arrow-right-picker" src="/assets/img/arrow_right_picker.png"></image>
     </view>
     <view class="list-item">正品保证 · 线下取货</view>

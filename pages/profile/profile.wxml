@@ -32,7 +32,7 @@
     </i-cell>
     <i-cell title="学校">
       <view slot="footer" class="footer-wrap">
-        <picker range="{{ range.school }}" value="{{ profile.schoolIndex }}" bindchange="changeSchool">
+        <picker range="{{ range.school }}" range-key="School" value="{{ profile.schoolIndex }}" bindchange="changeSchool">
           <text wx:if="{{ profile.school }}">{{ profile.school }}</text>
           <text wx:else class="placeholder">请选择</text>
         </picker>
@@ -41,6 +41,6 @@
   </i-cell-group>
 
   <view class="submit-wrap">
-    <button class="btn btn-full btn-primary btn-submit" disabled="{{ false }}">保存</button>
+    <button class="btn btn-full btn-primary btn-submit" disabled="{{ isSubmited }}" bindtap="submitProfile">保存</button>
   </view>
 </container>

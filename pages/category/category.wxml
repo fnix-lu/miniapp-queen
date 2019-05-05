@@ -53,7 +53,7 @@
   <!-- 底部小计 -->
   <view class="fixed-footer cart-calc">
     <view class="cart-total-info" bindtap="toggleShowCart">
-      <view class="cart-price-total">￥89</view>
+      <view class="cart-price-total">￥{{ computed.cartCheckedPrice(cart) }}</view>
       <view class="cart-price-desc">已减12元</view>
     </view>
     <view class="btn-submit-order" bindtap="toSettlement">提交订单</view>
@@ -162,6 +162,17 @@
       return cart.filter(function (item) {
         return item.Checked
       }).length
+    },
+
+    // 购物车选中商品总价
+    cartCheckedPrice: function (cart) {
+      var total = 0
+      cart.forEach(function (item) {
+        if (item.Checked) {
+          total += item.Price * item.Count
+        }
+      })
+      return total
     }
   }
 </wxs>

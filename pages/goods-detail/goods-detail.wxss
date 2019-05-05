@@ -66,7 +66,13 @@
   margin-top: 40rpx;
 }
 .selected-type {
+  display: inline-block;
+  vertical-align: top;
   color: #353535;
+  white-space: nowrap;
+  width: 580rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .icon-arrow-right-picker {
   width: 22rpx;

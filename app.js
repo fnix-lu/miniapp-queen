@@ -9,7 +9,7 @@ App({
     // wx.setStorageSync('logs', logs)
 
     // 登录
-    this.login()
+    // this.login()
     
     // 获取用户信息
     // wx.getSetting({

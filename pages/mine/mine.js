@@ -14,9 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      memberInfo: wx.getStorageSync('memberInfo') || null
-    })
+    
   },
 
   /**
@@ -30,7 +28,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({
+      memberInfo: wx.getStorageSync('memberInfo') || null
+    })
   },
 
   /**
@@ -69,10 +69,11 @@ Page({
   },
 
   /**
-   * 获取用户信息后的回调
+   * 跳转至授权页
    */
-  handleAuth ({ detail }) {
-    console.log(detail.userInfo)
-    app.globalData.userInfo = detail.userInfo || null
+  navigateToAuth () {
+    wx.navigateTo({
+      url: '/pages/auth/auth'
+    })
   }
 })

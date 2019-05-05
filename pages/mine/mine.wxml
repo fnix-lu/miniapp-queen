@@ -21,4 +21,6 @@
       <image slot="icon" class="menu-icon" src="/assets/img/menu_suggest.png"></image>
     </i-cell>
   </i-cell-group>
+
+  <view wx:if="{{ !memberInfo }}" class="login-cover" bindtap="navigateToAuth"></view>
 </container>
