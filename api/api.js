@@ -23,9 +23,10 @@ const fetch = (url, data = {}, method = 'GET') => new Promise((resolve, reject) 
       'content-type': 'application/json'
     },
     method,
-    success (res) {
+    complete () {
       wx.hideLoading()
-      // res.statusCode === 200 ? resolve(res.data) : reject(res)
+    },
+    success (res) {
       if (res.statusCode !== 200) {
         wx.showToast({
           title: res.data.Message,
@@ -149,7 +150,7 @@ module.exports = {
   },
   // 获取用户资料
   getMemberInfo (data) {
-    return fetch('customer/GetCustomerById', data, 'POST')
+    return fetch('customer/GetMemberById', data)
   },
 
 

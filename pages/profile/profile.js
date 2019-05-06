@@ -250,7 +250,7 @@ Page({
     app.api.getMemberInfo({
       Id: wx.getStorageSync('memberInfo').Id
     }).then(res => {
-      console.log('zuixin', res)
+      wx.setStorageSync('memberInfo', res.Data)
     })
   }
 })
