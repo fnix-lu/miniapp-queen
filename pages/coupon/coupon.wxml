@@ -5,8 +5,8 @@
       <view class="header flex">
         <view class="header-l"></view>
         <view class="tabs flex">
-          <text class="tab {{ couponType === '商品抵用券' ? 'active' : '' }}">商品券</text>
-          <text class="tab">现金券</text>
+          <text class="tab {{ couponType === 1 ? 'active' : '' }}" data-coupon-type="{{ 1 }}" bindtap="changeCouponType">商品券</text>
+          <text class="tab {{ couponType === 2 ? 'active' : '' }}" data-coupon-type="{{ 2 }}" bindtap="changeCouponType">现金券</text>
         </view>
         <view class="header-r">
           <view class="header-sides-item flex flex-cross flex-sides flex-middle" bindtap="showCouponRules">
@@ -16,7 +16,7 @@
         </view>
       </view>
       
-      <i-tabs i-class="subtabs" current="{{ isUsed }}" color="var(--color-primary)">
+      <i-tabs i-class="subtabs" current="{{ isUsed }}" color="var(--color-primary)" bindchange="changeCouponState">
         <i-tab key="{{ false }}" title="未使用"></i-tab>
         <i-tab key="{{ true }}" title="已使用/已过期"></i-tab>
       </i-tabs>

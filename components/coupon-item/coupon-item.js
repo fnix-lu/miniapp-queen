@@ -16,7 +16,8 @@ Component({
   data: {
     flag: {
       showBarCode: false
-    }
+    },
+    couponBarCode: ''
   },
 
   /**
@@ -26,8 +27,22 @@ Component({
     /**
      * 显示取货码
      */
-    showBarCode () {
+    showBarCode (e) {
+      const _this = this
+      let { orderId } = e.currentTarget.dataset
+      let barCode = ''
+
+      if (orderId) {
+        app.api.getCoupons({
+          OrderId: orderId
+        }).then(res => {
+          barCode = res.Data[0].BarCode
+        })
+      } else {
+        barCode = this.data.couponData.BarCode
+      }
       this.setData({
+        couponBarCode: barCode,
         'flag.showBarCode': true
       })
     },

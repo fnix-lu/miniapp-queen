@@ -5,14 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orderId: '',
+    currentPage: 0,
+    allPageCount: 1,
+    coupons: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function ({ orderId }) {
+    this.setData({
+      orderId
+    })
+    this.getCouponsByOrderId()
   },
 
   /**
@@ -54,7 +60,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.getCouponsByOrderId()
   },
 
   /**
@@ -62,5 +68,30 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 根据 OrderId 获取下一页卡券列表
+   */
+  getCouponsByOrderId () {
+    const _this = this
+
+    if (this.data.currentPage >= this.data.allPageCount) {
+      return
+    }
+    app.api.getCoupons({
+      PageIndex: this.data.currentPage + 1,
+      CouponType: 1,
+      IsUsed: false,
+      OrderId: this.data.orderId
+    }).then(res => {
+      console.log('请求卡包内的卡券', res)
+      _this.setData({
+        currentPage: res.PageIndex,
+        allPageCount: res.AllPageCount,
+        coupons: _this.data.coupons.concat(res.Data)
+      })
+    })
   }
+
 })

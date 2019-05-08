@@ -13,15 +13,19 @@ Page({
     flag: {
       showRules: false
     },
-    couponType: '商品抵用券',
-    isUsed: true
+    couponType: 1,
+    isUsed: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCoupons()
+    if (this.data.couponType === 1 && !this.data.isUsed) {
+      this.getCouponPackages()
+    } else {
+      this.getCoupons()
+    }
   },
 
   /**
@@ -63,7 +67,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.couponType === 1 && !this.data.isUsed) {
+      this.getCouponPackages()
+    } else {
+      this.getCoupons()
+    }
   },
 
   /**
@@ -102,6 +110,7 @@ Page({
     }
     app.api.getCoupons({
       PageIndex: this.data.currentPage + 1,
+      CouponType: this.data.couponType,
       IsUsed: this.data.isUsed
     }).then(res => {
       console.log('请求卡券列表返回', res)
@@ -111,5 +120,70 @@ Page({
         coupons: _this.data.coupons.concat(res.Data)
       })
     })
+  },
+
+  /**
+   * 获取下一页卡包列表
+   */
+  getCouponPackages () {
+    const _this = this
+
+    if (this.data.currentPage >= this.data.allPageCount) {
+      return
+    }
+    app.api.getCouponPackages({
+      PageIndex: this.data.currentPage + 1,
+      CouponType: this.data.couponType,
+      IsUsed: this.data.isUsed
+    }).then(res => {
+      console.log('请求卡包列表', res)
+      _this.setData({
+        currentPage: res.PageIndex,
+        allPageCount: res.AllPageCount,
+        coupons: _this.data.coupons.concat(res.Data)
+      })
+    })
+  },
+
+  /**
+   * 初始化页码信息
+   */
+  initCouponList () {
+    this.setData({
+      currentPage: 0,
+      allPageCount: 1,
+      coupons: []
+    })
+  },
+
+  /**
+   * 切换卡券类型
+   */
+  changeCouponType (e) {
+    let { couponType } = e.currentTarget.dataset
+    this.setData({
+      couponType
+    })
+    this.initCouponList()
+    this.getCoupons()
+  },
+
+  /**
+   * 切换卡券使用状态
+   */
+  changeCouponState (e) {
+    let { key } = e.detail
+    let isUsed = false
+    if (key === 'true') {
+      isUsed = true
+    }
+    if (key === 'false') {
+      isUsed = false
+    }
+    this.setData({
+      isUsed
+    })
+    this.initCouponList()
+    this.getCoupons()
   }
 })

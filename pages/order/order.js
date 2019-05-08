@@ -1,4 +1,6 @@
 // pages/order/order.js
+const app = getApp()
+
 Page({
 
   /**
@@ -8,7 +10,11 @@ Page({
     targetTime: new Date('2019-5-1 00:00:00').getTime(),
     flag: {
       showOrderDetail: false
-    }
+    },
+    // orderStatus: 
+    currentPage: 0,
+    allPageCount: 1,
+    orders: []
   },
 
   /**
@@ -67,19 +73,18 @@ Page({
 
   },
 
-  handleTap () {
-    wx.showModal({
-      title: '提示',
-      content: '这是按钮的点击事件',
-      cancelText: '再等等',
-      cancelColor: '#FC7B7B',
-      confirmText: '确认取消',
-      confirmColor: '#888888'
-    })
-  },
-
   /**
-   * 加载显示订单详情
+   * 获取下一页订单
    */
+  getNextOrders () {
+    const _this = this
+    if (this.data.currentPage >= this.data.allPageCount) {
+      return
+    }
+    app.api.getOrders({
+      PageIndex: this.data.currentPage + 1,
+      // 订单状态
+    })
+  }
   
 })

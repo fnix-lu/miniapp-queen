@@ -1,9 +1,4 @@
 <!--pages/coupon-all/coupon-all.wxml-->
 <container>
-  <coupon-item></coupon-item>
-  <coupon-item></coupon-item>
-  <coupon-item></coupon-item>
-  <coupon-item></coupon-item>
-  <coupon-item></coupon-item>
-  <coupon-item></coupon-item>
+  <coupon-item wx:for="{{ coupons }}" wx:key="{{ index }}" coupon-data="{{ item }}"></coupon-item>
 </container>

@@ -122,6 +122,13 @@ module.exports = {
 
 
 
+  // 获取订单列表
+  getOrders (data) {
+    return fetch('order/GetOrders', data)
+  },
+
+
+
   // 获取正在进行的拼团
   getGoodsGroups (data) {
     return fetch('croworder/GetCrowdOrders', data)
@@ -132,6 +139,10 @@ module.exports = {
   // 获取卡券列表
   getCoupons (data) {
     return fetch('coupon/GetCoupons', data)
+  },
+  // 获取卡包列表
+  getCouponPackages (data) {
+    return fetch('coupon/GetCouponBags', data)
   },
 
 

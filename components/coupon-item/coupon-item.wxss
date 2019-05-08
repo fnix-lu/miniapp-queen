@@ -35,7 +35,7 @@
 .coupon-img {
   width: 144rpx;
   height: 144rpx;
-  background-color: pink;
+  background-color: #fff;
 }
 .coupon-value {
   color: #fff;
