@@ -12,6 +12,8 @@ Page({
     postList: [],
     postCol1: [],
     postCol2: [],
+    h1: 0,
+    h2: 0,
     flag: {
       showCover: false,
       showMenu: false
@@ -105,15 +107,29 @@ Page({
       return
     }
     app.api.getForumList({
+      PageIndex: this.data.currentPage + 1,
       IsContainImage: true,
       IsDefaultImage: true
     }).then(res => {
       console.log('论坛帖子列表', res)
       // 遍历结果，按图片高宽比分列
+      res.Data.forEach(item => {
+        let { h1, h2, postCol1, postCol2 } = _this.data
 
+        if (h1 <= h2) {
+          postCol1.push(item)
+          h1 += item.ImageHeight / item.ImageWidth
+        } else {
+          postCol2.push(item)
+          h2 += item.ImageHeight / item.ImageWidth
+        }
 
-      _this.setData({
-        postCol1: res.Data
+        _this.setData({
+          h1,
+          h2,
+          postCol1,
+          postCol2
+        })
       })
     })
   }

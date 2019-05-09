@@ -14,7 +14,8 @@ Page({
     // orderStatus: 
     currentPage: 0,
     allPageCount: 1,
-    orders: []
+    orders: [],
+    currentTab: 'unPaid'
   },
 
   /**

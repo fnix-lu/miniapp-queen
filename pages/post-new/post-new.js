@@ -92,6 +92,7 @@ Page({
   chooseImage () {
     const _this = this
     wx.chooseImage({
+      sourceType: 'album',
       success: res => {
         console.log('选择图片', res)
         let { tempFilePaths, tempFiles } = res
@@ -145,6 +146,31 @@ Page({
       Description: this.data.text
     }).then(res => {
       console.log('发帖结果', res)
+    })
+  },
+
+  /**
+   * 上传图片
+   */
+  uploadImages () {
+    let { images } = this.data
+    let uploaders = images.map((path, index) => new Promise((resolve, reject) => {
+      wx.uploadFile({
+        url: '', // 上传接口
+        filePath: path,
+        name: 'image',
+        header: {},
+        formData: {
+          index
+        },
+        success: resolve,
+        fail: reject
+      })
+    }))
+
+    Promise.all(uploaders).then(res => {
+      // 所有图片上传完毕后的结果
+      console.log('图片上传结果', res)
     })
   }
 })

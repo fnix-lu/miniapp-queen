@@ -66,3 +66,11 @@
     <view><button class="btn btn-primary btn-reply" size="mini" disabled="{{ false }}">回复</button></view>
   </view>
 </container>
+
+<wxs module="computed">
+  module.exports = {
+    commentsTree: function (comments) {
+
+    }
+  }
+</wxs>

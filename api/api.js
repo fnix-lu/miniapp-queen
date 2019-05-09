@@ -82,15 +82,15 @@ module.exports = {
 
   // 获取闺蜜圈列表
   getForumList (data) {
-    return fetch('forum/GetGirlForums', data, 'POST')
+    return fetch('forum/GetGirlForums', data)
   },
   // 获取帖子内容
   getPostContent (data) {
-    return fetch('forum/GetGirlForumById', data, 'POST')
+    return fetch('forum/GetGirlForumById', data)
   },
   // 获取帖子评论列表
   getPostComments (data) {
-    return fetch('forum/GetGirlForumReplyAndLeaves', data, 'POST')
+    return fetch('forum/GetGirlForumReplyAndLeaves', data)
   },
   // 发布帖子
   submitPost (data) {
