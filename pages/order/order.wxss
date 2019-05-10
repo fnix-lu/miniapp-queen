@@ -38,6 +38,10 @@
 }
 .order-id {
   color: #888888;
+  width: 360rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .order-status {
   color: var(--color-primary);
@@ -51,11 +55,6 @@
   color: var(--color-primary);
   padding: 8rpx 24rpx;
   font-size: 22rpx;
-}
-.order-countdown {
-  margin-top: -30rpx;
-  /* position: relative;
-  top: -30rpx; */
 }
 .order-price {
   font-size: 32rpx;

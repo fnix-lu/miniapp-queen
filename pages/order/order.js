@@ -103,7 +103,7 @@ Page({
         Type: -1,
         PayStatus: 0
       }).then(res => {
-        console.log('待付款', res)
+        console.log('tab111', res)
         _this.setData({
           currentPage: res.PageIndex,
           allPageCount: res.AllPageCount,
@@ -120,7 +120,7 @@ Page({
         Type: -1,
         OrderStatus: 2
       }).then(res => {
-        console.log('待取货', res)
+        console.log('tab333', res)
         _this.setData({
           currentPage: res.PageIndex,
           allPageCount: res.AllPageCount,
@@ -138,7 +138,7 @@ Page({
         OrderType: 1,
         PayStatus: 1,
       }).then(res => {
-        console.log('待成团', res)
+        console.log('tab222', res)
         _this.setData({
           currentPage: res.PageIndex,
           allPageCount: res.AllPageCount,

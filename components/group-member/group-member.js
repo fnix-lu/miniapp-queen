@@ -14,6 +14,10 @@ Component({
     isFirst: {
       type: Boolean,
       value: false
+    },
+    headImage: {
+      type: String,
+      value: '/assets/img/headimg_null.png'
     }
   },
 

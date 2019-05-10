@@ -1,4 +1,4 @@
-<text class="i-class">
+<view class="i-class" style="display:inline-block">
   {{time}}
-</text>
+</view>
 
