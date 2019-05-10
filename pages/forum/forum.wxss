@@ -92,7 +92,7 @@
   transition: height .2s linear;
 }
 .fixed-menu-items.show {
-  height: 260rpx;
+  height: 360rpx;
 }
 .fixed-menu-item {
   display: flex;

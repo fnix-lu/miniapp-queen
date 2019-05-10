@@ -48,6 +48,10 @@
     <view class="fixed-menu-items {{ flag.showMenu ? 'show' : '' }}">
       <navigator class="fixed-menu-item" url="/pages/forum-message/forum-message">
         <image class="icon-message" src="/assets/img/message.png"></image>
+        <view>帖子</view>
+      </navigator>
+      <navigator class="fixed-menu-item" url="/pages/forum-message/forum-message">
+        <image class="icon-message" src="/assets/img/message.png"></image>
         <view>消息</view>
         <text class="message-badge">3</text>
       </navigator>

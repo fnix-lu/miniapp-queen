@@ -102,6 +102,9 @@ Page({
    * 获取下一页帖子列表
    */
   getForumList () {
+    // wx.showToast({
+    //   title: 'this is test begin!',
+    // })
     const _this = this
     if (this.data.currentPage >= this.data.allPageCount) {
       return
