@@ -82,8 +82,8 @@ Page({
   submitFeedback () {
     const _this = this
     app.api.submitFeedback({
-      Content: this.data.text,
-      Phone: this.data.phone
+      MemberContent: this.data.text,
+      SuggestMobile: this.data.phone
     }).then(res => {
       console.log('反馈提交结果', res)
       if (res.Data) {
