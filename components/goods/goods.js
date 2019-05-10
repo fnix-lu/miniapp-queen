@@ -4,7 +4,11 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    image: String,
+    name: String,
+    specificationName: String,
+    settlementPrice: Number,
+    count: Number
   },
 
   /**

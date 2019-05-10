@@ -110,7 +110,9 @@ Page({
     }).then(res => {
       console.log('评论列表', res)
       _this.setData({
-        comments: res.Data
+        currentPage: res.PageIndex,
+        allPageCount: res.AllPageCount,
+        comments: _this.data.comments.concat(res.Data)
       })
     })
   }

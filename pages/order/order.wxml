@@ -1,57 +1,140 @@
 <!--pages/order/order.wxml-->
 <container>
-  <i-tabs current="{{ currentTab }}" color="#FC7B7B">
-    <i-tab key="unPaid" title="待付款" count="1"></i-tab>
-    <i-tab key="unGrouped" title="待成团"></i-tab>
-    <i-tab key="unTaked" title="待取货" dot></i-tab>
-  </i-tabs>
-  <!-- 无订单 -->
-  <view class="placeholder-card" wx:if="{{ orders.length === 0 }}">
-    <image class="placeholder-card-img" src="/assets/img/placeholder_order.png"></image>
-    <view class="placeholder-card-text">您暂无订单</view>
+  <view class="ordertabs-wrap">
+    <view class="ordertabs-wrap-inner">
+      <i-tabs current="{{ currentTab }}" color="#FC7B7B" bindchange="changeOrderTab">
+        <i-tab key="unpaid" title="待付款" count="{{ ordersUnpaid.allCount }}"></i-tab>
+        <i-tab key="ungrouped" title="待成团" count="{{ ordersUngrouped.allCount }}"></i-tab>
+        <i-tab key="untaked" title="待取货" count="{{ ordersUntaked.allCount }}"></i-tab>
+      </i-tabs>
+    </view>
   </view>
+  
+  <!-- 待付款 -->
+  <block wx:if="{{ currentTab === 'unpaid' }}">
+    <!-- 无订单 -->
+    <view class="placeholder-card" wx:if="{{ ordersUnpaid.list.length === 0 }}">
+      <image class="placeholder-card-img" src="/assets/img/placeholder_order.png"></image>
+      <view class="placeholder-card-text">您暂无待付款订单</view>
+    </view>
 
-  <!-- 有订单 -->
-  <view
-    class="card"
-    wx:for="{{ orders }}"
-    wx:key="{{ index }}"
-  >
-    <view class="card-head flex flex-sides flex-middle">
-      <!-- 订单编号状态 -->
-      <text class="order-id">订单号：1234567890</text>
-      <text class="order-status">待付款</text>
-    </view>
-    <view class="card-body">
-      <!-- 商品信息 -->
-      <goods></goods>
-      <view class="content">
-        <!-- 订单总价 -->
-        <view class="flex flex-sides">
-          <text class="order-countdown">20:59 后取消</text>
-          <text class="order-price">实付款：<text class="order-price-num">￥24</text></text>
+    <!-- 有订单 -->
+    <block wx:if="{{ ordersUnpaid.list.length > 0 }}">
+      <view
+        class="card"
+        wx:for="{{ ordersUnpaid.list }}"
+        wx:key="{{ index }}"
+      >
+        <view class="card-head flex flex-sides flex-middle">
+          <!-- 订单编号状态 -->
+          <text class="order-id">订单号：{{ item.SerialNumber }}</text>
+          <text class="order-status">待付款</text>
         </view>
-        <!-- 拼团信息 -->
-        <view class="group-info flex flex-sides">
-          <text class="group-info-text">还差1人</text>
-          <group>
-            <group-member is-first is-leader></group-member>
-            <group-member></group-member>
-            <group-member></group-member>
-            <group-member></group-member>
-          </group>
+        <view class="card-body">
+          <!-- 商品信息 -->
+          <!-- <goods
+            wx:for="{{ item.Details }}"
+            wx:for-item="goodsItem"
+            wx:for-index="goodsIndex"
+            wx:key="{{ goodsIndex }}"
+            image="{{ goodsItem.ProductImageUrl }}"
+            name="{{ goodsItem.ProductName }}"
+            specification-name="{{ goodsItem.ProductSpecificationName }}"
+            settlement-price="{{ goodsItem.SettlementPrice }}"
+            count="{{ goodsItem.SaleCount }}"
+          ></goods> -->
+          <goods image="/assets/img/test_2.png"></goods>
+          <view class="content">
+            <!-- 订单总价 -->
+            <view class="flex flex-sides">
+              <view class="order-countdown-wrap">
+                <i-count-down i-class="order-countdown" target="{{ computed.targetTime(item.CreateTime) }}"></i-count-down> 后取消
+              </view>
+              <view class="order-price">实付款：<text class="order-price-num">￥24</text></view>
+            </view>
+            <!-- 拼团信息 -->
+            <view class="group-info flex flex-sides">
+              <text class="group-info-text">还差1人</text>
+              <group>
+                <group-member is-first is-leader></group-member>
+                <group-member></group-member>
+                <group-member></group-member>
+                <group-member></group-member>
+              </group>
+            </view>
+          </view>
+        </view>
+        <view class="card-foot flex flex-sides flex-middle">
+          <text class="card-foot-text">*请去我的券包查看商品券</text>
+          <!-- 底部 -->
+          <view class="card-foot-btns flex flex-right">
+            <!-- <button class="btn" size="mini">取消订单</button> -->
+            <button class="btn btn-primary" size="mini" bindtap="handleTap">邀请好友拼单</button>
+          </view>
         </view>
       </view>
+    </block>
+  </block>
+
+  <!-- 待成团 -->
+  <block wx:if="{{ currentTab === 'ungrouped' }}">
+    <!-- 无订单 -->
+    <view class="placeholder-card" wx:if="{{ ordersUngrouped.list.length === 0 }}">
+      <image class="placeholder-card-img" src="/assets/img/placeholder_order.png"></image>
+      <view class="placeholder-card-text">您暂无待成团订单</view>
     </view>
-    <view class="card-foot flex flex-sides flex-middle">
-      <text class="card-foot-text">*请去我的券包查看商品券</text>
-      <!-- 底部 -->
-      <view class="card-foot-btns flex flex-right">
-        <!-- <button class="btn" size="mini">取消订单</button> -->
-        <button class="btn btn-primary" size="mini" bindtap="handleTap">邀请好友拼单</button>
+
+    <!-- 有订单 -->
+    <block wx:if="{{ ordersUngrouped.list.length > 0 }}">
+      <view
+        class="card"
+        wx:for="{{ ordersUngrouped.list }}"
+        wx:key="{{ index }}"
+      >
+        <view class="card-head flex flex-sides flex-middle">
+          <!-- 订单编号状态 -->
+          <text class="order-id">订单号：{{ item.SerialNumber }}</text>
+          <text class="order-status">待付款</text>
+        </view>
+        <view class="card-body">
+          <!-- 商品信息 -->
+          <goods
+            wx:for="{{ item.Details }}"
+            wx:for-item="goodsItem"
+            wx:for-index="goodsIndex"
+            wx:key="{{ goodsIndex }}"
+          ></goods>
+          <view class="content">
+            <!-- 订单总价 -->
+            <view class="flex flex-sides">
+              <view class="order-countdown-wrap">
+                <i-count-down i-class="order-countdown" target="{{ computed.targetTime(item.CreateTime) }}"></i-count-down> 后取消
+              </view>
+              <view class="order-price">实付款：<text class="order-price-num">￥24</text></view>
+            </view>
+            <!-- 拼团信息 -->
+            <view class="group-info flex flex-sides">
+              <text class="group-info-text">还差1人</text>
+              <group>
+                <group-member is-first is-leader></group-member>
+                <group-member></group-member>
+                <group-member></group-member>
+                <group-member></group-member>
+              </group>
+            </view>
+          </view>
+        </view>
+        <view class="card-foot flex flex-sides flex-middle">
+          <text class="card-foot-text">*请去我的券包查看商品券</text>
+          <!-- 底部 -->
+          <view class="card-foot-btns flex flex-right">
+            <!-- <button class="btn" size="mini">取消订单</button> -->
+            <button class="btn btn-primary" size="mini" bindtap="handleTap">邀请好友拼单</button>
+          </view>
+        </view>
       </view>
-    </view>
-  </view>
+    </block>
+  </block>
 
   <!-- 弹层 -->
   <!-- <view class="cover"></view> -->
@@ -80,3 +163,11 @@
     </view>
   </i-drawer>
 </container>
+
+<wxs module="computed">
+  module.exports = {
+    targetTime: function (createTime) {
+      return getDate(createTime).getTime() + 24 * 60 * 60 * 1000
+    }
+  }
+</wxs>

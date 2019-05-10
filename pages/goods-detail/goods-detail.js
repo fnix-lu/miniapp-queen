@@ -23,7 +23,7 @@ Page({
    */
   onLoad: function (query) {
     this.getGoodsById(query.goodsId)
-    this.getGoodsGroupsById(query.goodsId)
+    this.getCrowdOrders(query.goodsId)
   },
 
   /**
@@ -134,9 +134,9 @@ Page({
   /**
    * 获取正在进行的拼团
    */
-  getGoodsGroupsById (id) {
+  getCrowdOrdersById (id) {
     const _this = this
-    app.api.getGoodsGroups({
+    app.api.getCrowdOrders({
       PageSize: 100,
       IsContainParticipation: true,
       ProductId: id

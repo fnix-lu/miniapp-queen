@@ -11,18 +11,31 @@ Page({
     flag: {
       showOrderDetail: false
     },
-    // orderStatus: 
     currentPage: 0,
     allPageCount: 1,
     orders: [],
-    currentTab: 'unPaid'
+    currentTab: 'unpaid',
+    ordersUnpaid: {
+      allCount: 0,
+      list: []
+    },
+    ordersUngrouped: {
+      allCount: 0,
+      list: []
+    },
+    ordersUntaked: {
+      allCount: 0,
+      list: []
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getNextOrders('unpaid')
+    this.getNextOrders('ungrouped')
+    this.getNextOrders('untaked')
   },
 
   /**
@@ -64,7 +77,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.getNextOrders(this.data.currentTab)
   },
 
   /**
@@ -77,15 +90,91 @@ Page({
   /**
    * 获取下一页订单
    */
-  getNextOrders () {
+  getNextOrders (currentTab) {
     const _this = this
+
     if (this.data.currentPage >= this.data.allPageCount) {
       return
     }
-    app.api.getOrders({
-      PageIndex: this.data.currentPage + 1,
-      // 订单状态
+    // 待付款
+    if (currentTab === 'unpaid') {
+      app.api.getOrders({
+        PageIndex: this.data.currentPage + 1,
+        Type: -1,
+        PayStatus: 0
+      }).then(res => {
+        console.log('待付款', res)
+        _this.setData({
+          currentPage: res.PageIndex,
+          allPageCount: res.AllPageCount,
+          'ordersUnpaid.allCount': res.AllCount,
+          'ordersUnpaid.allCount': res.Data.length,
+          'ordersUnpaid.list': _this.data.ordersUnpaid.list.concat(res.Data)
+        })
+      })
+    }
+    // 待取货
+    if (currentTab === 'untaked') {
+      app.api.getOrders({
+        PageIndex: this.data.currentPage + 1,
+        Type: -1,
+        OrderStatus: 2
+      }).then(res => {
+        console.log('待取货', res)
+        _this.setData({
+          currentPage: res.PageIndex,
+          allPageCount: res.AllPageCount,
+          'ordersUntaked.allCount': res.AllCount,
+          'ordersUntaked.allCount': res.Data.length,
+          'ordersUntaked.list': _this.data.ordersUntaked.list.concat(res.Data)
+        })
+      })
+    }
+    // 待成团
+    if (currentTab === 'ungrouped') {
+      app.api.getCrowdOrders({
+        PageIndex: this.data.currentPage + 1,
+        IsContainParticipation: true,
+        OrderType: 1,
+        PayStatus: 1,
+      }).then(res => {
+        console.log('待成团', res)
+        _this.setData({
+          currentPage: res.PageIndex,
+          allPageCount: res.AllPageCount,
+          'ordersUngrouped.allCount': res.AllCount,
+          'ordersUngrouped.list': _this.data.ordersUngrouped.list.concat(res.Data)
+        })
+      })
+    }
+  },
+
+  /**
+   * 切换订单标签
+   */
+  changeOrderTab (e) {
+    let { key } = e.detail
+    this.setData({
+      currentPage: 0,
+      allPageCount: 1,
+      currentTab: key
     })
+    if (key === 'unpaid') {
+      this.setData({
+        'ordersUnpaid.list': []
+      })
+    }
+    if (key === 'ungrouped') {
+      this.setData({
+        'ordersUngrouped.list': []
+      })
+    }
+    if (key === 'untaked') {
+      this.setData({
+        'ordersUntaked.list': []
+      })
+    }
+    this.getNextOrders(key)
   }
   
 })

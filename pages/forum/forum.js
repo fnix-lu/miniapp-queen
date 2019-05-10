@@ -128,7 +128,9 @@ Page({
           h1,
           h2,
           postCol1,
-          postCol2
+          postCol2,
+          currentPage: res.PageIndex,
+          allPageCount: res.AllPageCount
         })
       })
     })

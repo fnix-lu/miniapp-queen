@@ -7,7 +7,7 @@
 .goods-img {
   width: 118rpx;
   height: 118rpx;
-  background-color: pink;
+  background-color: #fff;
   margin-right: 20rpx;
 }
 .goods-info-c {

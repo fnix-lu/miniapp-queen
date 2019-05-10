@@ -1,4 +1,15 @@
 /* pages/order/order.wxss */
+.ordertabs-wrap {
+  height: 84rpx;
+}
+.ordertabs-wrap-inner {
+  height: 84rpx;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
 /* 暂无订单 */
 .placeholder-card {
   height: 400rpx;
@@ -34,12 +45,17 @@
 .content {
   padding: 26rpx 20rpx;
 }
-.order-countdown {
+.order-countdown-wrap {
   background: rgba(246,246,246,1);
   border-radius: 4rpx;
   color: var(--color-primary);
   padding: 8rpx 24rpx;
   font-size: 22rpx;
+}
+.order-countdown {
+  margin-top: -30rpx;
+  /* position: relative;
+  top: -30rpx; */
 }
 .order-price {
   font-size: 32rpx;

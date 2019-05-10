@@ -129,8 +129,8 @@ module.exports = {
 
 
 
-  // 获取正在进行的拼团
-  getGoodsGroups (data) {
+  // 获取待成团
+  getCrowdOrders (data) {
     return fetch('croworder/GetCrowdOrders', data)
   },
 
