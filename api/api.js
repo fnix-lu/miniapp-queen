@@ -1,4 +1,4 @@
-const HOST = 'http://39.98.241.13:997/api'
+const HOST = 'http://localhost:62407/api'
 
 
 
