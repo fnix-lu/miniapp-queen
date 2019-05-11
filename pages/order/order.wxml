@@ -87,10 +87,10 @@
           <!-- 商品信息 -->
           <goods
             image="{{ item.ProductImageUrl }}"
-            name="{{ goodsItem.ProductName }}"
-            specification-name="{{ goodsItem.ProductSpecificationName }}"
-            settlement-price="{{ goodsItem.GroupPrice }}"
-            count="{{ goodsItem.SaleCount }}"
+            name="{{ item.ProductName }}"
+            specification-name="{{ item.ProductSpecificationName }}"
+            settlement-price="{{ item.GroupPrice }}"
+            count="{{ item.SaleCount }}"
           ></goods>
           <view class="content">
             <!-- 订单总价 -->
@@ -98,7 +98,7 @@
               <view class="order-countdown-wrap">
                 <i-count-down i-class="order-countdown" target="{{ computed.targetTimeGroup(item.CreateTime) }}"></i-count-down> 后拼团结束
               </view>
-              <view class="order-price">实付款：<text class="order-price-num">￥{{ goodsItem.GroupPrice * goodsItem.SaleCount }}</text></view>
+              <view class="order-price">实付款：<text class="order-price-num">￥{{ item.GroupPrice * item.SaleCount }}</text></view>
             </view>
             <!-- 拼团信息 -->
             <view class="group-info flex flex-sides">
@@ -120,8 +120,8 @@
         <view class="card-foot flex flex-sides flex-middle">
           <!-- 底部 -->
           <view class="card-foot-btns flex flex-right">
-            <button class="btn" size="mini" catchtap="">取消订单</button>
-            <button class="btn btn-primary" size="mini" catchtap="handleTap">邀请好友拼单</button>
+            <button class="btn" size="mini" catchtap="toggleShowCancelModal">取消订单</button>
+            <button class="btn btn-primary" size="mini" open-type="share" data-goods="{{ item }}">邀请好友拼单</button>
           </view>
         </view>
       </view>
@@ -173,7 +173,7 @@
           <text class="card-foot-text">*请去我的券包查看商品券</text>
           <!-- 底部 -->
           <view class="card-foot-btns flex flex-right">
-            <button class="btn btn-primary" size="mini" catchtap="">去我的卡包</button>
+            <button class="btn btn-primary" size="mini" catchtap="navigateToCoupon">去我的券包</button>
           </view>
         </view>
       </view>
@@ -206,6 +206,12 @@
       <goods></goods>
     </view>
   </i-drawer>
+
+  <!-- 对话框 -->
+  <i-modal title="提示" visible="{{ flag.showCancelModal }}" show-cancel="{{ false }}" ok-text="关闭" bindok="toggleShowCancelModal">
+    <view>请联系客服为您处理</view>
+  </i-modal>
+
 </container>
 
 <wxs module="computed">

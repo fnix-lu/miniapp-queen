@@ -3,7 +3,8 @@
     "i-tabs": "/iview/tabs/index",
     "i-tab": "/iview/tab/index",
     "i-count-down": "/iview/count-down/index",
-    "i-drawer": "/iview/drawer/index"
+    "i-drawer": "/iview/drawer/index",
+    "i-modal": "/iview/modal/index"
   },
   "navigationBarTitleText": "我的订单"
 }

@@ -105,6 +105,9 @@
 .group-status {
   text-align: right;
 }
+.group-countdown {
+  margin-left: 20rpx;
+}
 .btn-show-join {
   width: 138rpx;
   height: 72rpx;
