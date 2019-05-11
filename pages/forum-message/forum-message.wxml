@@ -2,19 +2,6 @@
 <container>
   <view class="panel">
     <view class="panel-head">
-      <view class="msg-type">您发布的新帖</view>
-      <view class="msg-status">待审核</view>
-    </view>
-    <view class="panel-body type-post">
-      <image class="post-img"></image>
-      <view class="post-summary">
-        <view class="post-title">苏菲的秘密</view>
-        <view class="post-content">你只闻到我的香水，却没看到我的汗水；你有你的规则，我有我的选择…你只闻到我的香水，却没看到我的汗水；你有你的规则，我有我的选择…</view>
-      </view>
-    </view>
-  </view>
-  <view class="panel">
-    <view class="panel-head">
       <view class="msg-type">您有新的回复</view>
     </view>
     <view class="panel-body type-reply">

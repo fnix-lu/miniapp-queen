@@ -12,7 +12,11 @@ Page({
     postContent: {},
     currentPage: 0,
     allPageCount: 1,
-    comments: []
+    comments: [],
+    replyText: '',
+    replyTargetId: '',
+    replyTargetName: '',
+    replyInputFocus: false
   },
 
   /**
@@ -68,7 +72,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.getPostComments()
   },
 
   /**
@@ -97,7 +101,7 @@ Page({
   /**
    * 获取下一页评论列表
    */
-  getPostComments (data) {
+  getPostComments () {
     const _this = this
     if (this.data.currentPage >= this.data.allPageCount) {
       return
@@ -105,8 +109,7 @@ Page({
     app.api.getPostComments({
       PageIndex: this.data.currentPage + 1,
       GirlForumId: this.data.postId,
-      GirlForumMemberId: this.data.postMemberId,
-      ...data
+      IsContainReply: true
     }).then(res => {
       console.log('评论列表', res)
       _this.setData({
@@ -115,5 +118,83 @@ Page({
         comments: _this.data.comments.concat(res.Data)
       })
     })
+  },
+
+  /**
+   * 初始化评论列表
+   */
+  initPostComments () {
+    this.setData({
+      currentPage: 0,
+      allPageCount: 1,
+      comments: []
+    })
+  },
+
+  /**
+   * 留言文本框输入事件
+   */
+  handleInputReplyText (e) {
+    this.setData({
+      replyText: e.detail.value
+    })
+  },
+  
+  /**
+   * 拉起回复框
+   */
+  prepareToReply (e) {
+    let {
+      replyTargetId,
+      replyTargetName
+    } = e.currentTarget.dataset
+    this.setData({
+      replyTargetId,
+      replyTargetName,
+      replyInputFocus: true
+    })
+  },
+
+  /**
+   * 输入框为空时失去焦点，初始化 replyTargetId, replyTargetName
+   */
+  handleReplyInputBlur () {
+    if (!this.data.replyText) {
+      this.setData({
+        replyTargetId: '',
+        replyTargetName: ''
+      })
+    }
+  },
+
+  handleSubmitReplyText () {
+    const _this = this
+    let {
+      replyTargetId, // 要回复的留言的主键
+      postId,        // 要留言的帖子的主键
+      replyText      // 内容
+    } = this.data
+    
+    if (replyTargetId) {
+      // 如果，存在 replyTargetId, 为对留言进行回复
+      app.api.submitReply({
+        // 请求参数
+      }).then(res => {
+        // 初始化整个评论列表
+        _this.initPostComments()
+        // 重新获取评论列表
+        _this.getPostComments()
+      })
+    } else {
+      // 否则，为对帖子进行留言
+      app.api.submitComment({
+        // 请求参数
+      }).then(res => {
+        // 初始化整个评论列表
+        _this.initPostComments()
+        // 重新获取评论列表
+        _this.getPostComments()
+      })
+    }
   }
 })

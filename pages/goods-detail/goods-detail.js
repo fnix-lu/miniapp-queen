@@ -17,7 +17,9 @@ Page({
       amount: 1
     },
     groups: [],
-    currentGroup: {}
+    currentGroup: {
+      Participations: []
+    }
   },
 
   /**

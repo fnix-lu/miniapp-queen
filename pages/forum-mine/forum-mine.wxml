@@ -1,0 +1,20 @@
+<!--pages/forum-mine/forum-mine.wxml-->
+<container>
+  <view
+    class="panel"
+    wx:for="{{ posts }}"
+    wx:key="{{ index }}"
+  >
+    <view class="panel-head">
+      <view class="msg-type">您发布的新帖</view>
+      <view class="msg-status">帖子状态</view>
+    </view>
+    <view class="panel-body type-post">
+      <image class="post-img" src="{{ item.ImageUrl }}" mode="aspectFill"></image>
+      <view class="post-summary">
+        <view class="post-title">{{ item.Name }}</view>
+        <view class="post-content">{{ item.Description }}</view>
+      </view>
+    </view>
+  </view>
+</container>

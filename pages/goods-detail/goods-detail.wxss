@@ -95,7 +95,7 @@
   width: 80rpx;
   height: 80rpx;
   border-radius: 40rpx;
-  background-color: pink;
+  background-color: #fff;
   margin-right: 22rpx;
 }
 .group-name {
@@ -202,10 +202,10 @@
 .buy-options-row-title {
   font-size: 28rpx;
 }
-.buy-img {
+.specification-img {
   width: 156rpx;
   height: 156rpx;
-  background: pink;
+  background: #fff;
   border: 2rpx solid var(--color-border);
   margin-right: 42rpx;
 }

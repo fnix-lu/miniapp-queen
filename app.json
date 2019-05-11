@@ -15,7 +15,8 @@
     "pages/feedback/feedback",
     "pages/coupon/coupon",
     "pages/coupon-all/coupon-all",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/forum-mine/forum-mine"
   ],
   "window": {
     "backgroundColor": "#999",

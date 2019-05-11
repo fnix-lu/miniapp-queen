@@ -44,6 +44,7 @@
   <view class="groups-wrap">
     <view class="groups-title">正在进行的拼团，赶紧参与吧</view>
     <view class="list">
+      <!-- 团 -->
       <view
         class="list-item first flex flex-sides flex-middle"
         wx:for="{{ groups }}"
@@ -57,18 +58,7 @@
         </view>
         <view class="btn-show-join" bindtap="showModalJoin" data-group="{{ item }}">去参团</view>
       </view>
-
-      
-      <view class="list-item first flex flex-sides flex-middle">
-        <image class="leader-headimg" src="" mode="aspectFill"></image>
-        <view class="group-name">computed<text style="margin-left:20rpx;color:var(--color-subtext)">的团</text></view>
-        <view class="group-status">
-          <view style="color:#353535">还差<text style="color:var(--color-primary)">人</text>拼成</view>
-          <view style="margin-top:14rpx">仅剩<i-count-down i-class="group-countdown" target="{{ computed.targetTimeGroup('2019-5-11 17:30:00') }}"></i-count-down></view>
-        </view>
-        <view class="btn-show-join" bindtap="showModalJoin" data-group="{{ 'item' }}">去参团</view>
-      </view>
-
+      <!-- end 团 -->
 
     </view>
   </view>
@@ -101,7 +91,7 @@
   <i-drawer mode="bottom" visible="{{ flag.drawerBuy }}" bindclose="toggleDrawerBuy">
     <view>
       <view class="buy-options-row flex">
-        <image class="buy-img"></image>
+        <image class="specification-img" src="{{ selected.specification.ImageUrl }}" mode="aspectFit"></image>
         <view class="buy-goods">
           <view class="buy-name">{{ goods.Name }}</view>
           <view class="buy-selected">
@@ -135,7 +125,7 @@
 
   <!-- 弹层 参与拼单 -->
   <i-modal
-    title="参与“小仙女儿”拼单"
+    title="参与“{{ computed.leader(currentGroup.Participations).MemberName }}”拼单"
     visible="{{ flag.modalJoin }}"
     show-ok="{{ false }}"
     show-cancel="{{ false }}"

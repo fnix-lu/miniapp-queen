@@ -93,7 +93,15 @@ module.exports = {
   },
   // 获取帖子评论列表
   getPostComments (data) {
-    return fetch('forum/GetGirlForumReplyAndLeaves', data)
+    return fetch('forum/GetLeavesByGirlForumId', data)
+  },
+  // 发表对帖子的留言
+  submitComment (data) {
+    return fetch('forum/LeaveMessageForGirlForum', data)
+  },
+  // 发表对留言的回复
+  submitReply (data) {
+    return fetch('forum/ReplyForLeaveMessage', data)
   },
   // 发布帖子
   submitPost (data) {

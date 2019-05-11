@@ -121,6 +121,7 @@ Page({
     //console.log(this.data.currentPage +'，'+this.data.allPageCount)
     app.api.getForumList({
       PageIndex: this.data.currentPage + 1,
+      MemberId: '',
       IsContainImage: true,
       IsDefaultImage: true
     }).then(res => {

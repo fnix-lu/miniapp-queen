@@ -48,8 +48,8 @@ Component({
             this.triggerEvent('ok');
         },
         handleClickCancel () {
-            console.log('trigger cancel')
             this.triggerEvent('cancel');
-        }
+        },
+        stopBubble () {}
     }
 });
