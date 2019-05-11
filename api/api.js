@@ -7,7 +7,7 @@ const fetch = (url, data = {}, method = 'GET') => new Promise((resolve, reject) 
     title: '请稍候...',
     mask: true
   })
-
+  console.log('fetch is begin!' + url)
   const memberInfo = wx.getStorageSync('memberInfo')
 
   wx.request({
@@ -82,7 +82,10 @@ module.exports = {
 
   // 获取闺蜜圈列表
   getForumList (data) {
-    return fetch('forum/GetGirlForums', data)
+    console.log('start fetch forums data!')
+    var result= fetch('forum/GetGirlForums', data)
+    //console.log(result)
+    return result
   },
   // 获取帖子内容
   getPostContent (data) {

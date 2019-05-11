@@ -24,6 +24,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '这是一个模态弹窗',
+    //   success(res) {
+    //     if (res.confirm) {
+    //       console.log('用户点击确定')
+    //     } else if (res.cancel) {
+    //       console.log('用户点击取消')
+    //     }
+    //   }
+    // })
     this.getForumList()
   },
 
@@ -102,13 +113,12 @@ Page({
    * 获取下一页帖子列表
    */
   getForumList () {
-    // wx.showToast({
-    //   title: 'this is test begin!',
-    // })
+   
     const _this = this
     if (this.data.currentPage >= this.data.allPageCount) {
       return
     }
+    //console.log(this.data.currentPage +'，'+this.data.allPageCount)
     app.api.getForumList({
       PageIndex: this.data.currentPage + 1,
       IsContainImage: true,
