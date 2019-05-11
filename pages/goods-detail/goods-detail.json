@@ -4,7 +4,8 @@
     "i-tab": "/iview/tab/index",
     "i-drawer": "/iview/drawer/index",
     "i-input-number": "/iview/input-number/index",
-    "i-modal": "/iview/modal/index"
+    "i-modal": "/iview/modal/index",
+    "i-count-down": "/iview/count-down/index"
   },
   "navigationBarTitleText": "女王拼团"
 }

@@ -44,24 +44,22 @@
   <view class="groups-wrap">
     <view class="groups-title">正在进行的拼团，赶紧参与吧</view>
     <view class="list">
-      <view class="list-item first flex flex-sides flex-middle">
-        <image class="leader-headimg"></image>
-        <view class="group-name">小仙女儿<text style="margin-left:20rpx;color:var(--color-subtext)">的团</text></view>
+      <!-- 团 -->
+      <view
+        class="list-item first flex flex-sides flex-middle"
+        wx:for="{{ groups }}"
+        wx:key="{{ index }}"
+      >
+        <image class="leader-headimg" src="{{ computed.leader(item.Participations).MemberHeadImgUrl }}" mode="aspectFill"></image>
+        <view class="group-name">{{ computed.leader(item.Participations).MemberName }}<text style="margin-left:20rpx;color:var(--color-subtext)">的团</text></view>
         <view class="group-status">
-          <view style="color:#353535">还差<text style="color:var(--color-primary)">1人</text>拼成</view>
-          <view style="margin-top:14rpx">仅剩<text style="margin-left:20rpx">23:59:59</text></view>
+          <view style="color:#353535">还差<text style="color:var(--color-primary)">{{ item.NewLimit }}人</text>拼成</view>
+          <view style="margin-top:14rpx">仅剩<i-count-down i-class="group-countdown" target="{{ computed.targetTimeGroup(item.CreateTime) }}"></i-count-down></view>
         </view>
-        <view class="btn-show-join">去参团</view>
+        <view class="btn-show-join" bindtap="showModalJoin" data-group="{{ item }}">去参团</view>
       </view>
-      <view class="list-item flex flex-sides flex-middle">
-        <image class="leader-headimg"></image>
-        <view class="group-name">小仙女儿<text style="margin-left:20rpx;color:var(--color-subtext)">的团</text></view>
-        <view class="group-status">
-          <view style="color:#353535">还差<text style="color:var(--color-primary)">1人</text>拼成</view>
-          <view style="margin-top:14rpx">仅剩<text style="margin-left:20rpx">23:59:59</text></view>
-        </view>
-        <view class="btn-show-join">去参团</view>
-      </view>
+      <!-- end 团 -->
+
     </view>
   </view>
 
@@ -93,7 +91,7 @@
   <i-drawer mode="bottom" visible="{{ flag.drawerBuy }}" bindclose="toggleDrawerBuy">
     <view>
       <view class="buy-options-row flex">
-        <image class="buy-img"></image>
+        <image class="specification-img" src="{{ selected.specification.ImageUrl }}" mode="aspectFit"></image>
         <view class="buy-goods">
           <view class="buy-name">{{ goods.Name }}</view>
           <view class="buy-selected">
@@ -126,15 +124,42 @@
   </i-drawer>
 
   <!-- 弹层 参与拼单 -->
-  <i-modal title="参与“小仙女儿”拼单" visible="{{ flag.modalJoin }}" show-ok="{{ false }}" show-cancel="{{ false }}">
-    <view style="margin-bottom:20rpx;font-size:28rpx">仅剩 <text style="color:var(--color-primary)">1</text> 个名额，23:59:59 后结束</view>
+  <i-modal
+    title="参与“{{ computed.leader(currentGroup.Participations).MemberName }}”拼单"
+    visible="{{ flag.modalJoin }}"
+    show-ok="{{ false }}"
+    show-cancel="{{ false }}"
+    bindcancel="hideModalJoin"
+  >
+    <view style="margin-bottom:20rpx;font-size:28rpx">仅剩 <text style="color:var(--color-primary)">{{ currentGroup.NewLimit }}</text> 个名额，<i-count-down i-class="group-countdown" target="{{ computed.targetTimeGroup(item.CreateTime) }}"></i-count-down> 后结束</view>
     <group>
-      <group-member is-first is-leader></group-member>
-      <group-member></group-member>
-      <group-member></group-member>
-      <group-member></group-member>
+      <group-member
+        wx:for="{{ currentGroup.Participations }}"
+        wx:for-item="memberItem"
+        wx:for-index="memberIndex"
+        wx:key="{{ memberIndex }}"
+        is-first="{{ memberIndex === 0 }}"
+        is-leader="{{ memberItem.IsMaster }}"
+        head-image="{{ memberItem.MemberHeadImgUrl }}"
+      ></group-member>
     </group>
-    <button class="btn btn-primary btn-full btn-join">参与拼单</button>
+    <button class="btn btn-primary btn-full btn-join" bindtap="">参与拼单</button>
   </i-modal>
 
 </container>
+
+<wxs module="computed">
+  module.exports = {
+    // 团长
+    leader: function (memberList) {
+      return memberList.filter(function (item) {
+        return item.IsMaster
+      })[0]
+    },
+
+    // 拼团倒计时目标时间
+    targetTimeGroup: function (createTime) {
+      return getDate(createTime).getTime() + 5 * 24 * 60 * 60 * 1000
+    },
+  }
+</wxs>

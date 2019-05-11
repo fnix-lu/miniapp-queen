@@ -26,7 +26,7 @@
 
     <!-- 第二列 -->
     <view class="waterfall-col">
-   <!-- 贴子卡片 -->
+      <!-- 贴子卡片 -->
       <navigator
         wx:for="{{ postCol2 }}"
         wx:key="index"
@@ -43,6 +43,7 @@
           </view>
         </view>
       </navigator>
+      <!-- end 贴子卡片 -->
     </view>
   </view>
 
@@ -50,14 +51,14 @@
   <view class="cover {{ flag.showCover ? 'show' : '' }}" bindtap="hideLayers"></view>
   <view class="fixed-menu">
     <view class="fixed-menu-items {{ flag.showMenu ? 'show' : '' }}">
-      <navigator class="fixed-menu-item" url="/pages/forum-message/forum-message">
+      <navigator class="fixed-menu-item" url="/pages/forum-mine/forum-mine">
         <image class="icon-message" src="/assets/img/message.png"></image>
         <view>帖子</view>
       </navigator>
       <navigator class="fixed-menu-item" url="/pages/forum-message/forum-message">
         <image class="icon-message" src="/assets/img/message.png"></image>
         <view>消息</view>
-        <text class="message-badge">3</text>
+        <!-- <text class="message-badge">3</text> -->
       </navigator>
       <navigator class="fixed-menu-item" url="/pages/post-new/post-new">
         <image class="icon-edit" src="/assets/img/edit.png"></image>

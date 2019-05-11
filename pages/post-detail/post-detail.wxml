@@ -18,52 +18,69 @@
   <!-- 评论区 -->
   <view class="panel comment-area">
     <view class="comment-area-title">评论 <text style="color:#888888">{{ comments.length }}</text></view>
+
     <!-- 一条评论 -->
-    <view class="comment-item first">
+    <view
+      class="comment-item {{ index === 0 ? 'first' : '' }}"
+      wx:for="{{ comments }}"
+      wx:key="{{ index }}"
+    >
       <view class="user">
-        <image class="user-headimg"></image>
+        <image class="user-headimg" src="{{ item.LeaveMessageMemberHeadImgUrl }}" mode="aspectFill"></image>
         <view>
-          <view class="user-nickname">小仙女儿</view>
-          <view class="created-time">03-29</view>
+          <view class="user-nickname">{{ item.CreatorName }}</view>
+          <view class="created-time">{{ item.CreateTime }}</view>
         </view>
       </view>
       <view class="comment-content-wrap">
         <!-- 评论内容 -->
-        <view class="comment-content">楼主好细心啊楼主好细心啊楼主好细心啊楼主好细心啊楼主好细心啊楼主好细心啊<view class="btn-show-replybar">回复</view></view>
+        <view class="comment-content">
+          <text>{{ item.LeaveMessageContent }}</text>
+          <view
+            class="btn-show-replybar"
+            bindtap="prepareToReply"
+            data-reply-target-id="{{ item.Id }}"
+            data-reply-target-name="{{ item.CreatorName }}"
+          >回复</view>
+        </view>
         <!-- 已有的回复 -->
-        <view class="replies">
-          <view class="reply-item first"><text class="reply-user">小仙女儿</text>：赞同赞同赞同赞同赞同赞同赞同赞同赞同赞同</view>
-          <view class="reply-item"><text class="reply-user">大仙女儿</text>：我也赞同赞同</view>
+        <view class="replies" wx:if="{{ item.LeaveReplies.length > 0 }}">
+          <view
+            class="reply-item {{ replyIndex === 0 ? 'first' : '' }}"
+            wx:for="{{ item.LeaveReplies }}"
+            wx:for-item="replyItem"
+            wx:for-index="replyIndex"
+            wx:key="replyIndex"
+          >
+            <text class="reply-user">{{ replyItem.CreatorName }}</text>：{{ replyItem.ReplyLeaveMessageContent }}
+          </view>
         </view>
       </view>
     </view>
     <!-- end 一条评论 -->
 
-    <view class="comment-item">
-      <view class="user">
-        <image class="user-headimg"></image>
-        <view>
-          <view class="user-nickname">小仙女儿</view>
-          <view class="created-time">03-29</view>
-        </view>
-      </view>
-      <view class="comment-content-wrap">
-        <!-- 评论内容 -->
-        <view class="comment-content">楼主好细心啊楼主好细心啊楼主好细心啊楼主好细心啊楼主好细心啊楼主好细心啊<view class="btn-show-replybar">回复</view></view>
-        <!-- 已有的回复 -->
-        <view class="replies">
-          <view class="reply-item first"><text class="reply-user">小仙女儿</text>：赞同赞同赞同赞同赞同赞同赞同赞同赞同赞同</view>
-          <view class="reply-item"><text class="reply-user">大仙女儿</text>：我也赞同赞同</view>
-        </view>
-      </view>
-    </view>
-
   </view>
 
   <!-- 底部回复栏 -->
   <view class="fixed-footer">
-    <view><input class="input-reply" placeholder="回复楼主的评论"></input></view>
-    <view><button class="btn btn-primary btn-reply" size="mini" disabled="{{ false }}">回复</button></view>
+    <view>
+      <input
+        class="input-reply"
+        value="{{ replyText }}"
+        placeholder="{{ replyTargetName ? '回复' + replyTargetName : '留言' }}"
+        bindinput="handleInputReplyText"
+        focus="{{ replyInputFocus }}"
+        bindblur="handleReplyInputBlur"
+      ></input>
+    </view>
+    <view>
+      <button
+        class="btn btn-primary btn-reply"
+        size="mini"
+        disabled="{{ replyText.length === 0 }}"
+        bindtap="handleSubmitReplyText"
+      >回复</button>
+    </view>
   </view>
 </container>
 

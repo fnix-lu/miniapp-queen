@@ -9,7 +9,8 @@ Page({
   data: {
     targetTime: new Date('2019-5-1 00:00:00').getTime(),
     flag: {
-      showOrderDetail: false
+      showOrderDetail: false,
+      showCancelModal: false
     },
     currentPage: 0,
     allPageCount: 1,
@@ -33,6 +34,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('loading...')
     this.getNextOrders('unpaid')
     this.getNextOrders('ungrouped')
     this.getNextOrders('untaked')
@@ -83,8 +85,16 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      let { goods } = res.target.dataset
 
+      return {
+        title: '快来加入我的拼单队伍吧！',
+        path: '/pages/goods-detail/goods-detail?goodsId=' + goods.ProductId,
+        imageUrl: goods.ProductImageUrl
+      }
+    }
   },
 
   /**
@@ -100,6 +110,7 @@ Page({
     if (currentTab === 'unpaid') {
       app.api.getOrders({
         PageIndex: this.data.currentPage + 1,
+        PageSize: 10000,
         Type: -1,
         PayStatus: 0
       }).then(res => {
@@ -134,6 +145,7 @@ Page({
     if (currentTab === 'ungrouped') {
       app.api.getCrowdOrders({
         PageIndex: this.data.currentPage + 1,
+        PageSize: 10000,
         IsContainParticipation: true,
         OrderType: 1,
         PayStatus: 1,
@@ -154,11 +166,13 @@ Page({
    */
   changeOrderTab (e) {
     let { key } = e.detail
+    // 初始化页码
     this.setData({
       currentPage: 0,
       allPageCount: 1,
       currentTab: key
     })
+    // 初始化列表
     if (key === 'unpaid') {
       this.setData({
         'ordersUnpaid.list': []
@@ -175,6 +189,42 @@ Page({
       })
     }
     this.getNextOrders(key)
+  },
+
+  /**
+   * 手动取消订单，联系客服处理
+   */
+  // handleCancel () {
+  //   this.setData({
+  //     'flag.showCancelModal': true
+  //   })
+  // },
+
+  /**
+   * 关闭点击取消订单时的提示对话框
+   */
+  // hideCancelModal () {
+  //   this.setData({
+  //     'flag.showCancelModal': false
+  //   })
+  // }
+
+  /**
+   * 切换显示联系客服处理的提示框
+   */
+  toggleShowCancelModal () {
+    this.setData({
+      'flag.showCancelModal': !this.data.flag.showCancelModal
+    })
+  },
+
+  /**
+   * 去我的券包
+   */
+  navigateToCoupon () {
+    wx.navigateTo({
+      url: '/pages/coupon/coupon',
+    })
   }
   
 })

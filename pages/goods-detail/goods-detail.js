@@ -15,6 +15,10 @@ Page({
     selected: {
       specification: {},
       amount: 1
+    },
+    groups: [],
+    currentGroup: {
+      Participations: []
     }
   },
 
@@ -23,7 +27,7 @@ Page({
    */
   onLoad: function (query) {
     this.getGoodsById(query.goodsId)
-    this.getCrowdOrders(query.goodsId)
+    this.getCrowdOrdersById(query.goodsId)
   },
 
   /**
@@ -137,11 +141,39 @@ Page({
   getCrowdOrdersById (id) {
     const _this = this
     app.api.getCrowdOrders({
-      PageSize: 100,
+      PageSize: 10000,
       IsContainParticipation: true,
       ProductId: id
     }).then(res => {
       console.log('拼团列表', res)
+      _this.setData({
+        groups: res.Data
+      })
+    })
+  },
+
+  /**
+   * 弹出参团提示框，设置提示框数据
+   */
+  showModalJoin (e) {
+    const _this = this
+    let { group } = e.currentTarget.dataset
+
+    this.setData({
+      currentGroup: group
+    }, () => {
+      _this.setData({
+        'flag.modalJoin': true
+      })
+    })
+  },
+
+  /**
+   * 隐藏参团提示框
+   */
+  hideModalJoin () {
+    this.setData({
+      'flag.modalJoin': false
     })
   }
 })
