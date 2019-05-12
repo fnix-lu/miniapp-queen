@@ -16,7 +16,7 @@
           <view class="post-title">{{ item.Name }}</view>
           <view class="post-content">{{ item.Description }}</view>
           <view class="post-footer">
-            <view class="post-user"><image class="user-headimg"></image>小仙女儿</view>
+            <view class="post-user"><image src="{{item.HeadImgUrl}}" class="user-headimg"></image>小仙女儿</view>
             <view class="post-read"><image class="icon-eye" src="/assets/img/eye.png"></image>{{ item.ViewCount }}</view>
           </view>
         </view>
