@@ -2,10 +2,10 @@
 <container>
   <view class="panel">
     <view class="user">
-      <image class="user-headimg"></image>
+      <image src="{{postContent.HeadImgUrl}}" class="user-headimg"></image>
       <view>
-        <view class="user-nickname">小仙女儿</view>
-        <view class="created-time">03-29</view>
+        <view class="user-nickname">{{postContent.CreatorName}}</view>
+        <view class="created-time">{{postContent.CreateTime}}</view>
       </view>
     </view>
     <view class="post-title">{{ postContent.Name }}</view>
@@ -17,7 +17,7 @@
 
   <!-- 评论区 -->
   <view class="panel comment-area">
-    <view class="comment-area-title">评论 <text style="color:#888888">{{ comments.length }}</text></view>
+    <view class="comment-area-title">评论 <text style="color:#888888">{{ postContent.CommentCount }}</text></view>
 
     <!-- 一条评论 -->
     <view
