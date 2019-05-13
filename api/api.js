@@ -1,4 +1,5 @@
-const HOST = 'http://localhost:62407/api'
+// const HOST = 'http://localhost:62407/api'
+const HOST = 'http://39.98.241.13:997/api'
 
 
 
@@ -106,6 +107,10 @@ module.exports = {
   // 发布帖子
   submitPost (data) {
     return fetch('forum/AddGirlForum', data, 'POST')
+  },
+  // 获取我的闺蜜圈消息
+  getReplyMessages (data) {
+    return fetch('forum/GetGirlForumReplyAndLeaves', data)
   },
 
 
