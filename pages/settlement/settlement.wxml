@@ -7,19 +7,16 @@
     wx:key="{{ index }}"
   >
     <goods
-      image="{{ item.a }}"
-      name="{{ item.b }}"
-      specification-name="{{ item.c }}"
-      settlement-price="{{ item.d }}"
-      count="{{ item.e }}"
+      image="{{ item.ProductImageUrl }}"
+      name="{{ item.ProductName }}"
+      specification-name="{{ item.ProductSpecificationName }}"
+      settlement-price="{{ item.SettlementPrice }}"
+      count="{{ item.SaleCount }}"
     ></goods>
   </view>
-  <!-- <view class="goods-panel">
-    <goods></goods>
-  </view> -->
   <view class="title">请确认取货信息<text class="title-extra">*请您先确认学校后，再进行购买</text></view>
   <i-cell-group>
-    <i-cell i-class="list-item" title="省份">
+    <i-cell title="省份">
       <view slot="footer" class="footer-wrap">
         <picker range="{{ range.province }}" range-key="Name" value="{{ profile.provinceIndex }}" bindchange="changeProvince">
           <text wx:if="{{ profile.province }}">{{ profile.province }}</text>
@@ -27,17 +24,17 @@
         </picker>
       </view>
     </i-cell>
-    <i-cell i-class="list-item {{ !profile.province ? 'picker-disabled' : '' }}" title="城市">
+    <i-cell title="城市" i-class="{{ !profile.province ? 'picker-disabled' : '' }}">
       <view slot="footer" class="footer-wrap">
-        <picker range="{{ range.city }}" range-key="Name" value="{{ profile.cityIndex }}" bindchange="changeCity">
+        <picker range="{{ range.city }}" range-key="Name" value="{{ profile.cityIndex }}" bindchange="changeCity" disabled="{{ !profile.province }}">
           <text wx:if="{{ profile.city }}">{{ profile.city }}</text>
           <text wx:else class="placeholder">请选择</text>
         </picker>
       </view>
     </i-cell>
-    <i-cell i-class="list-item" title="学校">
+    <i-cell title="学校">
       <view slot="footer" class="footer-wrap">
-        <picker range="{{ range.school }}" value="{{ profile.schoolIndex }}" bindchange="changeSchool">
+        <picker range="{{ range.school }}" range-key="School" value="{{ profile.schoolIndex }}" bindchange="changeSchool">
           <text wx:if="{{ profile.school }}">{{ profile.school }}</text>
           <text wx:else class="placeholder">请选择</text>
         </picker>
@@ -66,8 +63,8 @@
 
   <!-- 底部结算栏 -->
   <view class="fixed-footer flex flex-middle">
-    <view class="settlement-total flex flex-center flex-middle">实付款：<text class="settlement-total-price">￥24</text></view>
-    <view class="settlement-pay flex flex-center flex-middle">继续支付</view>
+    <view class="settlement-total flex flex-center flex-middle">实付款：<text class="settlement-total-price">￥{{ totalSettlementPrice }}</text></view>
+    <view class="settlement-pay flex flex-center flex-middle">提交订单</view>
   </view>
 
   <!-- 弹层 选择列表 -->

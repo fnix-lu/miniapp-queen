@@ -275,6 +275,9 @@ Page({
    * 检查购物车是否已全部选中
    */
   isCartAllSelected () {
+    if (this.data.cart.length === 0) {
+      return false
+    }
     return this.data.cart.every(item => item.Checked)
   },
 
@@ -293,7 +296,28 @@ Page({
     }
 
     app.login().then(() => {
-      app.globalData.settlementGoodsList = settlementGoodsList
+      app.globalData.settlementGoodsList = settlementGoodsList.map(item => ({
+        Id: item.Id,
+        SerialNumber: null,
+        MemberId: item.MemberId,
+        ProductCode: item.ProductCode,
+        ProductName: item.ProductName,
+        ProductImageUrl: item.ImageUrl,
+        ProductSpecificationId: item.ProductSpecificationId,
+        ProductSpecificationName: item.ProductSpecificationName,
+        SalePrice: item.SalePrice,
+        SettlementPrice: item.SettlementPrice,
+        CostPrice: item.CostPrice,
+        SaleCount: item.SaleCount,
+        Remark: null,
+        BrandId: null,
+        CreatorName: item.CreatorName,
+        CreateTime: item.CreateTime,
+        UpdaterName: item.UpdaterName,
+        UpdateTime: item.UpdateTime,
+        RecordStatus: item.RecordStatus,
+        IsTestData: item.IsTestData
+      }))
       wx.navigateTo({
         url: '/pages/settlement/settlement'
       })
