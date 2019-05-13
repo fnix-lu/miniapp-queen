@@ -37,6 +37,12 @@ App({
   },
   globalData: {
     // userInfo: null
+    settlementGoodsList: [
+      // 新增订单接口需要的商品项的数据结构
+      {
+
+      }
+    ]
   },
   api,
   /**

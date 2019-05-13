@@ -23,13 +23,24 @@ Page({
       province: [],
       city: [],
       school: []
-    }
+    },
+    settlementGoodsList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let { settlementGoodsList } = app.globalData
+
+    this.setData({
+      settlementGoodsList
+    })
+
+    console.log(this.data.settlementGoodsList)
+
+
+
     this.getProvincesAll()
   },
 

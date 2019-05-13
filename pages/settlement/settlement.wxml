@@ -1,12 +1,22 @@
 <!--pages/settlement/settlement.wxml-->
 <container>
   <view class="title">请确认订单信息</view>
-  <view class="goods-panel first">
-    <goods></goods>
+  <view
+    class="goods-panel {{ index === 0 ? 'first' : '' }}"
+    wx:for="{{ settlementGoodsList }}"
+    wx:key="{{ index }}"
+  >
+    <goods
+      image="{{ item.a }}"
+      name="{{ item.b }}"
+      specification-name="{{ item.c }}"
+      settlement-price="{{ item.d }}"
+      count="{{ item.e }}"
+    ></goods>
   </view>
-  <view class="goods-panel">
+  <!-- <view class="goods-panel">
     <goods></goods>
-  </view>
+  </view> -->
   <view class="title">请确认取货信息<text class="title-extra">*请您先确认学校后，再进行购买</text></view>
   <i-cell-group>
     <i-cell i-class="list-item" title="省份">

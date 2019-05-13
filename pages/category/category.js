@@ -36,7 +36,7 @@ Page({
   onLoad: function (options) {
     const _this = this
     this.getBrands()
-    app.login()
+    // app.login()
   },
 
   /**
@@ -282,15 +282,29 @@ Page({
    * 提交订单
    */
   toSettlement () {
-    console.log('去结算的商品', this.getToSettleItems())
+    let settlementGoodsList = this.getToSettleItems()
+
+    if (settlementGoodsList.length === 0) {
+      wx.showToast({
+        title: '请先勾选商品',
+        icon: 'none'
+      })
+      return
+    }
+
+    app.login().then(() => {
+      app.globalData.settlementGoodsList = settlementGoodsList
+      wx.navigateTo({
+        url: '/pages/settlement/settlement'
+      })
+    })
   },
 
   /**
    * 返回选中的商品id组成的数组
    */
   getToSettleItems () {
-    let arr = []
-    return arr
+    return this.data.cart.filter(item => item.Checked)
   },
 
   /**
@@ -304,6 +318,9 @@ Page({
       if (res.Code === 1000) {
         _this.setData({
           cart: res.Data.map(item => ({ ...item, Checked: false }))
+        })
+        _this.setData({
+          'flag.isCartAllSelected': this.isCartAllSelected()
         })
         console.log('购物车列表', _this.data.cart)
       }

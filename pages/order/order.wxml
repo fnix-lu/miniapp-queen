@@ -183,7 +183,7 @@
   <!-- 弹层 -->
   <!-- <view class="cover"></view> -->
 
-  <!-- 订单详情 -->
+  <!-- 订单详情 暂未对接 1.详情设计图无增量数据 2.普通订单与拼单订单内容有差异，字段也不一致 -->
   <i-drawer mode="top" visible="{{ flag.showOrderDetail }}" bind:close="toggleShowOrderDetail">
     <view class="dialog order-detail">
       <view class="center">

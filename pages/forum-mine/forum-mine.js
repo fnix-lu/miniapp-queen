@@ -85,7 +85,7 @@ Page({
       _this.setData({
         currentPage: res.PageIndex,
         allPageCount: res.AllPageCount,
-        posts: res.Data
+        posts: _this.data.posts.concat(res.Data)
       })
     })
   }
