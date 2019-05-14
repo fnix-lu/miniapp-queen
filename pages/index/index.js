@@ -35,7 +35,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getHotGroup()
+    //this.getHotGroup()
     this.getAdvertisements()
   },
 
@@ -265,6 +265,8 @@ Page({
       IsRelease: true
     }).then(res => {
       console.log('广告列表', res)
+      //20190515 经过测试，有些数据无法提供异步并发执行
+      this.getHotGroup();
       _this.setData({
         ad: res.Data[0] ? res.Data[0].AdvertiseItems : []
       })
