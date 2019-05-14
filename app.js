@@ -38,10 +38,29 @@ App({
   globalData: {
     // userInfo: null
     settlementGoodsList: [
-      // 新增订单接口需要的商品项的数据结构
-      {
-
-      }
+      // 新增订单接口需要的商品项的数据结构，跳转至结算页前先将数据格式化为以下字段，保存至该全局变量
+      // {
+      //   Id,
+      //   SerialNumber,
+      //   MemberId,
+      //   ProductCode,
+      //   ProductName,
+      //   ProductImageUrl,
+      //   ProductSpecificationId,
+      //   ProductSpecificationName,
+      //   SalePrice,
+      //   SettlementPrice,
+      //   CostPrice,
+      //   SaleCount,
+      //   Remark,
+      //   BrandId,
+      //   CreatorName,
+      //   CreateTime,
+      //   UpdaterName,
+      //   UpdateTime,
+      //   RecordStatus,
+      //   IsTestData
+      // }
     ]
   },
   api,

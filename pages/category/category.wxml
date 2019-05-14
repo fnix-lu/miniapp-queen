@@ -56,7 +56,7 @@
       <view class="cart-price-total">￥{{ computed.cartCheckedPrice(cart) }}</view>
       <view class="cart-price-desc">已减12元</view>
     </view>
-    <view class="btn-submit-order" bindtap="toSettlement">提交订单</view>
+    <view class="btn-submit-order" bindtap="toSettlement">去结算</view>
   </view>
   <!-- 购物车图标 -->
   <view class="cart-icon-wrap out {{ flag.showCart ? 'hidden' : '' }}" bindtap="toggleShowCart">

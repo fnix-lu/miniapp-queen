@@ -11,37 +11,53 @@ Page({
     currentConpon: '不使用优惠',
     profile: {
       phone: '',
-      birthday: '2019-3-30',
-      provinceIndex: '0',
+      birthday: '',
+      provinceIndex: 0,
       province: '',
-      cityIndex: '0',
+      cityIndex: 0,
       city: '',
-      schoolIndex: '0',
-      school: 'b'
+      schoolIndex: 0,
+      school: ''
     },
     range: {
       province: [],
       city: [],
       school: []
     },
-    settlementGoodsList: []
+    settlementGoodsList: [],
+    totalSettlementPrice: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const _this = this
     let { settlementGoodsList } = app.globalData
 
-    this.setData({
-      settlementGoodsList
+    settlementGoodsList.forEach(item => {
+      _this.data.totalSettlementPrice += item.SettlementPrice
     })
 
+    this.setData({
+      settlementGoodsList,
+      totalSettlementPrice: this.data.totalSettlementPrice
+    })
     console.log(this.data.settlementGoodsList)
 
-
-
-    this.getProvincesAll()
+    const memberInfo = wx.getStorageSync('memberInfo')
+    this.setData({
+      'profile.province': memberInfo.Province || '',
+      'profile.city': memberInfo.City || '',
+      'profile.school': memberInfo.School || ''
+    })
+    this.getProvincesAll().then(() => {
+      // 如果有省份初值，获取对应的城市列表
+      if (_this.data.profile.province) {
+        _this.getCitiesByProvinceId()
+      }
+    })
+    this.getSchoolsAll()
   },
 
   /**
@@ -132,6 +148,7 @@ Page({
       'profile.provinceIndex': value,
       'profile.province': province[value].Name
     })
+    this.getCitiesByProvinceId()
   },
 
   /**
@@ -153,16 +170,24 @@ Page({
     const { data: { range: { school } } } = this
     const { detail: { value } } = e
     this.setData({
-      'profile.school': school[value]
+      'profile.schoolIndex': value,
+      'profile.school': school[value].School
     })
   },
 
   /**
-   * 获取选中项的index
+   * 获取选中项的index, field为遍历的对象中用于显示的字段，省市为Name，学校为School
    */
-  selectedIndexOf(key) {
+  getRangeIndexOf(key, field) {
     const { profile, range } = this.data
-    return range[key].indexOf(profile[key])
+    let index = 0
+    for (let i = 0; i < range[key].length; i++) {
+      if (range[key][i][field].indexOf(profile[key]) > -1) {
+        index = i
+        break
+      }
+    }
+    return index
   },
 
   /**
@@ -170,20 +195,21 @@ Page({
    */
   getProvincesAll() {
     const _this = this
-    app.api.getProvinces({
+    return app.api.getProvinces({
       PageSize: 50
     }).then(res => {
       console.log('province', res)
-      if (res.Code === 1000) {
-        _this.setData({
-          'range.province': res.Data
-        })
-      }
+      _this.setData({
+        'range.province': res.Data
+      })
+      _this.setData({
+        'profile.provinceIndex': _this.getRangeIndexOf('province', 'Name')
+      })
     })
   },
 
   /**
-   * 请求省份对应的城市
+   * 请求省份对应的所有城市
    */
   getCitiesByProvinceId() {
     const _this = this
@@ -192,12 +218,31 @@ Page({
       PageSize: 50,
       ProvinceId: range.province[profile.provinceIndex].Id
     }).then(res => {
-      if (res.Code === 1000) {
-        console.log('city', res)
-        _this.setData({
-          'range.city': res.Data
-        })
-      }
+      console.log('city', res)
+      _this.setData({
+        'range.city': res.Data
+      })
+      _this.setData({
+        'profile.cityIndex': _this.getRangeIndexOf('city', 'Name')
+      })
     })
-  }
+  },
+
+  /**
+   * 请求所有学校
+   */
+  getSchoolsAll() {
+    const _this = this
+    app.api.getSchools({
+      PageSize: 100000
+    }).then(res => {
+      console.log('school', res)
+      _this.setData({
+        'range.school': res.Data
+      })
+      _this.setData({
+        'range.schoolIndex': _this.getRangeIndexOf('school', 'School')
+      })
+    })
+  },
 })
