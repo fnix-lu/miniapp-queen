@@ -30,7 +30,6 @@ Page({
       postMemberId
     })
     this.getPostContent()
-    this.getPostComments()
   },
 
   /**
@@ -95,6 +94,13 @@ Page({
       _this.setData({
         postContent: res.Data
       })
+      /*
+      最开始的时候
+      getPostContent()
+      getPostComments()放在一起执行
+      但是服务单没有做好程序管控，导致异步资源出问题
+      */
+      this.getPostComments()
     })
   },
 
@@ -186,9 +192,20 @@ Page({
         _this.getPostComments()
       })
     } else {
+      const memberInfo = wx.getStorageSync('memberInfo')
       // 否则，为对帖子进行留言
       app.api.submitComment({
         // 请求参数
+        //帖子作者
+        GirlForumMemberId:this.data.postContent.MemberId,
+        //帖子主键
+        ForumId: this.data.postContent.Id,
+        //留言会员主键
+        LeaveMessageMemberId: memberInfo.Id,
+        //帖子主键
+        GirlForumId:this.data.postId,
+        //留言内容
+        LeaveMessageContent:this.data.replyText
       }).then(res => {
         // 初始化整个评论列表
         _this.initPostComments()

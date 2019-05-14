@@ -1,5 +1,5 @@
-// const HOST = 'http://localhost:62407/api'
-const HOST = 'http://39.98.241.13:997/api'
+ const HOST = 'http://localhost:62407/api'
+//const HOST = 'http://39.98.241.13:997/api'
 
 
 
@@ -98,7 +98,7 @@ module.exports = {
   },
   // 发表对帖子的留言
   submitComment (data) {
-    return fetch('forum/LeaveMessageForGirlForum', data)
+    return fetch('forum/LeaveMessageForGirlForum', data,'POST')
   },
   // 发表对留言的回复
   submitReply (data) {
