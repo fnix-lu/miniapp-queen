@@ -71,3 +71,7 @@
 .picker-disabled {
   background: #f8f8f8 !important;
 }
+
+.coupon-list {
+  max-height: 732rpx;
+}

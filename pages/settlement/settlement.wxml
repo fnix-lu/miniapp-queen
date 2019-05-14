@@ -47,7 +47,7 @@
     <i-cell-group>
       <i-cell i-class="list-item" title="优惠券" is-link bindtap="toggleDrawerSelect">
         <!-- <text slot="footer">无可用</text> -->
-        <text slot="footer">{{ currentConpon }}</text>
+        <text slot="footer">{{ currentCoupon }}</text>
       </i-cell>
     </i-cell-group>
   </view>
@@ -64,16 +64,31 @@
   <!-- 底部结算栏 -->
   <view class="fixed-footer flex flex-middle">
     <view class="settlement-total flex flex-center flex-middle">实付款：<text class="settlement-total-price">￥{{ totalSettlementPrice }}</text></view>
-    <view class="settlement-pay flex flex-center flex-middle">提交订单</view>
+    <view class="settlement-pay flex flex-center flex-middle" bindtap="submitOrder">提交订单</view>
   </view>
 
   <!-- 弹层 选择列表 -->
   <i-drawer mode="bottom" visible="{{ flagDrawerSelect }}" bindclose="toggleDrawerSelect">
-    <i-radio-group current="{{ currentConpon }}" bindchange="selectCoupon">
-      <i-radio i-class="select-item first" value="不使用优惠" color="var(--color-primary)"></i-radio>
-      <i-radio i-class="select-item" value="5元现金券" color="var(--color-primary)"></i-radio>
-      <i-radio i-class="select-item" value="10元现金券" color="var(--color-primary)"></i-radio>
-    </i-radio-group>
+    <scroll-view class="coupon-list" scroll-y bindscrolltolower="getCoupons">
+      <i-radio
+        i-class="select-item first"
+        value="不使用优惠"
+        color="var(--color-primary)"
+        bindchange="selectCoupon"
+        data-coupon-id=""
+        checked="{{ currentCouponId === '' }}"
+      ></i-radio>
+      <i-radio
+        wx:for="{{ coupons }}"
+        wx:key="index"
+        i-class="select-item"
+        value="{{ item.Name }}"
+        color="var(--color-primary)"
+        bindchange="selectCoupon"
+        data-coupon-id="{{ item.Id }}"
+        checked="{{ currentCouponId === item.Id }}"
+      ></i-radio>
+    </scroll-view>
   </i-drawer>
   
 </container>

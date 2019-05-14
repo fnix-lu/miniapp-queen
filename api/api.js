@@ -135,6 +135,17 @@ module.exports = {
   clearCart (data) {
     return fetch('order/ClearBuyShopCart', data, 'POST')
   },
+  // 提交订单
+  submitOrder (data) {
+    return fetch('order/AddOrder', data, 'POST')
+  },
+
+
+
+  // 获取发起支付的参数
+  getPaymentParams (data) {
+    return fetch('pay/CreateWechatPayment', data, 'POST')
+  },
 
 
 
