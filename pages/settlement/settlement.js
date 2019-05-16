@@ -307,19 +307,25 @@ Page({
       console.log('提交订单', res)
       // 成功提交后获取支付参数
       app.api.getPaymentParams({
-        SerialNumber: res.SerialNumber
+        SerialNumber: res.Data.SerialNumber
       }).then(res => {
         console.log('支付参数', res)
         // 发起支付
         wx.requestPayment({
-          timeStamp: '',
-          nonceStr: '',
-          package: '',
-          signType: 'MD5',
-          paySign: '',
-          success (res) {},
-          fail (res) {},
-          complete (res) {}
+          timeStamp: res.Data.TimeStamp,
+          nonceStr: res.Data.NonceStr,
+          package: res.Data.Package,
+          signType: res.Data.SignType,
+          paySign: res.Data.PaySign,
+          success (res) {
+            console.log('success', res)
+          },
+          fail (res) {
+            console.log('fail', res)
+          },
+          complete (res) {
+            console.log('complete', res)
+          }
         })
       })
 
