@@ -61,7 +61,9 @@ App({
       //   RecordStatus,
       //   IsTestData
       // }
-    ]
+    ],
+    successPaidOrder: {},
+    successPaidCrowdOrder: {}
   },
   api,
   /**

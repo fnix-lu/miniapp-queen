@@ -139,6 +139,14 @@ module.exports = {
   submitOrder (data) {
     return fetch('order/AddOrder', data, 'POST')
   },
+  // 获取订单列表
+  getOrders(data) {
+    return fetch('order/GetOrders', data)
+  },
+  // 根据流水号获取单个普通订单
+  getSingleOrderBySerial (data) {
+    return fetch('order/GetOrderBySerial', data)
+  },
 
 
 
@@ -149,16 +157,13 @@ module.exports = {
 
 
 
-  // 获取订单列表
-  getOrders (data) {
-    return fetch('order/GetOrders', data)
-  },
-
-
-
   // 获取待成团
   getCrowdOrders (data) {
     return fetch('croworder/GetCrowdOrders', data)
+  },
+  // 新增拼单订单（非 Type 为 1 的普通订单）
+  submitCrowdOrder (data) {
+    return fetch('croworder/AddCrowOrder', data, 'POST')
   },
 
 
