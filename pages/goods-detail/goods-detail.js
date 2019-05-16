@@ -238,7 +238,7 @@ Page({
         ProductSpecificationId: selected.specification.Id,
         ProductSpecificationName: selected.specification.Name,
         SalePrice: selected.specification.Price,
-        SettlementPrice: orderType === '拼单' ? selected.specification.GroupPrice : selected.specification.Price,
+        SettlementPrice: orderType === '1' ? selected.specification.GroupPrice : selected.specification.Price,
         CostPrice: selected.specification.CostPrice,
         SaleCount: selected.amount,
         Remark: null,

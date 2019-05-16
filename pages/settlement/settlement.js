@@ -45,9 +45,10 @@ Page({
     this.setData({
       settlementGoodsList,
       totalSettlementPrice: this.data.totalSettlementPrice,
-      orderType: query.orderType
+      orderType: query.orderType * 1
     })
     console.log(this.data.settlementGoodsList)
+    console.log(this.data.orderType)
 
     const memberInfo = wx.getStorageSync('memberInfo')
     this.setData({
@@ -300,7 +301,7 @@ Page({
       CityName: profile.city,
       SchoolName: profile.school,
       CouponId: currentCouponId,
-      PayType: '微信支付',
+      PayType: 1,
       Type: orderType,
       Details: settlementGoodsList
     }).then(res => {
