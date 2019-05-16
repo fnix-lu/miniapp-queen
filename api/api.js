@@ -102,7 +102,7 @@ module.exports = {
   },
   // 发表对留言的回复
   submitReply (data) {
-    return fetch('forum/ReplyForLeaveMessage', data)
+    return fetch('forum/ReplyForLeaveMessage', data,'POST')
   },
   // 发布帖子
   submitPost (data) {
