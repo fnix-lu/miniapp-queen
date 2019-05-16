@@ -41,6 +41,7 @@
             bindtap="prepareToReply"
             data-reply-target-id="{{ item.Id }}"
             data-reply-target-name="{{ item.CreatorName }}"
+            data-reply-target-member-id="{{ item.LeaveMessageMemberId }}"
           >回复</view>
         </view>
         <!-- 已有的回复 -->

@@ -16,6 +16,7 @@ Page({
     replyText: '',
     replyTargetId: '',
     replyTargetName: '',
+    replyTargetMemberId: '',
     replyInputFocus: false
   },
 
@@ -150,13 +151,16 @@ Page({
    * 拉起回复框
    */
   prepareToReply (e) {
+    console.log(e)
     let {
       replyTargetId,
-      replyTargetName
+      replyTargetName,
+      replyTargetMemberId
     } = e.currentTarget.dataset
     this.setData({
       replyTargetId,
       replyTargetName,
+      replyTargetMemberId,
       replyInputFocus: true
     })
   },
@@ -168,7 +172,8 @@ Page({
     if (!this.data.replyText) {
       this.setData({
         replyTargetId: '',
-        replyTargetName: ''
+        replyTargetName: '',
+        replyTargetMemberId
       })
     }
   },
@@ -196,7 +201,9 @@ Page({
         //回复内容
         ReplyLeaveMessageContent:this.data.replyText,
         //留言的主键
-        GirlForumsLeaveId: replyTargetId
+        GirlForumsLeaveId: replyTargetId,
+        //留言拥有者的主键
+        LeaveMessageMemberId: this.data.replyTargetMemberId
       }).then(res => {
         // 初始化整个评论列表
         _this.initPostComments()
