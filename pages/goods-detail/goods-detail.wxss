@@ -1,6 +1,20 @@
 /* pages/goods-detail/goods-detail.wxss */
-.container {
+.container-inner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding-top: 84rpx;
   padding-bottom: 98rpx;
+}
+.tabs-wrap {
+  height: 84rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 .tabs {
   padding: 0 160rpx;

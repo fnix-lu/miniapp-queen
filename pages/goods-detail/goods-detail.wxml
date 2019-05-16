@@ -1,90 +1,94 @@
 <!--pages/goods-detail/goods-detail.wxml-->
 <container>
   <!-- 标签 -->
-  <i-tabs i-class="tabs" current="tab1" color="#FF8F37">
-    <i-tab key="tab1" title="商品"></i-tab>
-    <i-tab key="tab2" title="详情"></i-tab>
-  </i-tabs>
-
-  <!-- 轮播 -->
-  <swiper
-    class="swiper-goods-imgs"
-    indicator-dots
-    indicator-color="#DDDDDD"
-    indicator-active-color="var(--color-primary)"
-    circular
-  >
-    <swiper-item><image class="swiper-img"></image></swiper-item>
-    <swiper-item><image class="swiper-img"></image></swiper-item>
-  </swiper>
-
-  <!-- 价格 -->
-  <view class="price-wrap">
-    <view class="price-name">拼团价</view>
-    <view class="price-content">
-      ￥<text class="price-current">{{ selected.specification.GroupPrice }}</text><text class="del">￥{{ selected.specification.Price }}</text>
-    </view>
+  <view class="tabs-wrap">
+    <i-tabs i-class="tabs" current="{{ currentTab }}" color="#FF8F37" bindchange="changeTab">
+      <i-tab key="tab1" title="商品"></i-tab>
+      <i-tab key="tab2" title="详情"></i-tab>
+    </i-tabs>
   </view>
 
-  <!-- 信息 -->
-  <view class="list">
-    <view class="list-item first">
-      <view class="goods-name">{{ goods.Name }}</view>
-      <view class="goods-desc">{{ goods.Description }}</view>
-    </view>
-    <view class="list-item" bindtap="toggleDrawerBuy">
-      <text style="margin-right:22rpx">已选</text>
-      <text class="selected-type">“{{ selected.specification.Name }}” “{{ selected.amount }}”</text>
-      <image class="icon-arrow-right-picker" src="/assets/img/arrow_right_picker.png"></image>
-    </view>
-    <view class="list-item">正品保证 · 线下取货</view>
-  </view>
+  <scroll-view class="container-inner" scroll-y scroll-top="{{ toTop }}" bindscroll="scrollPage">
+    <!-- 轮播 -->
+    <swiper
+      class="swiper-goods-imgs"
+      indicator-dots
+      indicator-color="#DDDDDD"
+      indicator-active-color="var(--color-primary)"
+      circular
+    >
+      <swiper-item><image class="swiper-img" src="{{ goods.ImageUrl }}" mode="aspectFill"></image></swiper-item>
+      <!-- <swiper-item><image class="swiper-img"></image></swiper-item> -->
+    </swiper>
 
-  <!-- 进行中的拼团 -->
-  <view class="groups-wrap">
-    <view class="groups-title">正在进行的拼团，赶紧参与吧</view>
-    <view class="list">
-      <!-- 团 -->
-      <view
-        class="list-item first flex flex-sides flex-middle"
-        wx:for="{{ groups }}"
-        wx:key="{{ index }}"
-      >
-        <image class="leader-headimg" src="{{ computed.leader(item.Participations).MemberHeadImgUrl }}" mode="aspectFill"></image>
-        <view class="group-name">{{ computed.leader(item.Participations).MemberName }}<text style="margin-left:20rpx;color:var(--color-subtext)">的团</text></view>
-        <view class="group-status">
-          <view style="color:#353535">还差<text style="color:var(--color-primary)">{{ item.NewLimit }}人</text>拼成</view>
-          <view style="margin-top:14rpx">仅剩<i-count-down i-class="group-countdown" target="{{ computed.targetTimeGroup(item.CreateTime) }}"></i-count-down></view>
-        </view>
-        <view class="btn-show-join" bindtap="showModalJoin" data-group="{{ item }}">去参团</view>
+    <!-- 价格 -->
+    <view class="price-wrap">
+      <view class="price-name">拼团价</view>
+      <view class="price-content">
+        ￥<text class="price-current">{{ selected.specification.GroupPrice }}</text><text class="del">￥{{ selected.specification.Price }}</text>
       </view>
-      <!-- end 团 -->
-
     </view>
-  </view>
 
-  <!-- 商品详情 -->
-  <view class="goods-detail">
-    <view class="goods-detail-title">商品详情</view>
-    <view class="goods-detail-content">
-      <rich-text nodes="{{ goods.Description }}"></rich-text>
+    <!-- 信息 -->
+    <view class="list">
+      <view class="list-item first">
+        <view class="goods-name">{{ goods.Name }}</view>
+        <view class="goods-desc">{{ goods.Description }}</view>
+      </view>
+      <view class="list-item" bindtap="toggleDrawerBuy">
+        <text style="margin-right:22rpx">已选</text>
+        <text class="selected-type">“{{ selected.specification.Name }}” “{{ selected.amount }}”</text>
+        <image class="icon-arrow-right-picker" src="/assets/img/arrow_right_picker.png"></image>
+      </view>
+      <view class="list-item">正品保证 · 线下取货</view>
     </view>
-  </view>
 
-  <!-- 顶部信息栏 -->
+    <!-- 进行中的拼团 -->
+    <view class="groups-wrap">
+      <view class="groups-title">正在进行的拼团，赶紧参与吧</view>
+      <view class="list">
+        <!-- 团 -->
+        <view
+          class="list-item first flex flex-sides flex-middle"
+          wx:for="{{ groups }}"
+          wx:key="{{ index }}"
+        >
+          <image class="leader-headimg" src="{{ computed.leader(item.Participations).MemberHeadImgUrl }}" mode="aspectFill"></image>
+          <view class="group-name">{{ computed.leader(item.Participations).MemberName }}<text style="margin-left:20rpx;color:var(--color-subtext)">的团</text></view>
+          <view class="group-status">
+            <view style="color:#353535">还差<text style="color:var(--color-primary)">{{ item.NewLimit }}人</text>拼成</view>
+            <view style="margin-top:14rpx">仅剩<i-count-down i-class="group-countdown" target="{{ computed.targetTimeGroup(item.CreateTime) }}"></i-count-down></view>
+          </view>
+          <view class="btn-show-join" bindtap="showModalJoin" data-group="{{ item }}">去参团</view>
+        </view>
+        <!-- end 团 -->
+
+      </view>
+    </view>
+
+    <!-- 商品详情 -->
+    <view class="goods-detail">
+      <view class="goods-detail-title">商品详情</view>
+      <view class="goods-detail-content">
+        <rich-text nodes="{{ goods.Description }}"></rich-text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部信息栏 -->
   <view class="fixed-footer">
     <navigator class="btn-home" url="/pages/index/index" open-type="switchTab">
       <image class="icon-home" src="/assets/img/tabbar_home_on.png"></image>
       <view>首页</view>
     </navigator>
-    <navigator class="btn-buy-self">
+    <view class="btn-buy-self" bindtap="toSettlement" data-order-type="普通订单">
       <view class="btn-price">￥{{ selected.specification.Price * selected.amount }}</view>
       <view>单独购买</view>
-    </navigator>
-    <navigator class="btn-create-group">
+    </view>
+    <view class="btn-create-group" bindtap="toSettlement" data-order-type="拼单">
       <view class="btn-price">￥{{ selected.specification.GroupPrice * selected.amount }}</view>
       <view>发起拼单</view>
-    </navigator>
+    </view>
   </view>
 
   <!-- 弹层 购买选项 -->
