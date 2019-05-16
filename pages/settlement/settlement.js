@@ -39,7 +39,7 @@ Page({
     let { settlementGoodsList } = app.globalData
 
     settlementGoodsList.forEach(item => {
-      _this.data.totalSettlementPrice += item.SettlementPrice
+      _this.data.totalSettlementPrice += item.SettlementPrice * item.SaleCount
     })
 
     this.setData({
