@@ -28,6 +28,7 @@ Component({
                 return;
             }
             this.triggerEvent('close', {});
-        }
+        },
+        stopBubble () {}
     }
 });

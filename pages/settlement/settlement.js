@@ -8,10 +8,12 @@ Page({
    */
   data: {
     flagDrawerSelect: false,
-    currentConpon: '不使用优惠',
+    currentCoupon: '不使用优惠',
+    currentCouponId: '',
+    currentPage: 0,
+    allPageCount: 1,
+    coupons: [],
     profile: {
-      phone: '',
-      birthday: '',
       provinceIndex: 0,
       province: '',
       cityIndex: 0,
@@ -25,13 +27,14 @@ Page({
       school: []
     },
     settlementGoodsList: [],
-    totalSettlementPrice: 0
+    totalSettlementPrice: 0,
+    orderType: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (query) {
     const _this = this
     let { settlementGoodsList } = app.globalData
 
@@ -41,7 +44,8 @@ Page({
 
     this.setData({
       settlementGoodsList,
-      totalSettlementPrice: this.data.totalSettlementPrice
+      totalSettlementPrice: this.data.totalSettlementPrice,
+      orderType: query.orderType
     })
     console.log(this.data.settlementGoodsList)
 
@@ -58,6 +62,7 @@ Page({
       }
     })
     this.getSchoolsAll()
+    this.getCoupons()
   },
 
   /**
@@ -121,9 +126,11 @@ Page({
   /**
    * 选择优惠券
    */
-  selectCoupon({ detail = {} }) {
+  selectCoupon (e) {
+    console.log(e)
     this.setData({
-      currentConpon: detail.value
+      currentCoupon: e.detail.value,
+      currentCouponId: e.currentTarget.dataset.couponId
     })
     this.toggleDrawerSelect()
   },
@@ -245,4 +252,77 @@ Page({
       })
     })
   },
+
+  /**
+   * 获取下一页卡券列表
+   */
+  getCoupons () {
+    const _this = this
+
+    if (this.data.currentPage >= this.data.allPageCount) {
+      return
+    }
+    app.api.getCoupons({
+      PageIndex: this.data.currentPage + 1,
+      CouponType: 2,
+      IsUsed: false
+    }).then(res => {
+      console.log('现金券', res)
+      _this.setData({
+        currentPage: res.PageIndex,
+        allPageCount: res.AllPageCount,
+        coupons: _this.data.coupons.concat(res.Data)
+      })
+    })
+  },
+
+  /**
+   * 提交订单
+   */
+  submitOrder () {
+    let {
+      profile,
+      settlementGoodsList,
+      orderType,
+      currentCouponId,
+    } = this.data
+
+    if (!profile.school) {
+      wx.showToast({
+        title: '请先确认学校',
+        icon: 'none'
+      })
+      // return
+    }
+    // 提交订单
+    app.api.submitOrder({
+      ProvinceName: profile.province,
+      CityName: profile.city,
+      SchoolName: profile.school,
+      CouponId: currentCouponId,
+      PayType: '微信支付',
+      Type: orderType,
+      Details: settlementGoodsList
+    }).then(res => {
+      console.log('提交订单', res)
+      // 成功提交后获取支付参数
+      app.api.getPaymentParams({
+        SerialNumber: res.SerialNumber
+      }).then(res => {
+        console.log('支付参数', res)
+        // 发起支付
+        wx.requestPayment({
+          timeStamp: '',
+          nonceStr: '',
+          package: '',
+          signType: 'MD5',
+          paySign: '',
+          success (res) {},
+          fail (res) {},
+          complete (res) {}
+        })
+      })
+
+    })
+  }
 })

@@ -1,5 +1,5 @@
- const HOST = 'http://localhost:62407/api'
-//const HOST = 'http://39.98.241.13:997/api'
+// const HOST = 'http://localhost:62407/api'
+const HOST = 'http://39.98.241.13:997/api'
 
 
 
@@ -134,6 +134,17 @@ module.exports = {
   // 清空购物车
   clearCart (data) {
     return fetch('order/ClearBuyShopCart', data, 'POST')
+  },
+  // 提交订单
+  submitOrder (data) {
+    return fetch('order/AddOrder', data, 'POST')
+  },
+
+
+
+  // 获取发起支付的参数
+  getPaymentParams (data) {
+    return fetch('pay/CreateWechatPayment', data, 'POST')
   },
 
 

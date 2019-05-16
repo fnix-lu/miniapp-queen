@@ -319,7 +319,7 @@ Page({
         IsTestData: item.IsTestData
       }))
       wx.navigateTo({
-        url: '/pages/settlement/settlement'
+        url: '/pages/settlement/settlement?orderType=普通订单'
       })
     })
   },

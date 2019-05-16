@@ -19,7 +19,10 @@ Page({
     groups: [],
     currentGroup: {
       Participations: []
-    }
+    },
+    currentTab: 'tab1',
+    toTop: 0,
+    targetTop: 500
   },
 
   /**
@@ -34,7 +37,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    let query = this.createSelectorQuery()
 
+    query.select('.goods-detail').boundingClientRect(res => {
+      this.setData({
+        targetTop: res.top - 300
+      })
+    }).exec()
   },
 
   /**
@@ -77,6 +86,40 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  scrollPage (e) {
+    let { scrollTop } = e.detail
+    let { currentTab, targetTop } = this.data
+
+    console.log(scrollTop, targetTop)
+
+    if (scrollTop >= targetTop && currentTab === 'tab1') {
+      this.setData({
+        currentTab: 'tab2'
+      })
+    }
+    if (scrollTop < targetTop && currentTab === 'tab2') {
+      this.setData({
+        currentTab: 'tab1'
+      })
+    }
+  },
+
+  changeTab (e) {
+    let { key } = e.detail
+    let { toTop, targetTop } = this.data
+    
+    if (key === 'tab1') {
+      toTop = 0
+    }
+    if (key === 'tab2') {
+      toTop = targetTop
+    }
+
+    this.setData({
+      toTop
+    })
   },
 
   /**
@@ -175,5 +218,42 @@ Page({
     this.setData({
       'flag.modalJoin': false
     })
+  },
+
+  /**
+   * 提交订单
+   */
+  toSettlement (e) {
+    let { orderType } = e.currentTarget.dataset
+    let { goods, selected } = this.data
+
+    app.login().then(() => {
+      app.globalData.settlementGoodsList = [{
+        Id: goods.Id,
+        SerialNumber: null,
+        MemberId: null,
+        ProductCode: goods.Code,
+        ProductName: goods.Name,
+        ProductImageUrl: goods.ImageUrl,
+        ProductSpecificationId: selected.specification.Id,
+        ProductSpecificationName: selected.specification.Name,
+        SalePrice: selected.specification.Price,
+        SettlementPrice: orderType === '拼单' ? selected.specification.GroupPrice : selected.specification.Price,
+        CostPrice: selected.specification.CostPrice,
+        SaleCount: selected.amount,
+        Remark: null,
+        BrandId: goods.BrandId,
+        CreatorName: goods.CreatorName,
+        CreateTime: goods.CreateTime,
+        UpdaterName: goods.UpdaterName,
+        UpdateTime: goods.UpdateTime,
+        RecordStatus: goods.RecordStatus,
+        IsTestData: goods.IsTestData
+      }]
+      wx.navigateTo({
+        url: `/pages/settlement/settlement?orderType=${orderType}`
+      })
+    })
   }
+
 })
