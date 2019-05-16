@@ -301,7 +301,7 @@ Page({
       CityName: profile.city,
       SchoolName: profile.school,
       CouponId: currentCouponId,
-      PayType: 1,
+      PayType: 2,
       Type: orderType,
       Details: settlementGoodsList
     }).then(res => {
