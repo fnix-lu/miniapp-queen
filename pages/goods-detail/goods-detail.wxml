@@ -44,7 +44,7 @@
     </view>
 
     <!-- 进行中的拼团 -->
-    <view class="groups-wrap">
+    <view class="groups-wrap" wx:if="{{ groups.length > 0 }}">
       <view class="groups-title">正在进行的拼团，赶紧参与吧</view>
       <view class="list">
         <!-- 团 -->
@@ -56,7 +56,7 @@
           <image class="leader-headimg" src="{{ computed.leader(item.Participations).MemberHeadImgUrl }}" mode="aspectFill"></image>
           <view class="group-name">{{ computed.leader(item.Participations).MemberName }}<text style="margin-left:20rpx;color:var(--color-subtext)">的团</text></view>
           <view class="group-status">
-            <view style="color:#353535">还差<text style="color:var(--color-primary)">{{ item.NewLimit }}人</text>拼成</view>
+            <view style="color:#353535">还差<text style="color:var(--color-primary)">{{ 4 - item.Participations.length }}人</text>拼成</view>
             <view style="margin-top:14rpx">仅剩<i-count-down i-class="group-countdown" target="{{ computed.targetTimeGroup(item.CreateTime) }}"></i-count-down></view>
           </view>
           <view class="btn-show-join" bindtap="showModalJoin" data-group="{{ item }}">去参团</view>
@@ -135,7 +135,7 @@
     show-cancel="{{ false }}"
     bindcancel="hideModalJoin"
   >
-    <view style="margin-bottom:20rpx;font-size:28rpx">仅剩 <text style="color:var(--color-primary)">{{ currentGroup.NewLimit }}</text> 个名额，<i-count-down i-class="group-countdown" target="{{ computed.targetTimeGroup(item.CreateTime) }}"></i-count-down> 后结束</view>
+    <view style="margin-bottom:20rpx;font-size:28rpx">仅剩 <text style="color:var(--color-primary)">{{ 4 - currentGroup.Participations.length }}</text> 个名额，<i-count-down i-class="group-countdown" target="{{ computed.targetTimeGroup(item.CreateTime) }}"></i-count-down> 后结束</view>
     <group>
       <group-member
         wx:for="{{ currentGroup.Participations }}"
@@ -146,8 +146,9 @@
         is-leader="{{ memberItem.IsMaster }}"
         head-image="{{ memberItem.MemberHeadImgUrl }}"
       ></group-member>
+      <group-member wx:for="{{ 4 - currentGroup.Participations.length }}" wx:key="{{ index }}"></group-member>
     </group>
-    <button class="btn btn-primary btn-full btn-join" bindtap="">参与拼单</button>
+    <button class="btn btn-primary btn-full btn-join" bindtap="toJoinGroupSettlement">参与拼单</button>
   </i-modal>
 
 </container>

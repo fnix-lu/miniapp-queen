@@ -61,9 +61,7 @@ App({
       //   RecordStatus,
       //   IsTestData
       // }
-    ],
-    successPaidOrder: {},
-    successPaidCrowdOrder: {}
+    ]
   },
   api,
   /**
@@ -136,47 +134,83 @@ App({
         }
       })
     })
-
-    // if (!auth) {
-    //   // auth
-    // } else if (valid) {
-    //   // resolve
-    // } else {
-    //   // request -> resolve
-    // }
-
-
-
-    // 判断登录态是否有效，如果无效，发起登录
-    // wx.login({
-    //   success: res => {
-    //     console.log(res)
-    //     if (res.code) { // 发送 res.code 到后台换取 openId, sessionKey, unionId
-    //       // 如果接口是需要用户授权信息的：
-    //       //   判断是否有授权，没有则跳转到授权页完成授权和登录
-    //       //   有授权则 res.code + 用户信息调用接口，设置用户信息
-    //       // 如果接口不需要用户授权而由服务端请求用户信息的，直接 res.code 请求接口，设置用户信息
-    //     }
-    //   }
-    // })
   },
   /**
-   * 登录2
+   * 支付
    */
-  login2 () {
-    // 如果接口是需要用户授权信息的：
-    //   判断是否有授权，没有则跳转到授权页完成授权和登录
-    //   有授权则 res.code + 用户信息调用接口，设置用户信息
-    // 如果接口不需要用户授权而由服务端请求用户信息的，直接 res.code 请求接口，设置用户信息
-
-    // 判断登录态是否有效，如果无效，发起登录
-    wx.login({
-      success: res => {
-        console.log(res)
-        if (res.code) { // 发送 res.code 到后台换取 openId, sessionKey, unionId
-
+  payment (serialNumber, orderType) {
+    const _this = this
+    this.api.getPaymentParams({
+      SerialNumber: serialNumber
+    }).then(res => {
+      console.log('支付参数', res)
+      // 发起支付
+      wx.requestPayment({
+        timeStamp: res.Data.TimeStamp,
+        nonceStr: res.Data.NonceStr,
+        package: res.Data.Package,
+        signType: res.Data.SignType,
+        paySign: res.Data.PaySign,
+        success ({ errMsg }) {
+          console.log('success', errMsg)
+          if (errMsg === 'requestPayment:ok') {
+            // 轮询普通订单获得支付状态
+            let timer = setInterval(() => {
+              _this.api.getSingleOrderBySerial({
+                Serial: serialNumber
+              }).then(res => {
+                console.log('轮询', res)
+                let order = res.Data
+                // 轮询直到订单状态为已支付
+                if (order.PayStatus === '已支付') {
+                  clearInterval(timer)
+                  // 如果订单为拼单，调用新建拼单订单接口生成拼单订单
+                  if (orderType === 1) {
+                    _this.api.submitCrowdOrder({
+                      ProductSpecificationId: _this.globalData.settlementGoodsList[0].ProductSpecificationId,
+                      SalePrice: _this.globalData.settlementGoodsList[0].SalePrice,
+                      GroupPrice: _this.globalData.settlementGoodsList[0].SettlementPrice,
+                      SaleCount: _this.globalData.settlementGoodsList[0].SaleCount,
+                      IsMaster: true
+                    }).then(res => {
+                      if (res.Data) {
+                        // 新建拼单成功后跳转至支付结果页
+                        wx.redirectTo({
+                          url: `/pages/pay-result/pay-result?orderType=${orderType}&successPaidOrderId=`,
+                        })
+                      }
+                    })
+                  } else if (orderType === 0) {
+                    // 普通订单轮询到已支付则直接跳转至支付结果页
+                    wx.redirectTo({
+                      url: `/pages/pay-result/pay-result?orderType=${orderType}`,
+                    })
+                  }
+                }
+              })
+            }, 1000)
+          }
+        },
+        fail ({ errMsg }) {
+          console.log('fail', errMsg)
+          if (errMsg === 'requestPayment:fail cancel') {
+            wx.navigateBack()
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '支付失败，请稍后在我的订单中重新支付',
+              showCancel: false,
+              confirmColor: '#FC7B7B',
+              success(res) {
+                if (res.confirm) {
+                  wx.navigateBack()
+                }
+              }
+            })
+          }
         }
-      }
+      })
     })
   }
+
 })

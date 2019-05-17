@@ -5,14 +5,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orderType: '',
+    successPaidOrderId: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (query) {
+    console.log('支付结果页', query)
+    let { orderType = '', successPaidOrderId = '' } = query
 
+    this.setData({
+      orderType,
+      successPaidOrderId
+    })
   },
 
   /**

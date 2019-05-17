@@ -28,12 +28,14 @@
   line-height: 1;
 }
 
+.btn-home,
 .btn-share,
 .btn-to-order {
   margin-top: 40rpx;
 }
 .btn-to-order {
   color: var(--color-primary);
+  border: 2rpx solid var(--color-primary);
 }
 .btn-to-order::after {
   border-color: var(--color-primary);
