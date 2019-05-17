@@ -48,6 +48,9 @@ const fetch = (url, data = {}, method = 'GET') => new Promise((resolve, reject) 
 })
 
 module.exports = {
+  getAPIURL(){
+    return HOST
+  },
   // 获取品牌列表
   getBrands (data) {
     return fetch('product/GetProductBrands', data)
