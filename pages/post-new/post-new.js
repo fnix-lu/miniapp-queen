@@ -9,7 +9,8 @@ Page({
   data: {
     title: '',
     text: '',
-    images: []
+    images: [],
+    resImages:{}
   },
 
   /**
@@ -142,12 +143,6 @@ Page({
    */
   submitPost () {
     this.uploadImages()
-    app.api.submitPost({
-      Name: this.data.title,
-      Description: this.data.text
-    }).then(res => {
-      console.log('发帖结果', res)
-    })
   },
 
   /**
@@ -155,17 +150,20 @@ Page({
    */
   uploadImages () {
     let _url = app.api.getAPIURL()
+    const memberInfo = wx.getStorageSync('memberInfo')
     console.log(_url)
-    console.log('${HOST}/image/UploadImageFiles')
     let { images } = this.data
     let uploaders = images.map((path, index) => new Promise((resolve, reject) => {
       wx.uploadFile({
         url: _url+'/image/UploadImageFiles', // 上传接口
         filePath: path,
         name: 'image',
-        header: {},
+        header: {
+          "Content-Type": "multipart/form-data",
+          'accept': 'application/json'
+        },
         formData: {
-          index
+          "MemberId": memberInfo.Id
         },
         success: resolve,
         fail: reject
@@ -174,7 +172,18 @@ Page({
 
     Promise.all(uploaders).then(res => {
       // 所有图片上传完毕后的结果
+      //console.log(res)
+      let d=JSON.parse(res[0].data)
       console.log('图片上传结果', res)
+      app.api.submitPost({
+        Name: this.data.title,
+        Description: this.data.text,
+        ImageUrl: d.Data[0].ImageUrl,
+        ImageHeight: d.Data[0].ImageHeight,
+        ImageWidth: d.Data[0].ImageWidth
+      }).then(res => {
+        console.log('发帖结果', res)
+      })
     })
   }
 })
