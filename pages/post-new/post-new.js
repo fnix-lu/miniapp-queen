@@ -141,6 +141,7 @@ Page({
    * 发布帖子
    */
   submitPost () {
+    this.uploadImages()
     app.api.submitPost({
       Name: this.data.title,
       Description: this.data.text
@@ -153,10 +154,13 @@ Page({
    * 上传图片
    */
   uploadImages () {
+    let _url = app.api.getAPIURL()
+    console.log(_url)
+    console.log('${HOST}/image/UploadImageFiles')
     let { images } = this.data
     let uploaders = images.map((path, index) => new Promise((resolve, reject) => {
       wx.uploadFile({
-        url: '', // 上传接口
+        url: _url+'/image/UploadImageFiles', // 上传接口
         filePath: path,
         name: 'image',
         header: {},
