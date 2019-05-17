@@ -307,8 +307,9 @@ Page({
     }).then(res => {
       console.log('提交订单', res)
       // 成功提交后获取支付参数
+      let serialNumber = res.Data.SerialNumber
       app.api.getPaymentParams({
-        SerialNumber: res.Data.SerialNumber
+        SerialNumber: serialNumber
       }).then(res => {
         console.log('支付参数', res)
         // 发起支付
@@ -318,14 +319,63 @@ Page({
           package: res.Data.Package,
           signType: res.Data.SignType,
           paySign: res.Data.PaySign,
-          success (res) {
-            console.log('success', res)
+          success ({ errMsg }) {
+            console.log('success', errMsg)
+            if (errMsg === 'requestPayment:ok') {
+              // 轮询普通订单获得支付状态
+              let timer = setInterval(() => {
+                app.api.getSingleOrderBySerial({
+                  Serial: serialNumber
+                }).then(res => {
+                  console.log('轮询', res)
+                  let order = res.Data
+                  // 轮询直到订单状态为已支付
+                  if (order.PayStatus === '已支付') {
+                    clearInterval(timer)
+                    // 如果订单为拼单，调用新建拼单订单接口生成拼单订单
+                    if (orderType === 1) {
+                      app.api.submitCrowdOrder({
+                        ProductSpecificationId: settlementGoodsList[0].ProductSpecificationId,
+                        SalePrice: settlementGoodsList[0].SalePrice,
+                        GroupPrice: settlementGoodsList[0].SettlementPrice,
+                        SaleCount: settlementGoodsList[0].SaleCount,
+                        IsMaster: true
+                      }).then(res => {
+                        if (res.Data) {
+                          // 新建拼单成功后跳转至支付结果页
+                          wx.redirectTo({
+                            url: `/pages/pay-result/pay-result?orderType=${orderType}`,
+                          })
+                        }
+                      })
+                    } else if (orderType === 0) {
+                      // 普通订单轮询到已支付则直接跳转至支付结果页
+                      wx.redirectTo({
+                        url: `/pages/pay-result/pay-result?orderType=${orderType}`,
+                      })
+                    }
+                  }
+                })
+              }, 1000)
+            }
           },
-          fail (res) {
-            console.log('fail', res)
-          },
-          complete (res) {
-            console.log('complete', res)
+          fail ({ errMsg }) {
+            console.log('fail', errMsg)
+            if (errMsg === 'requestPayment:fail cancel') {
+              wx.navigateBack()
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: '支付失败，请稍后在我的订单中重新支付',
+                showCancel: false,
+                confirmColor: '#FC7B7B',
+                success (res) {
+                  if (res.confirm) {
+                    wx.navigateBack()
+                  }
+                }
+              })
+            }
           }
         })
       })
