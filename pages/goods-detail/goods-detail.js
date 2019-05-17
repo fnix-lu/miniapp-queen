@@ -92,7 +92,7 @@ Page({
     let { scrollTop } = e.detail
     let { currentTab, targetTop } = this.data
 
-    console.log(scrollTop, targetTop)
+    // console.log(scrollTop, targetTop)
 
     if (scrollTop >= targetTop && currentTab === 'tab1') {
       this.setData({
@@ -252,6 +252,43 @@ Page({
       }]
       wx.navigateTo({
         url: `/pages/settlement/settlement?orderType=${orderType}`
+      })
+    })
+  },
+
+  /**
+   * 参与拼单的结算
+   */
+  toJoinGroupSettlement () {
+    let { currentGroup } = this.data
+    
+    console.log('当前要加入结算的团', currentGroup)
+
+    app.login().then(() => {
+      app.globalData.settlementGoodsList = [{
+        Id: currentGroup.ProductId,
+        SerialNumber: currentGroup.CrowSerial,
+        MemberId: null,
+        ProductCode: null,
+        ProductName: currentGroup.ProductName,
+        ProductImageUrl: currentGroup.ProductImageUrl,
+        ProductSpecificationId: currentGroup.ProductSpecificationId,
+        ProductSpecificationName: currentGroup.ProductSpecificationName,
+        SalePrice: currentGroup.SalePrice,
+        SettlementPrice: currentGroup.GroupPrice,
+        CostPrice: null,
+        SaleCount: currentGroup.SaleCount,
+        Remark: null,
+        BrandId: currentGroup.BrandId,
+        CreatorName: null,
+        CreateTime: currentGroup.CreateTime,
+        UpdaterName: currentGroup.UpdaterName,
+        UpdateTime: currentGroup.UpdateTime,
+        RecordStatus: currentGroup.RecordStatus,
+        IsTestData: currentGroup.IsTestData
+      }]
+      wx.navigateTo({
+        url: `/pages/settlement/settlement?orderType=1`
       })
     })
   }

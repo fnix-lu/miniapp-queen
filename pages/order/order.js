@@ -225,6 +225,60 @@ Page({
     wx.navigateTo({
       url: '/pages/coupon/coupon',
     })
+  },
+
+  /**
+   * 订单支付
+   */
+  handlePay (e) {
+    let { serialNumber, orderTypeName } = e.currentTarget.dataset
+
+    let orderType = 0
+    if (orderTypeName === '拼单订单') {
+      orderType = 1
+    }
+
+    app.payment(serialNumber, orderType)
+  },
+
+  /**
+   * 倒计时结束从数组移除订单（未考虑极端情况）
+   */
+  autoCancelOrder (e) {
+    console.log(e)
+    let { orderId } = e.currentTarget.dataset
+    let { ordersUnpaid } = this.data
+
+    let i = ordersUnpaid.list.findIndex(item => {
+      return item.Id === orderId
+    })
+
+    if (i > -1) {
+      ordersUnpaid.list.splice(i, 1)
+      ordersUnpaid.allCount--
+    }
+    
+    this.setData({
+      ordersUnpaid
+    })
+  },
+  autoCancelCrowdOrder (e) {
+    console.log(e)
+    let { orderId } = e.currentTarget.dataset
+    let { ordersUngrouped } = this.data
+
+    let i = ordersUngrouped.list.findIndex(item => {
+      return item.Id === orderId
+    })
+
+    if (i > -1) {
+      ordersUngrouped.list.splice(i, 1)
+      ordersUngrouped.allCount--
+    }
+
+    this.setData({
+      ordersUngrouped
+    })
   }
   
 })
