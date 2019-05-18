@@ -4,7 +4,11 @@
     <image class="icon-state-success" src="/assets/img/state_success.png"></image>
     <view class="state-desc" wx-if="{{ orderType === '0' }}">购买支付成功</view>
     <view class="state-desc" wx-if="{{ orderType === '1' }}">拼团支付成功</view>
-     <view class="count-time">23:59:59</view> 
+     <view class="count-time">23:59:59 </view> 
+         <view
+        wx:for="{{ crods }}"
+        wx:key="{{ index }}"
+      >
       <group>
                 <group-member
                   wx:for="{{ item.Participations }}"
@@ -15,10 +19,10 @@
                   is-leader="{{ memberItem.IsMaster }}"
                   head-image="{{ memberItem.MemberHeadImgUrl }}"
                 ></group-member>
-                <group-member wx:for="{{ 4 - item.Participations.length }}"></group-member>
-              </group>
+      </group>
+      </view>
     <view class="group-state">还差 <text style="color:var(--color-primary)">3</text> 人，赶快邀请好友一起拼单吧</view>
-    <button class="btn btn-primary btn-full btn-share">邀请好友拼单</button>
+            <button class="btn btn-primary btn-full btn-share"  open-type="share" data-goods="{{ crods[0] }}">邀请好友拼单</button>
     <navigator class="btn btn-primary btn-full btn-home" url="/pages/index/index" open-type="switchTab">返回首页</navigator>
     <navigator class="btn btn-full btn-to-order" url="/pages/order/order">去我的订单查看</navigator>
   </view>

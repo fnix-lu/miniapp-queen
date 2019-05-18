@@ -177,7 +177,7 @@ App({
                       if (res.Data) {
                         // 新建拼单成功后跳转至支付结果页
                         wx.redirectTo({
-                          url: `/pages/pay-result/pay-result?orderType=${orderType}&successPaidOrderId=`,
+                          url: `/pages/pay-result/pay-result?orderType=${orderType}&successPaidOrderId=${res.Data.OrderId}&croworderserial=${res.Data.CrowdOrderSerialNumber}`,
                         })
                       }
                     })

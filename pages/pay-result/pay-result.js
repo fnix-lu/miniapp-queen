@@ -1,4 +1,5 @@
 // pages/pay-result/pay-result.js
+const app = getApp()
 Page({
 
   /**
@@ -7,6 +8,7 @@ Page({
   data: {
     orderType: '',
     successPaidOrderId: '',
+    croworderserial:'',
     crods:{}
   },
 
@@ -15,7 +17,7 @@ Page({
    */
   onLoad: function (query) {
     console.log('支付结果页', query)
-    let { orderType = '', successPaidOrderId = '',crowSerial='' } = query
+    let { orderType = '', successPaidOrderId = '', croworderserial='' } = query
 
     app.api.getCrowdOrders({
       PageIndex: 1,
@@ -23,11 +25,13 @@ Page({
       IsContainParticipation: true,
       OrderType: 1,
       PayStatus: 1,
-      SerialNumber: crowSerial
+      SerialNumber: croworderserial
     }).then(res => {
+      //获取产品信息
       this.setData({
         orderType,
-        successPaidOrderId
+        successPaidOrderId,
+        crods:res.Data
       })
     })
   },
@@ -73,11 +77,18 @@ Page({
   onReachBottom: function () {
 
   },
-
-  /**
+    /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      let { goods } = res.target.dataset
 
+      return {
+        title: '快来加入我的拼单队伍吧！',
+        path: '/pages/goods-detail/goods-detail?goodsId=' + goods.ProductId,
+        imageUrl: goods.ProductImageUrl
+      }
+    }
   }
 })
