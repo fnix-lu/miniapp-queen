@@ -174,15 +174,20 @@ Page({
       // 所有图片上传完毕后的结果
       //console.log(res)
       let d=JSON.parse(res[0].data)
+      let memberInfo = wx.getStorageSync('memberInfo')
       console.log('图片上传结果', res)
       app.api.submitPost({
         Name: this.data.title,
         Description: this.data.text,
         ImageUrl: d.Data[0].ImageUrl,
         ImageHeight: d.Data[0].ImageHeight,
-        ImageWidth: d.Data[0].ImageWidth
+        ImageWidth: d.Data[0].ImageWidth,
+        MemberId: memberInfo.Id
       }).then(res => {
         console.log('发帖结果', res)
+        wx.showToast({
+          title: '闺蜜圈发布成功',
+        })
       })
     })
   }
