@@ -64,8 +64,8 @@
       wx:key="{{ index }}"
     >
       <image wx:if="{{ item.Specifications[0].IsHot }}" class="icon-hot" src="/assets/img/hot.png"></image>
-      <image class="goods-img" src="{{ item.Specifications[0].ImageUrl }}" mode="aspectFill"></image>
-      <view class="goods-name">{{ item.Specifications[0].Name }}</view>
+      <image class="goods-img" src="{{ item.ImageUrl }}" mode="aspectFill"></image>
+      <view class="goods-name">{{ item.Name }}</view>
       <view class="goods-info">
         <view>
           <text class="price-single">单独购买：<text class="del">￥{{ item.Specifications[0].CostPrice }}</text></text>

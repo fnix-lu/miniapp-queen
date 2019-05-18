@@ -177,6 +177,7 @@ Page({
   changeSchool(e) {
     const { data: { range: { school } } } = this
     const { detail: { value } } = e
+    console.log('select cschol')
     this.setData({
       'profile.schoolIndex': value,
       'profile.school': school[value].School
