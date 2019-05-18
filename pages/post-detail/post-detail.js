@@ -116,7 +116,8 @@ Page({
     app.api.getPostComments({
       PageIndex: this.data.currentPage + 1,
       GirlForumId: this.data.postId,
-      IsContainReply: true
+      IsContainReply: true,
+      RecordStatus: 2
     }).then(res => {
       console.log('评论列表', res)
       _this.setData({

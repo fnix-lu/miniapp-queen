@@ -1,4 +1,6 @@
 // pages/forum-mine/forum-mine.js
+const app = getApp()
+
 Page({
 
   /**
@@ -14,7 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getMyPosts()
   },
 
   /**
@@ -65,7 +67,29 @@ Page({
   onShareAppMessage: function () {
 
   },
+  /**
+     * 获取下一页我的帖子
+     */
+  getMyPosts() {
+    const _this = this
 
+    if (this.data.currentPage >= this.data.allPageCount) {
+      return
+    }
+
+    app.api.getForumList({
+      PageIndex: this.data.currentPage+1 ,
+      IsContainImage: true,
+      IsDefaultImage: true
+    }).then(res => {
+      console.log('我的帖子列表', res)
+      _this.setData({
+        currentPage: res.PageIndex,
+        allPageCount: res.AllPageCount,
+        posts: _this.data.posts.concat(res.Data)
+      })
+    })
+  },
   /**
    * 获取下一页我的帖子
    */

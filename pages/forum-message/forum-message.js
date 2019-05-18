@@ -16,7 +16,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getNextReplyMessages()
+    this.getReplyMessage()
   },
 
   /**
@@ -69,21 +69,45 @@ Page({
   },
 
   /**
+    * 获取下一页消息列表
+    */
+  getReplyMessage() {
+    const _this = this
+
+    if (this.data.currentPage >= this.data.allPageCount) {
+      return
+    }
+    const memberInfo = wx.getStorageSync('memberInfo')
+    app.api.getReplyMessages({
+      PageIndex: this.data.currentPage + 1,
+      LeaveMessageMemberId: memberInfo.Id,
+      RecordStatus:2
+    }).then(res => {
+      console.log('我的消息', res)
+      _this.setData({
+        messages: _this.data.messages.concat(res.Data)
+      })
+    })
+  },
+  /**
    * 获取下一页消息列表
    */
   getNextReplyMessages () {
     const _this = this
-
+    const memberInfo = wx.getStorageSync('memberInfo')
     if (this.data.currentPage >= this.data.allPageCount) {
       return
     }
 
     app.api.getReplyMessages({
       PageIndex: this.data.currentPage + 1,
-
+      LeaveMessageMemberId: memberInfo.Id,
+      RecordStatus:2
     }).then(res => {
       console.log('我的消息', res)
       _this.setData({
+        currentPage: res.PageIndex,
+        allPageCount: res.AllPageCount,
         messages: _this.data.messages.concat(res.Data)
       })
     })

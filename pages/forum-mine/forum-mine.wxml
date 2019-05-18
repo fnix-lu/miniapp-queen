@@ -7,12 +7,20 @@
   >
     <view class="panel-head">
       <view class="msg-type">您发布的新帖</view>
-      <view class="msg-status">帖子状态</view>
+      <view class="msg-status">{{item.RecordStatus}}</view>
     </view>
     <view class="panel-body type-post">
+          <navigator
+        url="/pages/post-detail/post-detail?postId={{ item.Id }}&postMemberId={{ item.MemberId }}"
+      >
       <image class="post-img" src="{{ item.ImageUrl }}" mode="aspectFill"></image>
+      </navigator>
       <view class="post-summary">
+             <navigator
+        url="/pages/post-detail/post-detail?postId={{ item.Id }}&postMemberId={{ item.MemberId }}"
+      >
         <view class="post-title">{{ item.Name }}</view>
+            </navigator>
         <view class="post-content">{{ item.Description }}</view>
       </view>
     </view>

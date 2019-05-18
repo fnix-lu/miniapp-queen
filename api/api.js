@@ -113,7 +113,7 @@ module.exports = {
   },
   // 获取我的闺蜜圈消息
   getReplyMessages (data) {
-    return fetch('forum/GetGirlForumReplyAndLeaves', data)
+    return fetch('forum/GetGirlForumLeaveMessageReplies', data)
   },
 
 

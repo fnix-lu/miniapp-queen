@@ -123,7 +123,8 @@ Page({
       PageIndex: this.data.currentPage + 1,
       MemberId: '',
       IsContainImage: true,
-      IsDefaultImage: true
+      IsDefaultImage: true,
+      RecordStatus: 2
     }).then(res => {
       console.log('论坛帖子列表', res)
       // 遍历结果，按图片高宽比分列
