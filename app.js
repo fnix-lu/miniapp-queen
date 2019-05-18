@@ -168,6 +168,7 @@ App({
                   if (orderType === 1) {
                     _this.api.submitCrowdOrder({
                       ProductSpecificationId: _this.globalData.settlementGoodsList[0].ProductSpecificationId,
+                      CrowCode: _this.globalData.settlementGoodsList[0].Code,
                       SalePrice: _this.globalData.settlementGoodsList[0].SalePrice,
                       GroupPrice: _this.globalData.settlementGoodsList[0].SettlementPrice,
                       SaleCount: _this.globalData.settlementGoodsList[0].SaleCount,

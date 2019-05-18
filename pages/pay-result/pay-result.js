@@ -6,7 +6,8 @@ Page({
    */
   data: {
     orderType: '',
-    successPaidOrderId: ''
+    successPaidOrderId: '',
+    crods:{}
   },
 
   /**
@@ -14,11 +15,20 @@ Page({
    */
   onLoad: function (query) {
     console.log('支付结果页', query)
-    let { orderType = '', successPaidOrderId = '' } = query
+    let { orderType = '', successPaidOrderId = '',crowSerial='' } = query
 
-    this.setData({
-      orderType,
-      successPaidOrderId
+    app.api.getCrowdOrders({
+      PageIndex: 1,
+      PageSize: 1,
+      IsContainParticipation: true,
+      OrderType: 1,
+      PayStatus: 1,
+      SerialNumber: crowSerial
+    }).then(res => {
+      this.setData({
+        orderType,
+        successPaidOrderId
+      })
     })
   },
 

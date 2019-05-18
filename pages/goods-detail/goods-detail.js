@@ -268,6 +268,7 @@ Page({
       app.globalData.settlementGoodsList = [{
         Id: currentGroup.ProductId,
         SerialNumber: currentGroup.CrowSerial,
+        Code:currentGroup.Code,
         MemberId: null,
         ProductCode: null,
         ProductName: currentGroup.ProductName,
