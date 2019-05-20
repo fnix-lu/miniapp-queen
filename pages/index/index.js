@@ -36,7 +36,7 @@ Page({
    */
   onLoad: function (options) {
     this.getHotGroup()
-    this.getAdvertisements()
+    //his.getAdvertisements()
   },
 
   /**
