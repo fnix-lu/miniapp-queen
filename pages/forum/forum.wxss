@@ -18,7 +18,7 @@
 }
 .post-img {
   width: 100%;
-  background-color: pink;
+  background-color: #fff;
 }
 .post-info {
   padding: 20rpx 20rpx 46rpx;
@@ -51,7 +51,7 @@
   width: 52rpx;
   height: 52rpx;
   border-radius: 50%;
-  background-color: pink;
+  background-color: #fff;
   margin-right: 12rpx;
   display: block;
 }

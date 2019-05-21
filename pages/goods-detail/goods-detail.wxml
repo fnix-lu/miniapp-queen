@@ -70,7 +70,13 @@
     <view class="goods-detail">
       <view class="goods-detail-title">商品详情</view>
       <view class="goods-detail-content">
-        <rich-text nodes="{{ goods.Description }}"></rich-text>
+        <image
+          class="goods-detail-img"
+          wx:for="{{ goods.Images }}"
+          wx:key="{{ index }}"
+          src="{{ item.ImageUrl }}"
+          mode="widthFix"
+        ></image>
       </view>
     </view>
   </scroll-view>
