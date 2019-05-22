@@ -1,5 +1,6 @@
 // pages/pay-result/pay-result.js
 const app = getApp()
+
 Page({
 
   /**
@@ -7,9 +8,8 @@ Page({
    */
   data: {
     orderType: '',
-    successPaidOrderId: '',
-    croworderserial:'',
-    crods:{}
+    serialNumber: '',
+    orderInfo: {}
   },
 
   /**
@@ -17,23 +17,29 @@ Page({
    */
   onLoad: function (query) {
     console.log('支付结果页', query)
-    let { orderType = '', successPaidOrderId = '', croworderserial='' } = query
+    let { orderType = '', serialNumber = '' } = query
 
-    app.api.getCrowdOrders({
-      PageIndex: 1,
-      PageSize: 1,
-      IsContainParticipation: true,
-      OrderType: 1,
-      PayStatus: 1,
-      SerialNumber: croworderserial
-    }).then(res => {
-      //获取产品信息
-      this.setData({
-        orderType,
-        successPaidOrderId,
-        crods:res.Data
-      })
+    this.setData({
+      orderType,
+      serialNumber
     })
+
+    if (orderType === '1') {
+      app.api.getCrowdOrders({
+        PageIndex: 1,
+        PageSize: 1,
+        IsContainParticipation: true,
+        OrderType: 1,
+        PayStatus: 1,
+        SerialNumber: serialNumber
+      }).then(res => {
+        console.log('结果页', res)
+        // 获取产品信息
+        this.setData({
+          orderInfo: res.Data[0]
+        })
+      })
+    }
   },
 
   /**
@@ -77,17 +83,18 @@ Page({
   onReachBottom: function () {
 
   },
-    /**
+
+  /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
     if (res.from === 'button') {
-      let { goods } = res.target.dataset
-
+      console.log(this.data.orderInfo)
+      console.log(this.data.orderInfo.ProductId)
       return {
         title: '快来加入我的拼单队伍吧！',
-        path: '/pages/goods-detail/goods-detail?goodsId=' + goods.ProductId,
-        imageUrl: goods.ProductImageUrl
+        path: '/pages/goods-detail/goods-detail?goodsId=' + this.data.orderInfo.ProductId,
+        imageUrl: this.data.orderInfo.ProductImageUrl
       }
     }
   }

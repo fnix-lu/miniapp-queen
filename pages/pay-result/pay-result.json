@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "i-count-down": "/iview/count-down/index"
+  },
   "navigationBarTitleText": "女王驾到"
 }
