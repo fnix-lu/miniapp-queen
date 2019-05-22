@@ -33,10 +33,8 @@
     </i-col>
     <i-col span="8">
       <view class="tabs-item">
-        <navigator url="/pages/category/category">
-          <text>自由搭配</text>
+          <text bindtap="buildering">自由搭配</text>
           <image class="icon-arrow-right-tabs" src="/assets/img/arrow_right_tabs.png"></image>
-        </navigator>
       </view>
     </i-col>
   </i-row>

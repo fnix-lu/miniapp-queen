@@ -36,7 +36,7 @@ Page({
    */
   onLoad: function (options) {
     this.getHotGroup()
-    //his.getAdvertisements()
+    this.getAdvertisements()
   },
 
   /**
@@ -271,5 +271,13 @@ Page({
         ad: res.Data[0] ? res.Data[0].AdvertiseItems : []
       })
     })
-  }
+  },
+  /**
+   * 自由搭配入库JS提示！
+   */
+  buildering(e) {
+    wx.showToast({
+      title: '敬请期待!',
+    })
+  },
 })
