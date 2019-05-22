@@ -2,28 +2,34 @@
 <container>
   <view class="pay-result">
     <image class="icon-state-success" src="/assets/img/state_success.png"></image>
-    <view class="state-desc" wx-if="{{ orderType === '0' }}">购买支付成功</view>
-    <view class="state-desc" wx-if="{{ orderType === '1' }}">拼团支付成功</view>
-     <view class="count-time">23:59:59 </view> 
-         <view
-        wx:for="{{ crods }}"
-        wx:key="{{ index }}"
-      >
-      <group>
-                <group-member
-                  wx:for="{{ item.Participations }}"
-                  wx:for-item="memberItem"
-                  wx:for-index="memberIndex"
-                  wx:key="{{ memberIndex }}"
-                  is-first="{{ memberIndex === 0 }}"
-                  is-leader="{{ memberItem.IsMaster }}"
-                  head-image="{{ memberItem.MemberHeadImgUrl }}"
-                ></group-member>
-      </group>
+    <view class="state-desc" wx-if="{{ orderType === '0' }}">购买成功</view>
+    <view class="state-desc" wx-if="{{ orderType === '1' && orderInfo.Participations.length === 1 }}">开团成功</view>
+    <view class="state-desc" wx-if="{{ orderType === '1' && orderInfo.Participations.length > 1 }}">参团成功</view>
+     <view class="count-time"><i-count-down target="{{ computed.targetTimeGroup(orderInfo) }}"></i-count-down></view> 
+     <view wx:if="{{ orderType === '1' }}">
+        <group>
+          <group-member
+            wx:for="{{ orderInfo.Participations }}"
+            wx:key="{{ index }}"
+            is-first="{{ index === 0 }}"
+            is-leader="{{ item.IsMaster }}"
+            head-image="{{ item.MemberHeadImgUrl }}"
+          ></group-member>
+          <group-member wx:for="{{ orderInfo.ParticipantsNumber - orderInfo.Participations.length }}" wx:key="{{ index }}"></group-member>
+        </group>
       </view>
-    <view class="group-state">还差 <text style="color:var(--color-primary)">3</text> 人，赶快邀请好友一起拼单吧</view>
-            <button class="btn btn-primary btn-full btn-share"  open-type="share" data-goods="{{ crods[0] }}">邀请好友拼单</button>
+    <view class="group-state">还差 <text style="color:var(--color-primary)">{{ orderInfo.ParticipantsNumber - orderInfo.Participations.length }}</text> 人，赶快邀请好友一起拼单吧</view>
+    <button wx:if="{{ orderType === '1' && orderInfo.Participations.length < 4 }}" class="btn btn-primary btn-full btn-share"  open-type="share">邀请好友拼单</button>
     <navigator class="btn btn-primary btn-full btn-home" url="/pages/index/index" open-type="switchTab">返回首页</navigator>
     <navigator class="btn btn-full btn-to-order" url="/pages/order/order">去我的订单查看</navigator>
   </view>
 </container>
+
+<wxs module="computed">
+  module.exports = {
+    // 拼团倒计时目标时间
+    targetTimeGroup: function (orderInfo) {
+      return getDate(orderInfo.CreateTime).getTime() + orderInfo.TimeLimit * 60 * 1000
+    }
+  }
+</wxs>

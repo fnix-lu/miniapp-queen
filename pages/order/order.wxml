@@ -91,7 +91,7 @@
         <view class="card-head flex flex-sides flex-middle">
           <!-- 订单编号状态 -->
           <text class="order-id">订单号：{{ item.CrowSerial }}</text>
-          <text class="order-status">待分享，还差{{ 4 - item.Participations.length }}人</text>
+          <text class="order-status">待分享，还差{{ item.ParticipantsNumber - item.Participations.length }}人</text>
         </view>
         <view class="card-body">
           <!-- 商品信息 -->
@@ -117,7 +117,7 @@
             </view>
             <!-- 拼团信息 -->
             <view class="group-info flex flex-sides">
-              <text class="group-info-text">还差{{ 4 - item.Participations.length }}人</text>
+              <text class="group-info-text">还差{{ item.ParticipantsNumber - item.Participations.length }}人</text>
               <group>
                 <group-member
                   wx:for="{{ item.Participations }}"
@@ -128,7 +128,7 @@
                   is-leader="{{ memberItem.IsMaster }}"
                   head-image="{{ memberItem.MemberHeadImgUrl }}"
                 ></group-member>
-                <group-member wx:for="{{ 4 - item.Participations.length }}"></group-member>
+                <group-member wx:for="{{ item.ParticipantsNumber - item.Participations.length }}"></group-member>
               </group>
             </view>
           </view>

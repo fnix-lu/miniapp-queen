@@ -152,7 +152,7 @@
         is-leader="{{ memberItem.IsMaster }}"
         head-image="{{ memberItem.MemberHeadImgUrl }}"
       ></group-member>
-      <group-member wx:for="{{ 4 - currentGroup.Participations.length }}" wx:key="{{ index }}"></group-member>
+      <group-member wx:for="{{ currentGroup.ParticipantsNumber - currentGroup.Participations.length }}" wx:key="{{ index }}"></group-member>
     </group>
     <button class="btn btn-primary btn-full btn-join" bindtap="toJoinGroupSettlement">参与拼单</button>
   </i-modal>
