@@ -8,7 +8,9 @@
     </i-tabs>
   </view>
 
-  <scroll-view class="container-inner" scroll-y scroll-top="{{ toTop }}" bindscroll="scrollPage">
+  <scroll-view class="container-inner" 
+  scroll-into-view="{{toDetail}}"
+  scroll-y scroll-top="{{ toTop }}" bindscroll="scrollPage">
     <!-- 轮播 -->
     <swiper
       class="swiper-goods-imgs"
@@ -54,10 +56,10 @@
           wx:key="{{ index }}"
         >
           <image class="leader-headimg" src="{{ computed.leader(item.Participations).MemberHeadImgUrl }}" mode="aspectFill"></image>
-          <view class="group-name">{{ computed.leader(item.Participations).MemberName }}<text style="margin-left:20rpx;color:var(--color-subtext)">的团</text></view>
+          <view class="group-name">{{ computed.leader(item.Participations).CreatorName }}<text style="margin-left:20rpx;color:var(--color-subtext)">的团</text></view>
           <view class="group-status">
             <view style="color:#353535">还差<text style="color:var(--color-primary)">{{ item.ParticipantsNumber - item.Participations.length }}人</text>拼成</view>
-            <view style="margin-top:14rpx">仅剩<i-count-down i-class="group-countdown" target="{{ computed.targetTimeGroup(item) }}"></i-count-down></view>
+             <view style="margin-top:14rpx">仅剩<i-count-down i-class="group-countdown" target="{{ computed.targetTimeGroup(item) }}"></i-count-down></view>
           </view>
           <view class="btn-show-join" bindtap="showModalJoin" data-group="{{ item }}">去参团</view>
         </view>
@@ -68,7 +70,7 @@
 
     <!-- 商品详情 -->
     <view class="goods-detail">
-      <view class="goods-detail-title">商品详情</view>
+      <view class="goods-detail-title" id="detail">商品详情</view>
       <view class="goods-detail-content">
         <image
           class="goods-detail-img"
@@ -135,13 +137,19 @@
 
   <!-- 弹层 参与拼单 -->
   <i-modal
-    title="参与“{{ computed.leader(currentGroup.Participations).MemberName }}”拼单"
+    title="参与“{{ computed.leader(currentGroup.Participations).CreatorName }}”拼单"
     visible="{{ flag.modalJoin }}"
     show-ok="{{ false }}"
     show-cancel="{{ false }}"
     bindcancel="hideModalJoin"
   >
-    <view style="margin-bottom:20rpx;font-size:28rpx">仅剩 <text style="color:var(--color-primary)">{{ currentGroup.ParticipantsNumber - currentGroup.Participations.length }}</text> 个名额，<i-count-down i-class="group-countdown" target="{{ computed.targetTimeGroup(currentGroup) }}"></i-count-down> 后结束</view>
+    <view style="margin-bottom:20rpx;font-size:28rpx"
+         wx:for="{{ currentGroups }}"
+          wx:key="{{ index }}"
+    >仅剩 <text style="color:var(--color-primary)">{{ item.ParticipantsNumber - item.Participations.length }}</text> 个名额，
+     <i-count-down i-class="group-countdown" target="{{ computed.targetTimeGroup(item) }}"></i-count-down>
+     后结束
+    </view>
     <group>
       <group-member
         wx:for="{{ currentGroup.Participations }}"
@@ -163,6 +171,7 @@
   module.exports = {
     // 团长
     leader: function (memberList) {
+      console.log(memberList)
       return memberList.filter(function (item) {
         return item.IsMaster
       })[0]
@@ -170,7 +179,8 @@
 
     // 拼团倒计时目标时间
     targetTimeGroup: function (item) {
-      return getDate(item.CreateTime).getTime() + item.TimeLimit * 24 * 60 * 60 * 1000
+      c= getDate(item.CreateTime).getTime() + item.TimeLimit * 24 * 60 * 60 * 1000
+      return c+10000
     },
   }
 </wxs>

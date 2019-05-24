@@ -172,7 +172,9 @@ App({
                       SalePrice: _this.globalData.settlementGoodsList[0].SalePrice,
                       GroupPrice: _this.globalData.settlementGoodsList[0].SettlementPrice,
                       SaleCount: _this.globalData.settlementGoodsList[0].SaleCount,
-                      IsMaster: true
+                      IsMaster: true,
+                      NormalOrderId:order.Id,
+                      NormalOrderSerial:order.SerialNumber
                     }).then(res => {
                       if (res.Data) {
                         // 新建拼单成功后跳转至支付结果页

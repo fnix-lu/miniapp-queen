@@ -17,11 +17,17 @@ Page({
       amount: 1
     },
     groups: [],
+    currentGroups:[],
     currentGroup: {
-      Participations: []
+      Participations: [],
+      CreatorName:"",
+      CreateTime: new Date('2019-5-1 00:00:00'),
+      TimeLimit:0,
+      test: 1658747559000
     },
     currentTab: 'tab1',
     toTop: 0,
+    //toDetail:"detail",
     targetTop: 500
   },
 
@@ -109,7 +115,7 @@ Page({
   changeTab (e) {
     let { key } = e.detail
     let { toTop, targetTop } = this.data
-    
+   // let{toDetail}="toDetail";
     if (key === 'tab1') {
       toTop = 0
     }
@@ -118,7 +124,8 @@ Page({
     }
 
     this.setData({
-      toTop
+      toTop,
+     // toDetail
     })
   },
 
@@ -201,12 +208,17 @@ Page({
   showModalJoin (e) {
     const _this = this
     let { group } = e.currentTarget.dataset
-
+    console.log("group",group)
     this.setData({
-      currentGroup: group
+      currentGroup: group,
+      currentGroups: [group],
+      test: 1688747559000
     }, () => {
       _this.setData({
-        'flag.modalJoin': true
+        'flag.modalJoin': true,
+        currentGroup: group,
+        currentGroups: [group],
+        test: 1788747559000
       })
     })
   },
@@ -286,7 +298,11 @@ Page({
         UpdaterName: currentGroup.UpdaterName,
         UpdateTime: currentGroup.UpdateTime,
         RecordStatus: currentGroup.RecordStatus,
-        IsTestData: currentGroup.IsTestData
+        IsTestData: currentGroup.IsTestData,
+        //Id attri had been used,and create another crowid store the group.id
+        CrowId: currentGroup.Id,
+        //store sale count
+        SaleCount: currentGroup.SaleCount
       }]
       wx.navigateTo({
         url: `/pages/settlement/settlement?orderType=1`

@@ -101,6 +101,7 @@ Page({
    * 获取下一页订单
    */
   getNextOrders (currentTab) {
+    console.log("getNextOrders exec!")
     const _this = this
 
     if (this.data.currentPage >= this.data.allPageCount) {

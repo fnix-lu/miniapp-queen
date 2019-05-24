@@ -47,8 +47,8 @@ Page({
       totalSettlementPrice: this.data.totalSettlementPrice,
       orderType: query.orderType * 1
     })
-    console.log(this.data.settlementGoodsList)
-    console.log(this.data.orderType)
+    //console.log(this.data.settlementGoodsList)
+    //console.log(this.data.orderType)
 
     const memberInfo = wx.getStorageSync('memberInfo')
     this.setData({
@@ -63,7 +63,8 @@ Page({
       }
     })
     this.getSchoolsAll()
-    this.getCoupons()
+    //coupon money not be supported this page! by arison 20190524
+    //this.getCoupons()
   },
 
   /**
