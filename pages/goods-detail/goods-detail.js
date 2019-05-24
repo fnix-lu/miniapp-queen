@@ -20,6 +20,7 @@ Page({
     currentGroup: {
       Participations: []
     },
+    currentGroupTargetTime: new Date().getTime() + 100 * 24 * 60 * 60 * 1000,
     currentTab: 'tab1',
     toTop: 0,
     targetTop: 500
@@ -203,7 +204,8 @@ Page({
     let { group } = e.currentTarget.dataset
 
     this.setData({
-      currentGroup: group
+      currentGroup: group,
+      currentGroupTargetTime: new Date(group.CreateTime).getTime() + group.TimeLimit * 24 * 60 * 60 * 1000
     }, () => {
       _this.setData({
         'flag.modalJoin': true

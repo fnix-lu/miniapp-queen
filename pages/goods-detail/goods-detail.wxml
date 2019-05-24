@@ -141,7 +141,7 @@
     show-cancel="{{ false }}"
     bindcancel="hideModalJoin"
   >
-    <view style="margin-bottom:20rpx;font-size:28rpx">仅剩 <text style="color:var(--color-primary)">{{ currentGroup.ParticipantsNumber - currentGroup.Participations.length }}</text> 个名额，<i-count-down i-class="group-countdown" target="{{ computed.targetTimeGroup(currentGroup) }}"></i-count-down> 后结束</view>
+    <view style="margin-bottom:20rpx;font-size:28rpx">仅剩 <text style="color:var(--color-primary)">{{ currentGroup.ParticipantsNumber - currentGroup.Participations.length }}</text> 个名额，<i-count-down i-class="group-countdown" target="{{ currentGroupTargetTime }}"></i-count-down> 后结束</view>
     <group>
       <group-member
         wx:for="{{ currentGroup.Participations }}"
