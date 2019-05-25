@@ -9,7 +9,8 @@ Page({
   data: {
     orderType: '',
     serialNumber: '',
-    orderInfo: {}
+    orderInfo: {},
+    orderInfos:[]
   },
 
   /**
@@ -18,7 +19,7 @@ Page({
   onLoad: function (query) {
     console.log('支付结果页', query)
     let { orderType = '', serialNumber = '' } = query
-
+    console.log('serial='+serialNumber)
     this.setData({
       orderType,
       serialNumber
@@ -36,7 +37,8 @@ Page({
         console.log('结果页', res)
         // 获取产品信息
         this.setData({
-          orderInfo: res.Data[0]
+          orderInfo: res.Data[0],
+          orderInfos:res.Data
         })
       })
     }

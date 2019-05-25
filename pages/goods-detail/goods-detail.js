@@ -193,7 +193,8 @@ Page({
     app.api.getCrowdOrders({
       PageSize: 10000,
       IsContainParticipation: true,
-      ProductId: id
+      ProductId: id,
+      IsFinished:false
     }).then(res => {
       console.log('拼团列表', res)
       _this.setData({
