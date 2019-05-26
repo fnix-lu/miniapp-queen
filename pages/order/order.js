@@ -130,7 +130,9 @@ Page({
       app.api.getOrders({
         PageIndex: this.data.currentPage + 1,
         Type: -1,
-        OrderStatus: 2
+        OrderStatus: 2,
+        PayStatus:1,
+        IsContainDetail:true
       }).then(res => {
         console.log('tab333', res)
         _this.setData({
