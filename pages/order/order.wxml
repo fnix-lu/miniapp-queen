@@ -189,7 +189,7 @@
           <text class="card-foot-text">*请去我的券包查看商品券</text>
           <!-- 底部 -->
           <view class="card-foot-btns flex flex-right">
-            <button class="btn btn-primary" size="mini" catchtap="navigateToCoupon">去我的券包</button>
+            <button class="btn btn-primary" size="mini" data-order-id="{{item.Id}}"  catchtap="navigateToCoupon">去我的券包</button>
           </view>
         </view>
       </view>

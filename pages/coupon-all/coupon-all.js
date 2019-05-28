@@ -1,4 +1,6 @@
 // pages/coupon-all/coupon-all.js
+const app = getApp()
+
 Page({
 
   /**
@@ -14,7 +16,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function ({ orderId }) {
+  onLoad: function (options ) {
+    let{orderId}=options
+    console.log(orderId)
     this.setData({
       orderId
     })

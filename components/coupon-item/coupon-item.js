@@ -1,4 +1,6 @@
 // components/coupon-item/coupon-item.js
+const app = getApp()
+
 Component({
   /**
    * 组件的属性列表
@@ -29,12 +31,12 @@ Component({
      */
     showBarCode (e) {
       const _this = this
-      let { orderId } = e.currentTarget.dataset
+      let { orderId,Id } = e.currentTarget.dataset
       let barCode = ''
 
-      if (orderId) {
-        app.api.getCoupons({
-          OrderId: orderId
+      if (Id) {
+        app.api.GetCouponById({
+          Id: Id
         }).then(res => {
           barCode = res.Data[0].BarCode
         })

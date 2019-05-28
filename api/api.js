@@ -173,6 +173,11 @@ module.exports = {
   getCoupons (data) {
     return fetch('coupon/GetCoupons', data)
   },
+  // 获取卡券详情
+  GetCouponById(data) {
+    return fetch('coupon/GetCouponById', data)
+  },
+  
   // 获取卡包列表
   getCouponPackages (data) {
     return fetch('coupon/GetCouponBags', data)

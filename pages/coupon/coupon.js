@@ -14,13 +14,18 @@ Page({
       showRules: false
     },
     couponType: 1,
-    isUsed: false
+    isUsed: false,
+    orderId:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let{orderId}=options
+    this.setData({
+      orderId
+    })
     if (this.data.couponType === 1 && !this.data.isUsed) {
       this.getCouponPackages()
     } else {
@@ -134,7 +139,8 @@ Page({
     app.api.getCouponPackages({
       PageIndex: this.data.currentPage + 1,
       CouponType: this.data.couponType,
-      IsUsed: this.data.isUsed
+      IsUsed: this.data.isUsed,
+      OrderId:this.data.orderId
     }).then(res => {
       console.log('请求卡包列表', res)
       _this.setData({

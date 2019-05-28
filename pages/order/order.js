@@ -224,9 +224,13 @@ Page({
   /**
    * 去我的券包
    */
-  navigateToCoupon () {
+  navigateToCoupon (e) {
+    let {
+      orderId
+    } = e.currentTarget.dataset
+    console.log(orderId)
     wx.navigateTo({
-      url: '/pages/coupon/coupon',
+      url: '/pages/coupon/coupon?orderId=' + orderId,
     })
   },
 

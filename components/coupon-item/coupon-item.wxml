@@ -17,7 +17,7 @@
           wx:if="{{ couponData.BarCodeCount > 1 }}"
         >查看全部<image class="icon-arrow-right-coupon" src="/assets/img/arrow_right_coupon.png"></image></navigator>
       </view>
-      <view class="coupon-info-row coupon-subinfo" style="margin-top:22rpx">有效期至 {{ coupinData.ValidDate }}</view>
+      <view class="coupon-info-row coupon-subinfo" style="margin-top:22rpx">有效期至 {{ computed.targetTimeShortDate(couponData) }}</view>
       <view class="coupon-info-row" style="margin-top:34rpx;align-items:center">
         <!-- <view class="coupon-rules">点击这里查看使用规则</view> -->
         <view class="coupon-remark" wx:if="{{ couponData.CouponType === '商品抵用券' && !couponData.IsUsed }}">{{ couponData.Remark }}</view>
@@ -34,13 +34,14 @@
     class="btn-coupon"
     wx:if="{{ couponData.CouponType === '商品抵用券' && !couponData.IsUsed && couponData.BarCodeCount === 1 }}"
     bindtap="showBarCode"
+    data-id="{{couponData.Id}}"
     data-order-id="{{ couponData.OrderId }}"
   >查看取货码</view>
-  <view
+  <!-- <view
     class="btn-coupon"
     wx:if="{{ couponData.CouponType === '商品抵用券' && !couponData.IsUsed && !couponData.hasOwnProperty(BarCodeCount) }}"
     bindtap="showBarCode"
-  >查看取货码</view>
+  >查看取货码</view> -->
   <!-- 立即使用按钮 -->
   <view class="btn-coupon" wx:if="{{ couponData.CouponType === '现金券' && !couponData.IsUsed }}">立即使用</view>
 
@@ -53,3 +54,19 @@
     <view class="coupon-barcode">{{ couponBarCode }}</view>
   </i-modal>
 </view>
+
+<wxs module="computed">
+  module.exports = {
+    // 有效日期
+    targetTimeShortDate: function (item) {
+var nowDate = getDate(item.ValidUseDate);
+ var year = nowDate.getFullYear();
+ var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1)
+  : nowDate.getMonth() + 1;
+ var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate
+  .getDate();
+ var dateStr = year + "-" + month + "-" + day;
+    return dateStr;
+    },
+  }
+</wxs>
