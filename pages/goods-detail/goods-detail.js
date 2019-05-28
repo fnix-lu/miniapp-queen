@@ -25,6 +25,7 @@ Page({
       TimeLimit:0,
       test: 1658747559000
     },
+    currentGroupTargetTime: new Date().getTime() + 100 * 24 * 60 * 60 * 1000,
     currentTab: 'tab1',
     toTop: 0,
     //toDetail:"detail",
@@ -213,7 +214,7 @@ Page({
     this.setData({
       currentGroup: group,
       currentGroups: [group],
-      test: 1688747559000
+      currentGroupTargetTime: new Date(group.CreateTime).getTime() + group.TimeLimit * 24 * 60 * 60 * 1000
     }, () => {
       _this.setData({
         'flag.modalJoin': true,
