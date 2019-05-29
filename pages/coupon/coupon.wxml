@@ -26,7 +26,7 @@
 
   <!-- 对话框 -->
   <i-modal title="使用规则" visible="{{ flag.showRules }}" show-cancel="{{ false }}" ok-text="我知道了" bindok="hideCouponRules">
-    <view class="conpon-rules-desc">
+    <view class="coupon-rules-desc">
       <view>a. 礼品卡在有效期内使用，过期作废。</view>
       <view>b. 礼品卡不予兑现，购物金额不足部分以现金补足。</view>
       <view>c. 礼品卡支付部分不开发票。</view>

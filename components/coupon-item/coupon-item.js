@@ -17,9 +17,11 @@ Component({
    */
   data: {
     flag: {
-      showBarCode: false
+      showBarCode: false,
+      showSingleCouponRule: false
     },
-    couponBarCode: ''
+    couponBarCode: '',
+    singleCouponRule: ''
   },
 
   /**
@@ -56,6 +58,26 @@ Component({
       this.setData({
         'flag.showBarCode': false
       })
-    }
+    },
+
+    /**
+     * 显示单个卡券规则
+     */
+    showSingleCouponRule (e) {
+      const { rule } = e.currentTarget.dataset
+      this.setData({
+        singleCouponRule: rule,
+        'flag.showSingleCouponRule': true
+      })
+    },
+
+    /**
+     * 关闭单个卡券规则
+     */
+    hideSingleCouponRule () {
+      this.setData({
+        'flag.showSingleCouponRule': false
+      })
+    },
   }
 })

@@ -127,3 +127,11 @@
   color: #353535;
   padding: 40rpx 0;
 }
+
+/* 卡券规则 */
+.coupon-rules-desc {
+  text-align: left;
+  line-height: 40rpx;
+  font-size: 24rpx;
+  color: var(--color-content);
+}

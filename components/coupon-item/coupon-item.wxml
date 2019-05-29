@@ -19,8 +19,8 @@
       </view>
       <view class="coupon-info-row coupon-subinfo" style="margin-top:22rpx">有效期至 {{ computed.targetTimeShortDate(couponData) }}</view>
       <view class="coupon-info-row" style="margin-top:34rpx;align-items:center">
-        <!-- <view class="coupon-rules">点击这里查看使用规则</view> -->
-        <view class="coupon-remark" wx:if="{{ couponData.CouponType === '商品抵用券' && !couponData.IsUsed }}">{{ couponData.Remark }}</view>
+        <view class="coupon-rules" wx:if="{{ couponData.CouponType === '商品抵用券' && !couponData.IsUsed }}" catchtap="showSingleCouponRule" data-rule="{{ couponData.Remark }}">点击这里查看使用规则</view>
+        <!-- <view class="coupon-remark" wx:if="{{ couponData.CouponType === '商品抵用券' && !couponData.IsUsed }}">{{ couponData.Remark }}</view> -->
         <view class="coupon-remark" wx:if="{{ couponData.CouponType === '现金券' && !couponData.IsUsed }}">购买商品满{{ couponData.MinMoneyEnableDiscountMoney }}元时可用</view>
         <view class="coupon-remark" wx:if="{{ couponData.IsUsed && couponData.UsedDate }}">使用日期 {{ couponData.UsedDate }}</view>
         <view class="coupon-remark" wx:if="{{ couponData.IsUsed && !couponData.UsedDate }}">过期时间 {{ couponData.ValidDate }}</view>
@@ -52,6 +52,13 @@
   <!-- 取货码弹层 -->
   <i-modal title="商品取货码" visible="{{ flag.showBarCode }}" show-cancel="{{ false }}" ok-text="关闭" bindok="hideBarCode">
     <view class="coupon-barcode">{{ couponBarCode }}</view>
+  </i-modal>
+
+  <!-- 卡券规则 -->
+  <i-modal title="卡券规则" visible="{{ flag.showSingleCouponRule }}" show-cancel="{{ false }}" ok-text="关闭" bindok="hideSingleCouponRule">
+    <view class="coupon-rules-desc">
+      <view>{{ singleCouponRule }}</view>
+    </view>
   </i-modal>
 </view>
 
