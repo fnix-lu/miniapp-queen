@@ -63,6 +63,10 @@
 }
 .coupon-name {
   font-size: 32rpx;
+  width: 9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .coupon-all,
 .coupon-subinfo {

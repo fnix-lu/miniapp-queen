@@ -171,7 +171,12 @@ Page({
       couponType
     })
     this.initCouponList()
-    this.getCoupons()
+    // 获取卡包或卡券列表
+    if (this.data.couponType === 1 && !this.data.isUsed) {
+      this.getCouponPackages()
+    } else {
+      this.getCoupons()
+    }
   },
 
   /**
@@ -190,6 +195,11 @@ Page({
       isUsed
     })
     this.initCouponList()
-    this.getCoupons()
+    // 获取卡包或卡券列表
+    if (this.data.couponType === 1 && !this.data.isUsed) {
+      this.getCouponPackages()
+    } else {
+      this.getCoupons()
+    }
   }
 })
